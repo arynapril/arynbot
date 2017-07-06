@@ -29,15 +29,6 @@ bot.on("message", (message) => {
       message.channel.send(`Hi **${joke}**, I'm arynbot! :heart:`);
   }
 
-  /*
-  if (message.content.startsWith("{")) {
-      if (message.content.endsWith("}")); {
-          let args = message.content.split(" ");
-          let huggee = args.slice(1, args.length-1).join(" and ");
-          message.channel.send(`*hugs ${huggee}*`); 
-  }}
-  */
-
   if (!message.content.startsWith(config.prefix)) return;
   if (message.author.bot) return;
   //if (message.author.id==243174457336791041) return;
