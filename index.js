@@ -21,8 +21,6 @@ bot.on("ready", () => {
 });
 
 bot.on("message", (message) => {
-  //message.guild.members.get("243174457336791041").setNickname("Michael");
-  //message.guild.members.get("226999841358610432").setNickname("Jayce");
   if (message.content.startsWith("im") || message.content.startsWith("i'm") || message.content.startsWith("I'm")) {
       let args = message.content.split(" ").slice(1);
       let joke = args.join(" ");

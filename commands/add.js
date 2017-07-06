@@ -22,7 +22,7 @@ sql.get(`SELECT * FROM quotes WHERE userId = "${person}"`)
 
 }).catch(() => {
 
-  console.error; // Gotta log those errors
+  console.error;
     sql.run("CREATE TABLE IF NOT EXISTS quotes (userId TEXT, quote TEXT)").then(() => {
     sql.run("INSERT INTO quotes (userId, quote) VALUES (?, ?)", [person, phrase]);
   });
@@ -30,8 +30,4 @@ sql.get(`SELECT * FROM quotes WHERE userId = "${person}"`)
 });
 
 message.channel.send(`Quote was successfully recorded! **${person}**: ${phrase}`);
-
-sql.get(`SELECT * FROM quotes WHERE userId = "${person}"`)
-.then (row => {
-    console.log(row.quote, oldQuote, phrase);  
-})};
+};

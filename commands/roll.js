@@ -10,7 +10,5 @@ exports.run = (bot, message, args) => {
         var roll = Math.floor(Math.random() * args) +1;
         message.reply("You rolled a **" + roll + "**!");
     }
-    //var roll = Math.floor(Math.random() * side) +1;
-    
 
 }
