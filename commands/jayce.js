@@ -1,4 +1,4 @@
 exports.run = (bot, message, args) => {
-        message.guild.members.get("226999841358610432").setNickname("Jayce");
+        message.guild.members.get("226999841358610432").setNickname("Jax/Jayce");
         message.delete();
 }
