@@ -13,14 +13,14 @@ module.exports = (bot) => {
             let adminRole = message.guild.roles.find('name', bot.config.adminRoleName);
             if (adminRole && message.member.roles.has(adminRole.id)) permlvl = 3;
         } catch (e) {
-            console.warn("admonRoleName not found. Skipping Admin (level 3) check");
+            console.warn("adminRoleName not found. Skipping Admin (level 3) check");
         }
         if(message.author.id === message.guild.owner.id) permlvl = 4;
         return permlvl;
     };
     bot.log = (type, msg, title) => {
         if(!title) title = "Log";
-        console.log(`[${type}] [${title}] ${msg}`);
+        console.log(`${type} | ${title} | ${msg}`);
     };
     bot.awaitReply = async (msg, question, limit = 60000) => {
         const filter = m=>m.author.id;
@@ -32,6 +32,19 @@ module.exports = (bot) => {
             return false;
         }
     };
+    bot.clean = async (bot, text) => {
+      if (text && text.constructor.name == 'Promise')
+        text = await text;
+      if (typeof evaled !== 'string')
+        text = require('util').inspect(text, {depth: 0});
+    
+    text = text
+      .replace(/`/g, "`" + String.fromCharCode(8203))
+      .replace(/@/g, "@" + String.fromCharCode(8203))
+      .replace(bot.token, "mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0");
+    
+    return text;
+  };
     global.wait = require('util').promisify(setTimeout);
     global.range = (count, start = 0) => {
         const myArr = [];
