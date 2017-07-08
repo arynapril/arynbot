@@ -1,7 +1,8 @@
+exports.run = (bot, message, args, level) => {
+
 const sql = require("sqlite");
 sql.open("./quotes.sqlite");
 
-exports.run = (bot, message, args) => {
 if (message.channel.type === "dm") return;
 
 let person = args[0];
@@ -30,4 +31,17 @@ sql.get(`SELECT * FROM quotes WHERE userId = "${person}"`)
 });
 
 message.channel.send(`Quote was successfully recorded! **${person}**: ${phrase}`);
+};
+
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
+    aliases: ['addquote'],
+    permLevel: 0
+};
+
+exports.help = {
+    name: 'add',
+    description:  'Adds a quote to someones quote list!',
+    usage: 'add @[person being quoted] [quote]'
 };

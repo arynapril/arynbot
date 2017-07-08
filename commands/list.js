@@ -1,7 +1,6 @@
-const sql = require("sqlite");
-sql.open("./quotes.sqlite");
-
-exports.run = (bot, message, args) => {
+exports.run = (bot, message, args, level) => {
+  const sql = require("sqlite");
+  sql.open("./quotes.sqlite");
   if (message.channel.type === "dm") return;
   let person = args[0];
     
@@ -15,5 +14,17 @@ exports.run = (bot, message, args) => {
     message.channel.send(`${row.quote}`);
   }
 })
+};
 
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
+    aliases: ['listquotes'],
+    permLevel: 0
+};
+
+exports.help = {
+    name: 'list',
+    description:  'Lists all of someones quotes',
+    usage: 'list @[person whose list you want to see]'
 };
