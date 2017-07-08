@@ -14,7 +14,7 @@ exports.run = (bot, message, args) => {
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: ['diceroll'],
+    aliases: ['diceroll', 'dice'],
     permLevel: 0
 };
 
