@@ -10,7 +10,7 @@ exports.conf = {
 };
 
 exports.help = {
-  name: 'git',
-  description: 'Provides a link to arynbots github repo',
-  usage: 'git'
+    name: 'git',
+    description: 'Provides a link to arynbots github repository!',
+    usage: 'git'
 };

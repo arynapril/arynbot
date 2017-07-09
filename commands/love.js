@@ -27,10 +27,10 @@ exports.run = (bot, message, args, level) => {
         "You deserve love."
     );
     if (!message.mentions.users.array()[0]) {
-    message.reply(`${list[Math.floor(Math.random()*list.length)]}`);
-} else {
-    let loved = message.mentions.users.array()[0];
-    message.channel.send(`**${loved.username}**, ${list[Math.floor(Math.random()*list.length)]}`)
+        message.reply(`${list[Math.floor(Math.random()*list.length)]}`);
+    } else {
+        let loved = message.mentions.users.array()[0];
+        message.channel.send(`**${loved.username}**, ${list[Math.floor(Math.random()*list.length)]}`)
     };
 };
 
@@ -43,6 +43,6 @@ exports.conf = {
 
 exports.help = {
     name: 'love',
-    description:  'Spread the love!',
+    description: 'Spread the love!',
     usage: 'love'
 };

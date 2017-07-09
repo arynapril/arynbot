@@ -15,7 +15,7 @@ exports.conf = {
 };
 
 exports.help = {
-  name: 'hug',
-  description: 'Spread the love!',
-  usage: 'hug @[person needing some love]'
+    name: 'hug',
+    description: 'Everyone needs a hug sometimes.',
+    usage: 'hug <@person needing a hug [optional]>'
 };

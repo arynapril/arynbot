@@ -1,7 +1,7 @@
 exports.run = (bot, message, args, level) => {
-        message.guild.members.get("226999841358610432").setNickname("Jax/Jayce");
-        message.delete();
-}
+    message.guild.members.get("226999841358610432").setNickname("Jax/Jayce");
+    message.delete();
+};
 
 exports.conf = {
     enabled: true,
@@ -12,6 +12,6 @@ exports.conf = {
 
 exports.help = {
     name: 'jayce',
-    description:  'Changes Jayces nickname back to Jax/Jayce',
+    description: 'Changes Jax/Jayces nickname back to Jax/Jayce',
     usage: 'jayce'
 };
