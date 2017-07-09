@@ -19,7 +19,7 @@ module.exports = (bot) => {
         return permlvl;
     };
     bot.log = (type, msg, title) => {
-        if(!title) title = "Log";
+        if(!title) title = "LOG";
         console.log(`${type} | ${title} | ${msg}`);
     };
     bot.awaitReply = async (msg, question, limit = 60000) => {
