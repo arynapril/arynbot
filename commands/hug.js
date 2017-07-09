@@ -1,12 +1,16 @@
 exports.run = (bot, message, args, level) => {
-    let huggee = args.join(" and ");
-    message.channel.send(`*hugs ${huggee}*`);
-}
+    if (!message.mentions.users.array()[0]) {
+        message.channel.send(`*hugs* ***${message.author.username}***`)
+    } else {
+        let huggee = message.mentions.users.array()[0];
+        message.channel.send(`*hugs* ***${huggee.username}***`);
+    };
+};
 
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: [],
+    aliases: ['hugs'],
     permLevel: 0
 };
 
