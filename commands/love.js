@@ -1,15 +1,15 @@
 exports.run = (bot, message, args, level) => {
     var list = Array(
-        "I appreciate you",
+        "I appreciate you.",
         "You are the most perfect you there is.",
-        "You are enough",
-        "You're strong",
+        "You are enough.",
+        "You're strong.",
         "You deserve good things.",
         "You should be proud of yourself.",
         "You are good enough.",
         "You're making a difference.",
-        "Colors seem brighter when you're around",
-        "You're one of a kind",
+        "Colors seem brighter when you're around.",
+        "You're one of a kind.",
         "You're inspiring.",
         "The world is better because you're in it.",
         "You're awesome.",
@@ -24,10 +24,15 @@ exports.run = (bot, message, args, level) => {
         "There are people who care about you.",
         "You're not alone.",
         "You deserve the world.",
-        "You deserve love"
+        "You deserve love."
     );
+    if (!message.mentions.users.array()[0]) {
     message.reply(`${list[Math.floor(Math.random()*list.length)]}`);
-}
+} else {
+    let loved = message.mentions.users.array()[0];
+    message.channel.send(`**${loved.username}**, ${list[Math.floor(Math.random()*list.length)]}`)
+    };
+};
 
 exports.conf = {
     enabled: true,
