@@ -2,6 +2,7 @@ const discord = require('discord.js');
 const {promisify} = require('util');
 const readdir = promisify(require("fs").readdir);
 const sql = require("sqlite");
+//const MarkovChain = require('markovchain');
 const bot = new discord.Client();
 bot.config = require("./config.json");
 sql.open("./quotes.sqlite");
