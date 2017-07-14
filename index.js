@@ -8,7 +8,7 @@ bot.commands = new discord.Collection();
 bot.aliases = new discord.Collection();
 (async function() {
     const commandFiles = await readdir('./commands/');
-    bot.login("log", `Loading ${commandFiles.length} commands!`);
+    bot.log("log", `Loading ${commandFiles.length} commands!`);
     commandFiles.forEach(f => {
         try {
             let commandFile = require(`./commands/${f}`);
@@ -22,7 +22,7 @@ bot.aliases = new discord.Collection();
         }
     });
     const eventFiles = await readdir('./events/');
-    bot.login("log", `Loading ${eventFiles.length} events!`);
+    bot.log("log", `Loading ${eventFiles.length} events!`);
     eventFiles.forEach(file => {
         const eventName = file.split(".")[0];
         const event = require(`./events/${file}`);
