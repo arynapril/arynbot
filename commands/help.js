@@ -27,14 +27,14 @@ exports.run = (bot, message, params, level) => {
     }
 };
 exports.conf = {
-    enabled: true
-    , guildOnly: false
-    , aliases: ['h', 'halp']
-    , permLevel: 0
+    enabled: true, 
+    guildOnly: false, 
+    aliases: ['h', 'halp'], 
+    permLevel: 0
 };
 exports.help = {
-    name: 'help'
-    , category: 'Utilities'
-    , description: 'Displays all the commands avaliable for your permission level'
-    , usage: 'help <command [optional]>'
+    name: 'help', 
+    category: 'Utilities', 
+    description: 'Displays all the commands avaliable for your permission level', 
+    usage: 'help <command [optional]>'
 };
