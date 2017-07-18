@@ -11,6 +11,7 @@ exports.conf = {
 
 exports.help = {
     name: 'git',
+    category: 'Utilities',
     description: 'Provides a link to arynbots github repository!',
     usage: 'git'
 };

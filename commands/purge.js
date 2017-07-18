@@ -17,6 +17,7 @@ exports.conf = {
 
 exports.help = {
     name: 'purge',
+    category: 'Mod',
     description: 'Mass clearing of messages',
     usage: 'purge <number of messages to be deleted, between 2 and 100>'
 };

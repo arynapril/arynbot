@@ -17,6 +17,7 @@ exports.conf = {
 
 exports.help = {
     name: 'nicknames',
-    description: 'Changes Michael\'s (both of them), Abby\'s, Set\'s, Moe\'s, and Jax/Jayce\'s nicknames back to normal',
-    usage: 'nickname'
+    category: 'Fun',
+    description: 'Changes nicknames back to normal',
+    usage: 'nicknames'
 };
