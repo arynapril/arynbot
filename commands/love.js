@@ -32,6 +32,8 @@ exports.run = (bot, message, args, level) => {
         let loved = message.mentions.users.array()[0];
         if (loved.username=="arynapril") {
             message.channel.send("Haha nope!");
+        } else if (loved.username=="Agent_Flame") {
+            message.channel.send("NOPE NOPE");
         } else {
         message.channel.send(`**${loved.username}**, ${list[Math.floor(Math.random()*list.length)]}`);
         };
