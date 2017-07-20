@@ -27,7 +27,7 @@ exports.run = (bot, message, args, level) => {
         "you deserve love.",
         "you matter even if you are at your lowest",
         "you are irreplacable",
-        "you mean the world to someone. Don't take that away from them"
+        "you mean the world to someone. Don't take that away from them."
     );
     if (!message.mentions.users.array()[0]) {
         message.reply(`${list[Math.floor(Math.random()*list.length)]}`);
