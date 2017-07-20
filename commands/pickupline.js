@@ -14,7 +14,6 @@ exports.conf = {
 
 exports.help = {
     name: 'pickupline',
-    category: 'Fun',
     description: 'Generates a random, nonsensical pickup line.',
     usage: 'pickupline <@person being flirted with [optional]>'
 };

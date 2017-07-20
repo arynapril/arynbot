@@ -30,7 +30,6 @@ exports.conf = {
 
 exports.help = {
     name: 'reload',
-    category: 'Utilities',
     description: 'Reloads a command that\'s been modified',
     usage: 'purge <command>'
 };

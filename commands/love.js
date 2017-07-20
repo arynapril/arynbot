@@ -47,7 +47,6 @@ exports.conf = {
 
 exports.help = {
     name: 'love',
-    category: 'Fun',
     description: 'Spread the love!',
-    usage: 'love'
+    usage: 'love @<optional mention>'
 };

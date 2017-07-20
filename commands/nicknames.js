@@ -17,7 +17,6 @@ exports.conf = {
 
 exports.help = {
     name: 'nicknames',
-    category: 'Fun',
     description: 'Changes nicknames back to normal',
     usage: 'nicknames'
 };
