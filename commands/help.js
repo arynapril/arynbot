@@ -20,8 +20,7 @@ exports.run = (bot, message, params, level) => {
             .addField('Description', `${command.help.description}`)
             .addField('Usage', `${bot.config.prefix}${command.help.usage}`)
             .setColor([Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
-            if (command.conf.aliases == "") {
-            } else {
+            if (command.conf.aliases != "") {
                 helpCommand.addField('Aliases', `${command.conf.aliases.join(', ')}`)
             }
             message.channel.send({embed: helpCommand});
@@ -36,7 +35,6 @@ exports.conf = {
 };
 exports.help = {
     name: 'help', 
-    category: 'Utilities', 
     description: 'Displays all the commands avaliable for your permission level', 
     usage: 'help <command [optional]>'
 };
