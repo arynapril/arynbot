@@ -13,6 +13,16 @@ exports.run = (bot, message, args) => {
     } else {
         var game = user.presence.game.name;
     };
+    if (!member.hoistRole) {
+        var hoist = "None"
+    } else {
+        var hoist = member.hoistRole.name;
+    };
+    if (!member.colorRole) {
+        var color = "None"
+    } else {
+        var color = member.colorRole.name;
+    };
     info.setTitle(`Info on ${user.username}:`)
     .setThumbnail(user.avatarURL)
     .setColor(member.displayHexColor)
@@ -26,8 +36,8 @@ exports.run = (bot, message, args) => {
     .addField('Bot', user.bot, true)
     .addField('Roles', member.roles.array().length-1, true)
     .addField('Highest Role', member.highestRole.name, true)
-    .addField('Hoist Role', member.hoistRole.name, true)
-    .addField('Color Role', member.colorRole.name, true)
+    .addField('Hoist Role', hoist, true)
+    .addField('Color Role', color, true)
     .addField('Color', member.displayHexColor, true)
     message.channel.send({embed: info})
 };
