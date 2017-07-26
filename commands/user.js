@@ -20,7 +20,7 @@ exports.run = (bot, message, args) => {
     .addField('Username', user.username, true)
     .addField('Display Name', member.displayName, true)  
     .addField('Account Created', user.createdAt, true)
-    .addField('Joined Server', member.joinedAt, true)
+    .addField('Join Date', member.joinedAt, true)
     .addField('Status', user.presence.status, true)
     .addField('Game', game, true)
     .addField('Bot', user.bot, true)
