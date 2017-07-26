@@ -16,6 +16,7 @@ exports.run = (bot, message, args) => {
     info.setTitle(`Info on ${user.username}:`)
     .setThumbnail(user.avatarURL)
     .setColor(member.displayHexColor)
+    .setTimestamp()
     .addField('Username', user.username, true)
     .addField('Display Name', member.displayName, true)  
     .addField('Account Created', user.createdAt, true)
@@ -27,6 +28,7 @@ exports.run = (bot, message, args) => {
     .addField('Highest Role', member.highestRole.name, true)
     .addField('Hoist Role', member.hoistRole.name, true)
     .addField('Color Role', member.colorRole.name, true)
+    .addField('Color', member.displayHexColor, true)
     message.channel.send({embed: info})
 };
 exports.conf = {
