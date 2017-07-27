@@ -1,6 +1,6 @@
 module.exports = (bot, message) => {
     if (message.author.bot) return;
-    if (message.content.startsWith("im") || message.content.startsWith("i'm") || message.content.startsWith("I'm")) {
+    if (message.content.startsWith("im ") || message.content.startsWith("i'm ") || message.content.startsWith("I'm ")) {
         let args = message.content.split(" ").slice(1);
         let joke = args.join(" ");
         message.channel.send(`Hi **${joke}**, I'm arynbot! :heart:`);
