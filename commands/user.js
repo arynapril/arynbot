@@ -39,6 +39,7 @@ exports.run = (bot, message, args) => {
     .addField('Hoist Role', hoist, true)
     .addField('Color Role', color, true)
     .addField('Color', member.displayHexColor, true)
+    .addField('Icon URL', user.avatarURL, true)
     message.channel.send({embed: info})
 };
 exports.conf = {
