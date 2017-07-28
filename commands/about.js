@@ -36,6 +36,6 @@ exports.conf = {
 
 exports.help = {
     name: 'about',
-    description: 'Rolls a die of a side number up to 9999',
-    usage: 'roll <number of sides, if not included, rolls for a six sided die>'
+    description: 'display a few statistics for the bot',
+    usage: 'about'
 };
