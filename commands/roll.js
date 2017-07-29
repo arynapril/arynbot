@@ -1,4 +1,4 @@
-exports.run = (bot, message, args) => {
+exports.run = (bot, message, args, level) => {
     if (args == "") {
         var roll = Math.floor(Math.random() * 6) + 1;
         message.reply("You rolled a **" + roll + "**!");
@@ -11,7 +11,7 @@ exports.run = (bot, message, args) => {
 };
 
 exports.conf = {
-    enabled: false,
+    enabled: true,
     guildOnly: false,
     aliases: ['diceroll', 'dice'],
     permLevel: 0
