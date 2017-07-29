@@ -1,11 +1,13 @@
 exports.run = (bot, message, args, level) => {
-    if (args == 0 || args == 1 || args > 100) {
-        message.channel.send("Please set a number between 2 and 100! :heart:")
-    } else {
-        message.delete();
-        message.channel.bulkDelete(args);
-        message.channel.send(`${args} messages purged by ${message.author}! :heart:`);
-    };
+    var num = parseInt(args[0]);
+    num += 1;
+	if (!isNaN(num)) {
+        message.channel.bulkDelete(num);
+        message.channel.send(`${args[0]} messages purged by ${message.author}! :heart:`)
+			.then(msg => setTimeout(function() {msg.delete()}, 5000));
+	} else {
+		message.channel.sendMessage("Please specify a number!");
+	}
 };
 
 exports.conf = {
