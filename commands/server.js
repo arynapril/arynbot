@@ -6,6 +6,9 @@ exports.run = (bot, message, args, level) => {
     for (var i = 0; i < emoji.length; i++) {
         str += `<:${emoji[i].name}:${emoji[i].id}> `
     };
+    if (str == "") {
+        str = 'None';
+    };
     var serverEmbed = new Discord.RichEmbed()
         .setTitle(`Server stats for ${server.name}`)
         .setColor([Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
