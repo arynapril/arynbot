@@ -22,7 +22,7 @@ module.exports = (bot, messageReaction, user) => {
             if (msg != "") {
                 HoF.addField('Message', `${msg}`)
             }
-            HoF.setImage(pictures[0].url);
+            HoF.setImage(pictures[0].url)
         }
         bot.channels.get('336108682842603520').send({embed: HoF});
     };
