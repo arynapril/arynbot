@@ -1,7 +1,7 @@
 exports.run = (bot, message, args, level) => {
     bot.generateInvite()
     .then(link => {
-    message.channel.send(`Invite me to your server using the following link! :heart: ${link}`);
+    message.channel.send(`Invite me to your server using the following link! :heart: <${link}>`);
   });
 };
 
