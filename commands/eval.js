@@ -4,7 +4,7 @@ exports.run = async(bot, message, args, level) => {
     try {
         const evaled = eval(code);
         const clean = await bot.clean(bot, evaled);
-        message.channel.send(`\`\`\`xl\n${clean}\n\`\`\``);
+        message.channel.send(`\`\`\`xl\n${evaled}\n\`\`\``);
     } catch (err) {
         message.channel.send(`\`ERROR\` \`\`\`xl\n${await bot.clean(bot, err)}\n\`\`\``);
     }
