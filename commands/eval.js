@@ -3,7 +3,7 @@ exports.run = async(bot, message, args, level) => {
     message.delete();
     const code = args.join(" ");
     var evalEmbed = new Discord.RichEmbed()
-        .setTitle('Evaluating code...')
+        .setTitle('Evaluated code')
         .setTimestamp()
         .setFooter('EVAL')
         .addField('Input', code)
