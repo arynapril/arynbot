@@ -2,7 +2,7 @@ const child_process = require('child_process');
 exports.run = (bot, message, args) => {
     message.channel.send("Updating...").then(e => {
         var update = child_process.execSync('git pull origin').toString();
-        e.channel.send("```" + update + "```");
+        e.edit("```" + update + "```");
         if (update.indexOf("Already up-to-date.") > -1) {
             e.edit("There was nothing to update!");
         } else {
