@@ -45,7 +45,7 @@ exports.run = (bot, message, args) => {
 exports.conf = {
     enabled: false,
     guildOnly: false,
-    aliases: ['info'],
+    aliases: ['info', 'userinfo'],
     permLevel: 0
 };
 exports.help = {
