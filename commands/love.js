@@ -30,12 +30,20 @@ exports.run = (bot, message, args, level) => {
         "you mean the world to someone. Don't take that away from them."
     );
     if (!message.mentions.users.array()[0]) {
-        message.reply(`${list[Math.floor(Math.random()*list.length)]}`);
+        message.reply(`${list[Math.floor(Math.random()*list.length)]}`, {
+            file: "https://cdn.discordapp.com/attachments/263501441690238976/337810432108658691/089811d7a2e619cb735aa37a52b19262.gif"
+        });
     } else {
         let loved = message.mentions.users.array()[0];
-        message.channel.send(`**${loved.username}**, ${list[Math.floor(Math.random()*list.length)]}`);
+        message.channel.send(`**${loved.username}**, ${list[Math.floor(Math.random()*list.length)]}`, {
+            file: "https://cdn.discordapp.com/attachments/263501441690238976/337810432108658691/089811d7a2e619cb735aa37a52b19262.gif"
+        });
     };
 };
+
+message.channel.send(`**${loved.username}**, ${list[Math.floor(Math.random()*list.length)]}`, {    
+            file: "https://cdn.discordapp.com/attachments/263501441690238976/337810432108658691/089811d7a2e619cb735aa37a52b19262.gif" // Or replace with FileOptions object
+        });
 
 exports.conf = {
     enabled: true,
