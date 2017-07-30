@@ -3,7 +3,7 @@ exports.run = (bot, message, args) => {
     message.channel.send("Updating...").then(e => {
         var update = child_process.execSync('git pull origin').toString();
         e.edit("```" + update + "```");
-        if (update.indexOf("Already up-to-date.") > -1) {
+        if (update.indexOf("Already up-to-date.")) {
             e.edit("There was nothing to update!");
         } else {
             e.channel.send("New code successfully pulled!\nRestarting...");
