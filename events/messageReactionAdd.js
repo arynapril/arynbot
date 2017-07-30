@@ -23,7 +23,7 @@ module.exports = (bot, messageReaction, user) => {
             }
             HoF.setImage(pictures[0].url)
         }
-        var HallOfFame = message.guild.channels.find('name', 'hall-of-fame');
+        var HallOfFame = msg.guild.channels.find('name', 'hall-of-fame');
         HallOfFame.send({embed: HoF});
     };
 };
