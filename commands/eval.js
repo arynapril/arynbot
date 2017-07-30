@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 exports.run = async(bot, message, args, level) => {
     message.delete();
     const code = args.join(" ");
-    var eval = new Discord.RichEmbed()
+    var evalEmbed = new Discord.RichEmbed()
         .setTitle('Evaluating code...')
         .setTimestamp()
         .setFooter('EVAL')
@@ -10,13 +10,13 @@ exports.run = async(bot, message, args, level) => {
     try {
         const evaled = eval(code);
         const clean = await bot.clean(bot, evaled);
-        eval.setColor([Math.floor(Math.random()*256),255,Math.floor(Math.random()*256)])
+        evalEmbed.setColor([Math.floor(Math.random()*256),255,Math.floor(Math.random()*256)])
             .addField('OUTPUT', clean)
     } catch (err) {
-        eval.setColor([255,Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
+        evalEmbed.setColor([255,Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
             .addField('ERROR', await bot.clean(bot, err))
     }
-    message.channel.send({embed: eval});
+    message.channel.send({embed: evalEmbed});
 };
 
 exports.conf = {
