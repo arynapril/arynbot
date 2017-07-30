@@ -7,7 +7,7 @@ exports.run = (bot, message, args) => {
         if (update.indexOf("Already up-to-date.") > -1) {
             e.edit("There was nothing to update!");
         } else {
-            process.exit();
+            //process.exit();
             e.channel.send("New code successfully pulled!\nRestarting...");
         }
     })
