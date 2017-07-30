@@ -13,7 +13,7 @@ exports.run = (bot, message, args, level) => {
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: ['clear', 'prune'],
+    aliases: ['clear', 'prune', 'clean'],
     permLevel: 2
 };
 
