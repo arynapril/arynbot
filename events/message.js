@@ -1,6 +1,6 @@
 module.exports = (bot, message) => {
     if (message.author.bot) return;
-    if (message.content.startsWith("im ") || message.content.startsWith("i'm ") || message.content.startsWith("I'm ")) {
+    if (message.content.startsWith("im ") || message.content.startsWith("i'm ") || message.content.startsWith("I'm ") || message.content.startsWith("IM ") || message.content.startsWith("IM ") || message.content.startsWith("I am ")) {
         if (message.author.id == '226999841358610432') {
         const args = message.content.split(/\s+/g);
         const cmd = bot.commands.get('love');
