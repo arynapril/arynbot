@@ -9,7 +9,6 @@ exports.run = (bot, message, args, level) => {
     } else {
         var timecode = `${time} seconds`;
     }
-    var colors = Array("#FF80AB","#FF4081","#F50057","#EF5350","#E53935","#C62828","#FFAB40","#FF9100","#FF6D00","#FFD740","#FFC400","#FFAB00","#81C784","#4CAF50","#388E3C","#2196F3","#1976D2","#0D47A1","#7986CB","#3F51B5","#303F9F","#B39DDB","#7E57C2","#5E35B1");
     if(!isNaN(time)) {
         var embed1 = new Discord.RichEmbed();
         embed1.setTitle("This channel has been timed out.")
@@ -17,7 +16,7 @@ exports.run = (bot, message, args, level) => {
         .addField("Initiated by:", message.author)
         .setFooter("TIMEOUT")
         .setTimestamp()
-        .setColor(colors[Math.floor(Math.random()*colors.length)])
+        .setColor([255,Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
         message.channel.overwritePermissions(id, {SEND_MESSAGES: false})
         .then(
             message.channel.send({embed: embed1})
@@ -27,7 +26,7 @@ exports.run = (bot, message, args, level) => {
                     embed2.setTitle("The timeout period has elapsed.")
                     .setFooter("TIMEOUT")
                     .setTimestamp()
-                    .setColor(colors[Math.floor(Math.random()*colors.length)])
+                    .setColor([Math.floor(Math.random()*256),255,Math.floor(Math.random()*256)])
                     message.edit({embed: embed2});
                     message.channel.overwritePermissions(id, {SEND_MESSAGES: true});
                 }, time * 1000);

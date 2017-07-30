@@ -21,7 +21,7 @@ exports.run = (bot, message, args, level) => {
         .addField('Reason', reason)
         .setFooter("MUTED")
         .setTimestamp()
-        .setColor('#E53935')
+        .setColor([255,Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
         message.channel.send({embed: mute})
     }
 };

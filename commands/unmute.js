@@ -16,7 +16,7 @@ exports.run = (bot, message, args, level) => {
         .addField('Unmuted by', message.author)
         .setFooter("UNMUTED")
         .setTimestamp()
-        .setColor('#4CAF50')
+        .setColor([Math.floor(Math.random()*256),255,Math.floor(Math.random()*256)])
         message.channel.send({embed: unmute})
     };
 };
