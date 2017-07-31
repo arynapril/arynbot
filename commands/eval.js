@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 exports.run = async(bot, message, args, level) => {
-    message.delete();
     const code = args.join(" ");
     var evalEmbed = new Discord.RichEmbed()
         .setTitle('Evaluated code')
