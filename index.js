@@ -8,7 +8,7 @@ bot.commands = new discord.Collection();
 bot.aliases = new discord.Collection();
 (async function() {
     const commandFiles = await readdir('./commands/');
-    bot.log("log", `Loading ${commandFiles.length} commands!`);
+    bot.log("log", `Loading ${commandFiles.length} commands!`, 'LOAD ');
     commandFiles.forEach(f => {
         try {
             let commandFile = require(`./commands/${f}`);
