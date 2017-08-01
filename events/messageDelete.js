@@ -10,7 +10,7 @@ module.exports = (bot, message) => {
             dlt.addField('User',`${message.member.nickname} (${message.author.username})`, true);
         };
         dlt.addField('Channel', message.channel.name, true)
-        if (msg.attachments.size==0) {
+        if (message.attachments.size==0) {
             dlt.addField('Message', `${message}`)
         } else {
             pictures = message.attachments.array();
