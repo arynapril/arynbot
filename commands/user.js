@@ -23,6 +23,14 @@ exports.run = (bot, message, args) => {
     } else {
         var color = member.colorRole.name;
     };
+    var exclusive = member.roles.array()[0].name,
+    num = member.roles.array()[0].members.size;
+    member.roles.forEach(role => {
+        if(role.members.size < num) {
+            exclusive = role.name,
+            num = role.members.size;
+        }
+    });
     info.setTitle(`Info on ${user.username}:`)
     .setThumbnail(user.avatarURL)
     .setColor(member.displayHexColor)
@@ -38,6 +46,7 @@ exports.run = (bot, message, args) => {
     .addField('Highest Role', member.highestRole.name, true)
     .addField('Hoist Role', hoist, true)
     .addField('Color Role', color, true)
+    .addField('Most Exclusive Role', exclusive, true)
     .addField('Color', member.displayHexColor, true)
     .addField('Icon URL', user.avatarURL, true)
     message.channel.send({embed: info})
