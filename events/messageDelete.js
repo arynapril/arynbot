@@ -2,6 +2,7 @@ module.exports = (bot, message) => {
     const Discord = require('discord.js');
     var logs = message.guild.channels.find('name', 'logs');
     if (!logs) return;
+    if (message.author.bot) return;
     var dlt = new Discord.RichEmbed()
         .setTitle('Message Deleted')
         if (message.member.nickname == null) {
