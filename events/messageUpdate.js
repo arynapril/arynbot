@@ -15,24 +15,20 @@ module.exports = (bot, oldMessage, newMessage) => {
         if (oldMessage.attachments.size==0) {
             update.addField('Old Message', `${oldMessage}`)
         } else {
-            pictures = oldMessage.attachments.array();
+            var pictures = oldMessage.attachments.array();
             if (oldMessage != "") {
-                update.addField('Message', `${oldMessage}`)
+                update.addField('Old Message', `${oldMessage}`)
             }
-            for(i=0; oldMessage.attachments.array().length; i++) {
-            update.addField('Old pictures', pictures[i].url);
-            }
+            update.addField('Old Image', pictures[0].url);
         }
         if (newMessage.attachments.size==0) {
             update.addField('New Message', `${newMessage}`)
         } else {
-            newPictures = newMessage.attachments.array();
+            var newPictures = newMessage.attachments.array();
             if (newMessage != "") {
-                update.addField('Message', `${newMessage}`)
+                update.addField('New Message', `${newMessage}`)
             }
-            for(i=0; newMessage.attachments.array().length; i++) {
-            update.addField('New pictures', newPictures[i].url)
-            }
+            update.addField('New Image', newPictures[0].url);
         }
         update.setTimestamp()
         .setColor([255,Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
