@@ -21,7 +21,7 @@ module.exports = (bot, oldMessage, newMessage) => {
                 update.addField('Old Message', `${oldMessage}`)
             }
             update.addField('Old Image', pictures[0].url);
-        }
+        };
         if (newMessage.attachments.size==0) {
             update.addField('New Message', `${newMessage}`)
         } else {
@@ -30,7 +30,7 @@ module.exports = (bot, oldMessage, newMessage) => {
                 update.addField('New Message', `${newMessage}`)
             }
             update.addField('New Image', newPictures[0].url);
-        }
+        };
         update.setTimestamp()
         .setColor([255,Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
     logs.send({embed: update});
