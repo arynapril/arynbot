@@ -25,7 +25,7 @@ exports.run = (bot, message, args) => {
                 .setTitle("Updated!")
                 .setDescription(update)
                 .setTimestamp()
-                .setFooter('New code successfully pulled! Restarting...')
+                .setFooter(`Took ${e.createdTimestamp - message.createdTimestamp} ms to update!`)
             e.edit({embed: updateEmbed2});
         }
     })
