@@ -9,7 +9,7 @@ module.exports = (bot, message) => {
         const cmd = bot.commands.get('love');
         cmd.run(bot, message, args);
         } else {
-        let args = message.content.split(" ").slice(1);
+        let args = message.cleanContent.split(" ").slice(1);
         let joke = args.join(" ");
         message.channel.send(`Hi **${joke}**, I'm arynbot! :heart:`);
         bot.log("log", `${message.guild.name}/#${message.channel.name}: ${message.author.username} (${message.author.id}) made a dad joke: ${joke}`, "DAD  ");
