@@ -6,7 +6,7 @@ exports.run = async(bot, message, args, level) => {
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: [],
+    aliases: ['pinh'],
     permLevel: 0
 };
 
