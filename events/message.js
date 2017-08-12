@@ -5,14 +5,15 @@ module.exports = (bot, message) => {
     };
     if (message.content.startsWith("im ") || message.content.startsWith("i'm ") || message.content.startsWith("I'm ") || message.content.startsWith("IM ") || message.content.startsWith("IM ") || message.content.startsWith("I am ")) {
         if (message.author.id == '226999841358610432') {
-        const args = message.content.split(/\s+/g);
-        const cmd = bot.commands.get('love');
-        cmd.run(bot, message, args);
+            const args = message.content.split(/\s+/g);
+            const cmd = bot.commands.get('love');
+            cmd.run(bot, message, args);
         } else {
-        let args = message.cleanContent.split(" ").slice(1);
-        let joke = args.join(" ");
-        message.channel.send(`Hi **${joke}**, I'm arynbot! :heart:`);
-        bot.log("log", `${message.guild.name}/#${message.channel.name}: ${message.author.username} (${message.author.id}) made a dad joke: ${joke}`, "DAD  ");
+            if (message.guild.id == '292134570940301312' && message.channel.id !== '296497111090855936') return;
+            let args = message.cleanContent.split(" ").slice(1);
+            let joke = args.join(" ");
+            message.channel.send(`Hi **${joke}**, I'm arynbot! :heart:`);
+            bot.log("log", `${message.guild.name}/#${message.channel.name}: ${message.author.username} (${message.author.id}) made a dad joke: ${joke}`, "DAD  ");
         }
     };
     if (message.content.indexOf(bot.config.prefix) !== 0) return;
