@@ -29,11 +29,27 @@ exports.run = (bot, message, args, level) => {
         "you are irreplacable",
         "you mean the world to someone. Don't take that away from them."
     );
-    if (!message.mentions.users.array()[0]) {
-        message.reply(`${list[Math.floor(Math.random()*list.length)]}`);
-    } else {
-        let loved = message.mentions.users.array()[0];
-        message.channel.send(`**${loved.username}**, ${list[Math.floor(Math.random()*list.length)]}`);
+    if (!args[1]) {
+        if (!message.mentions.users.array()[0]) {
+            message.reply(`${list[Math.floor(Math.random()*list.length)]}`);
+        } else {
+            let loved = message.mentions.users.array()[0];
+            message.channel.send(`**${loved.username}**, ${list[Math.floor(Math.random()*list.length)]}`);
+        };
+    } else if (!isNaN(args[1])) {
+        if (args[1]>10) {
+            k=10;
+        } else {
+            k=args[1];
+        };
+        for (i=0; i<k; i++) {
+            if (!message.mentions.users.array()[0]) {
+                message.reply(`${list[Math.floor(Math.random()*list.length)]}`);
+            } else {
+                let loved = message.mentions.users.array()[0];
+                message.channel.send(`**${loved}**, ${list[Math.floor(Math.random()*list.length)]}`);
+            };
+        };
     };
 };
 
