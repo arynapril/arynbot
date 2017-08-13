@@ -1,5 +1,7 @@
 module.exports = (bot, messageReaction, user) => {
     const Discord = require('discord.js');
+    var HallOfFame = msg.guild.channels.find('name', 'hall-of-fame');
+    if (!HallOfFame) return;
     if (messageReaction.me) return;
     if (messageReaction.emoji.name == "gayalliance" && messageReaction.count >= 3) {
         let msg = messageReaction.message;
@@ -23,7 +25,6 @@ module.exports = (bot, messageReaction, user) => {
             }
             HoF.setImage(pictures[0].url)
         }
-        var HallOfFame = msg.guild.channels.find('name', 'hall-of-fame');
         HallOfFame.send({embed: HoF});
     };
 };
