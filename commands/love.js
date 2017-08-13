@@ -29,7 +29,7 @@ exports.run = (bot, message, args, level) => {
         "you are irreplacable",
         "you mean the world to someone. Don't take that away from them."
     );
-    if (!args[1]) {
+    if (!args[1] || isNaN(args[1])) {
         if (!message.mentions.users.array()[0]) {
             message.reply(`${list[Math.floor(Math.random()*list.length)]}`);
         } else {
@@ -63,5 +63,5 @@ exports.conf = {
 exports.help = {
     name: 'love',
     description: 'Spread the love!',
-    usage: 'love @<optional mention>'
+    usage: 'love @<optional mention> <optional number to spam someone with love, to a max of 10>'
 };
