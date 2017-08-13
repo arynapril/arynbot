@@ -1,10 +1,10 @@
 module.exports = (bot, messageReaction, user) => {
     const Discord = require('discord.js');
+    let msg = messageReaction.message;
     var HallOfFame = msg.guild.channels.find('name', 'hall-of-fame');
     if (!HallOfFame) return;
     if (messageReaction.me) return;
     if (messageReaction.emoji.name == "gayalliance" && messageReaction.count >= 3) {
-        let msg = messageReaction.message;
         msg.react("332135150328479744");
         const HoF = new Discord.RichEmbed();
             HoF.setColor(`${msg.member.displayHexColor}`)
