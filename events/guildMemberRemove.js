@@ -5,6 +5,5 @@ module.exports = (bot, member) => {
         logs = member.guild.channels.find('name', 'general');
     }
     if (!logs) return;
-    if (!bot.user.hasPermission("SEND_MESSAGES")) return;
     logs.send(`${member.user.username} has left the server! :cry:`);
 };
