@@ -1,5 +1,6 @@
 module.exports = (bot, message) => {
     if (message.author.bot) return;
+    if(!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
     if (!message.guild) {
         bot.log("log", `${message.author.username} (${message.author.id}) sent \`${message}\``, 'DM   ' )
     };

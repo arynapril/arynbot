@@ -3,6 +3,7 @@ module.exports = (bot, messageReaction, user) => {
     let msg = messageReaction.message;
     var HallOfFame = msg.guild.channels.find('name', 'hall-of-fame');
     if (!HallOfFame) return;
+    if(!HallOfFame.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
     if (messageReaction.me) return;
     if (messageReaction.emoji.id == "332135150328479744" && messageReaction.count >= 3) {
         msg.react("332135150328479744");
