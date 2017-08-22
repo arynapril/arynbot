@@ -1,9 +1,10 @@
 module.exports = (bot, message) => {
     if (message.author.bot) return;
-    if(!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
     if (!message.guild) {
         bot.log("log", `${message.author.username} (${message.author.id}) sent \`${message}\``, 'DM   ' )
+        return;
     };
+    if(!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
     if (message.content.startsWith("im ") || message.content.startsWith("i'm ") || message.content.startsWith("I'm ") || message.content.startsWith("IM ") || message.content.startsWith("IM ") || message.content.startsWith("I am ")) {
         if (message.author.id == '226999841358610432') {
             const args = message.content.split(/\s+/g);
