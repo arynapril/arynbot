@@ -39,5 +39,5 @@ exports.conf = {
 exports.help = {
     name: 'color',
     description: 'shows color information/generates a random color',
-    usage: 'color <optional hex (#------) or rgb (--- --- ---)'
+    usage: 'color <optional hex (------) or rgb (--- --- ---)'
 };
