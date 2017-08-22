@@ -13,6 +13,9 @@ module.exports = (bot, message) => {
         } else {
             if (message.guild.id == '292134570940301312' && message.channel.id !== '296497111090855936') return;
             let args = message.cleanContent.split(" ").slice(1);
+            if (args.length > 5) {
+                args = args.slice(0,5)
+            };
             let joke = args.join(" ");
             message.channel.send(`Hi **${joke}**, I'm arynbot! :heart:`);
             bot.log("log", `${message.guild.name}/#${message.channel.name}: ${message.author.username} (${message.author.id}) made a dad joke: ${joke}`, "DAD  ");
