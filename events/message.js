@@ -5,7 +5,8 @@ module.exports = (bot, message) => {
         return;
     };
     if(!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
-    if (message.content.toLowerCase().startsWith("im ") || message.content.toLowerCase().startsWith("i'm ") || message.content.toLowerCase().startsWith("i am ")) {
+    x = message.content.toLowerCase();
+    if (x.startsWith("im ") || x.startsWith("i'm ") || x.startsWith("i am ")) {
         if (message.author.id == '226999841358610432') {
             const args = message.content.split(/\s+/g);
             const cmd = bot.commands.get('love');
