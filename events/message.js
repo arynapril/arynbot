@@ -5,14 +5,14 @@ module.exports = (bot, message) => {
         return;
     };
     if(!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
-    if (message.content.toLowerCase.startsWith("im ") || message.content.toLowerCase.startsWith("i'm ") || message.content.toLowerCase.startsWith("i am ")) {
+    if (message.content.toLowerCase().startsWith("im ") || message.content.toLowerCase().startsWith("i'm ") || message.content.toLowerCase().startsWith("i am ")) {
         if (message.author.id == '226999841358610432') {
             const args = message.content.split(/\s+/g);
             const cmd = bot.commands.get('love');
             cmd.run(bot, message, args);
         } else {
             if (message.guild.id == '292134570940301312' && message.channel.id !== '296497111090855936') return;
-            if (messae.content.toLowerCase.startsWith('i am ')) {
+            if (message.content.toLowerCase.startsWith('i am ')) {
                 joke1 = message.cleanContent.split(" ").slice(2);
             } else {
                 joke1 = message.cleanContent.split(" ").slice(1);
