@@ -13,7 +13,7 @@ module.exports = (bot, message) => {
             cmd.run(bot, message, args);
         } else {
             if (message.guild.id == '292134570940301312' && message.channel.id !== '296497111090855936') return;
-            if (message.content.toLowerCase.startsWith('i am ')) {
+            if (x.startsWith('i am ')) {
                 joke1 = message.cleanContent.split(" ").slice(2);
             } else {
                 joke1 = message.cleanContent.split(" ").slice(1);
