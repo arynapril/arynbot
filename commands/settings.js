@@ -3,11 +3,11 @@ const db = new sqlite3.Database('../servers.sqlite');
 exports.run = (bot, message, args, level) => {
     	if (!message.member.hasPermission('MANAGE_GUILD')) return msg.reply("you do not have permission to manage this server's setings!");
         if (args[0] == 'dadjokes') {
-            db.all(`SELECT * FROM servers WHERE id = "${message.guild.id}"`, function (err, rows) {
-				if (err || !rows[0])
+            db.all(`SELECT * FROM servers WHERE id = "${message.guild.id}"`, function (results, err) {
+				if (err || !results.rows[0])
 					bot.log('log', err, 'ERROR');
 				else
-					dadJokesEnabled = rows[0].dadJokes;
+					dadJokesEnabled = results.rows[0].dadJokes;
                     message.channel.send(`dadjokes current setting: ${dadJokesEnabled}`);
 			});
             //if (!args[1]) return 
