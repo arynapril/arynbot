@@ -17,7 +17,7 @@ bot.syncServers = function () {
                 messageLogging BOOLEAN,
                 hallOfFameEnabled BOOLEAN,
                 hallOfFameEmote VARCHAR(25),
-                hallOfFameLimit INT, 
+                hallOfFameLimit VARCHAR(2), 
 				giveMeRoles BLOB)`
 			);
 			bot.guilds.forEach(guild => {
@@ -30,7 +30,7 @@ bot.syncServers = function () {
                     1,
                     0,
                     "",
-                    3,
+                    "3",
                     ""`
 				);
 			});
@@ -51,7 +51,7 @@ bot.syncServers = function () {
                     1,
                     0,
                     "",
-                    3,
+                    "3",
                     ""`
 		);
 		bot.log('log', guild.name + " successfully inserted into the database!");
