@@ -100,15 +100,12 @@ bot.syncServers = function () {
 			return 3;
 		else if (message.member.hasPermission("MANAGE_MESSAGES"))
 			return 2;
-		else if (!bot.blacklist(message.author.id))
+		else 
 			return 1;
-		else
-			return 0;
 	};
 	bot.processMessage = function (message) {
-		//if (channel && message.channel.id == channel) bot.log(message.guild.name + " | " + message.channel.name + " | " + message.member.displayName + " | " + message.cleanContent);
 		if (message.author.bot) return;
-		/*var afkJson = fs.readFileSync("./afk.json"),
+		var afkJson = fs.readFileSync("./afk.json"),
 			afk = JSON.parse(afkJson);
 		if (afk.length != 0) {
 			for (let i = 0; i < afk.length; i++) {
@@ -129,8 +126,7 @@ bot.syncServers = function () {
 					}
 				}
 			}
-		}*/
-
+		}
 		if (message.isMentioned(bot.user)) {
 			if (message.content.toLowerCase().includes("what's your prefix") || message.content.toLowerCase().includes("whats your prefix")) {
 				bot.getPrefix(message).then(prefix => {
@@ -143,7 +139,6 @@ bot.syncServers = function () {
 				message.reply('I have reset this server\'s prefix to ``' + config.prefix + '``!')
 			}
 		}
-
 		this.getPrefix(message).then(prefix => {
 			if (message.content.startsWith(prefix)) {
 				try {
