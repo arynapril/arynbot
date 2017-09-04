@@ -144,7 +144,7 @@ bot.syncServers = function () {
 				try {
 					args = message.content.split(/\s+/g)
 					message.content = message.content.substring(message.content.indexOf(" ") + 1, message.content.length) || null
-					var command = message.args.shift().slice(prefix.length).toLowerCase()
+					var command = args.shift().slice(prefix.length).toLowerCase()
 					var cmd = bot.commands.get(command) || bot.commands.get(bot.aliases.get(command))
 					var perms = bot.permLevel(message)
 
