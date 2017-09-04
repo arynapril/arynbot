@@ -5,7 +5,7 @@ exports.run = (bot, message, args, level) => {
         if (args[0] == 'dadjokes') {
             db.all(`SELECT * FROM servers WHERE id = "${message.guild.id}"`, function (err, rows) {
 				if (err || !rows[0])
-					return;
+					bot.log('log', err, 'ERROR');
 				else
 					dadJokesEnabled = rows[0].dadJokes;
                     message.channel.send(`dadjokes current setting: ${dadJokesEnabled}`);
