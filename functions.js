@@ -160,7 +160,7 @@ bot.syncServers = function () {
 					else if (bot.enabled(cmd)) {
 						bot.log('log', cmd, 'CMD  ')
 						try {
-							cmd.main(bot, message);
+							cmd.run(bot, message);
 						} catch (err) {
 							message.channel.send("Oh no! We encountered an error:```" + err.stack + "```")
 						}
