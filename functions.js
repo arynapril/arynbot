@@ -198,6 +198,9 @@ bot.syncServers = function () {
         text = text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203)).replace(bot.token, "mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0");
         return text;
     };
+	bot.enabled = function (command, guild) {
+		return true;
+	}
     global.wait = require('util').promisify(setTimeout);
     global.range = (count, start = 0) => {
         const myArr = [];
