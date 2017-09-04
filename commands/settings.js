@@ -8,8 +8,9 @@ exports.run = (bot, message, args, level) => {
 					return;
 				else
 					dadJokesEnabled = rows[0].dadJokes;
+                    message.channel.send(`dadjokes current setting: ${dadJokesEnabled}`);
 			});
-            if (!args[1]) return message.channel.send(`dadjokes current setting: ${dadJokesEnabled}`)
+            //if (!args[1]) return 
         }
 };
 
