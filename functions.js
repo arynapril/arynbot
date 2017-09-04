@@ -31,7 +31,7 @@ bot.syncServers = function () {
                     0,
                     "",
                     "3",
-                    ""`)
+                    "")`
 				);
 			});
 		});
