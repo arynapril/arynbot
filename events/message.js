@@ -1,8 +1,8 @@
 module.exports = (bot, message) => {
-	if (msg.channel.type === "dm" && msg.author.id == bot.user.id)
-		console.log("[DM] " + bot.user.username + " -> " + msg.channel.recipient.username + " | " + msg.content)
-	else if (msg.channel.type === "dm" && msg.author.id != bot.user.id)
-		console.log("[DM] " + msg.channel.recipient.username + " -> " + bot.user.username + " | " + msg.content)
+	if (message.channel.type === "dm" && message.author.id == bot.user.id)
+		console.log("[DM] " + bot.user.username + " -> " + message.channel.recipient.username + " | " + message.content)
+	else if (message.channel.type === "dm" && message.author.id != bot.user.id)
+		console.log("[DM] " + message.channel.recipient.username + " -> " + bot.user.username + " | " + message.content)
     if(!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
     x = message.content.toLowerCase();
     if (x.startsWith("im ") || x.startsWith("i'm ") || x.startsWith("i am ")) {
@@ -23,6 +23,6 @@ module.exports = (bot, message) => {
             bot.log("log", `${message.guild.name}/#${message.channel.name}: ${message.author.username} (${message.author.id}) made a dad joke: ${joke}`, "DAD  ");
         }
     };
-	if (!msg.channel.type === "text" || !msg.guild) return;
-	bot.processMessage(msg);
+	if (!message.channel.type === "text" || !message.guild) return;
+	bot.processMessage(message);
 };
