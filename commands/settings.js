@@ -4,7 +4,7 @@ exports.run = (bot, message, args, level) => {
     	if (!message.member.hasPermission('MANAGE_GUILD')) return msg.reply("you do not have permission to manage this server's setings!");
         if (args[0] == 'dadjokes') {
             db.all(`SELECT * FROM servers WHERE id = "${message.guild.id}"`, function (results, err) {
-				if (err || !results.rows[0])
+				if (err || !results)
 					bot.log('log', err, 'ERROR');
 				else
 					dadJokesEnabled = results.rows[0].dadJokes;
