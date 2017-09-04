@@ -106,11 +106,9 @@ bot.syncServers = function () {
 			return 0;
 	};
 	bot.processMessage = function (message) {
-		if (channel && message.channel.id == channel) bot.log(message.guild.name + " | " + message.channel.name + " | " + message.member.displayName + " | " + message.cleanContent);
-
+		//if (channel && message.channel.id == channel) bot.log(message.guild.name + " | " + message.channel.name + " | " + message.member.displayName + " | " + message.cleanContent);
 		if (message.author.bot) return;
-
-		var afkJson = fs.readFileSync("./afk.json"),
+		/*var afkJson = fs.readFileSync("./afk.json"),
 			afk = JSON.parse(afkJson);
 		if (afk.length != 0) {
 			for (let i = 0; i < afk.length; i++) {
@@ -131,7 +129,7 @@ bot.syncServers = function () {
 					}
 				}
 			}
-		}
+		}*/
 
 		if (message.isMentioned(bot.user)) {
 			if (message.content.toLowerCase().includes("what's your prefix") || message.content.toLowerCase().includes("whats your prefix")) {
