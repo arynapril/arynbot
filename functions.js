@@ -158,7 +158,7 @@ bot.syncServers = function () {
 					else if (perms < cmd.permission) return message.reply("you do not have permission to do this!")
 
 					else if (bot.enabled(cmd)) {
-						bot.logCommand(command, message.content, message.author.username, message.channel.name, message.guild.name)
+						bot.log('log', cmd, 'CMD  ')
 						try {
 							cmd.main(bot, message);
 						} catch (err) {
