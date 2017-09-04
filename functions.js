@@ -73,10 +73,10 @@ bot.syncServers = function () {
 			}
 		)
 	};
-	bot.getPrefix = function (msg) {
+	bot.getPrefix = function (message) {
 		return new Promise(
 			function (resolve, reject) {
-				db.all(`SELECT * FROM servers WHERE id = "${msg.guild.id}"`, function (err, rows) {
+				db.all(`SELECT * FROM servers WHERE id = "${message.guild.id}"`, function (err, rows) {
 					if (err || !rows[0])
 						reject(err);
 					else
@@ -89,43 +89,43 @@ bot.syncServers = function () {
 		db.run("UPDATE servers SET prefix = \"" + prefix + "\" WHERE id = " + guild.id);
 		return prefix;
 	};
-	bot.permLevel = function (msg) {
-		if (msg.author.id == bot.config.owner)
+	bot.permLevel = function (message) {
+		if (message.author.id == bot.config.owner)
 			return 6;
-		else if (msg.author.id == msg.guild.owner.id)
+		else if (message.author.id == message.guild.owner.id)
 			return 5;
-		else if (msg.member.hasPermission("MANAGE_GUILD"))
+		else if (message.member.hasPermission("MANAGE_GUILD"))
 			return 4;
-		else if (msg.member.hasPermission("MANAGE_ROLES_OR_PERMISSIONS"))
+		else if (message.member.hasPermission("MANAGE_ROLES_OR_PERMISSIONS"))
 			return 3;
-		else if (msg.member.hasPermission("MANAGE_MESSAGES"))
+		else if (message.member.hasPermission("MANAGE_MESSAGES"))
 			return 2;
-		else if (!bot.blacklist(msg.author.id))
+		else if (!bot.blacklist(message.author.id))
 			return 1;
 		else
 			return 0;
 	};
-	bot.processMessage = function (msg) {
-		if (channel && msg.channel.id == channel) bot.log(msg.guild.name + " | " + msg.channel.name + " | " + msg.member.displayName + " | " + msg.cleanContent);
+	bot.processMessage = function (message) {
+		if (channel && message.channel.id == channel) bot.log(message.guild.name + " | " + message.channel.name + " | " + message.member.displayName + " | " + message.cleanContent);
 
-		if (msg.author.bot) return;
+		if (message.author.bot) return;
 
 		var afkJson = fs.readFileSync("./afk.json"),
 			afk = JSON.parse(afkJson);
 		if (afk.length != 0) {
 			for (let i = 0; i < afk.length; i++) {
-				if (afk[i].id === msg.author.id) {
+				if (afk[i].id === message.author.id) {
 					afk.splice(i, 1);
 					fs.writeFileSync("./afk.json", JSON.stringify(afk, null, 3));
-					msg.channel.send(":ok_hand: Welcome back **" + msg.author.username + "**! I've removed your AFK status!");
+					message.channel.send(":ok_hand: Welcome back **" + message.author.username + "**! I've removed your AFK status!");
 				}
-				if (msg.mentions.users.size > 0 && afk.length != 0) {
-					if (msg.content.indexOf(afk[i].id) != -1 && msg.author.id != afk[i].id) {
-						var nick = msg.guild.members.get(afk[i].id).displayName
-						msg.channel.send({embed: new Discord.RichEmbed().setDescription(":robot: **" + nick + "** is AFK: **" + afk[i].reason + "**")})
-							.then(msg => {
+				if (message.mentions.users.size > 0 && afk.length != 0) {
+					if (message.content.indexOf(afk[i].id) != -1 && message.author.id != afk[i].id) {
+						var nick = message.guild.members.get(afk[i].id).displayName
+						message.channel.send({embed: new Discord.RichEmbed().setDescription(":robot: **" + nick + "** is AFK: **" + afk[i].reason + "**")})
+							.then(message => {
 								setTimeout(function () {
-									msg.delete()
+									message.delete()
 								}, 20000)
 							});
 					}
@@ -133,56 +133,56 @@ bot.syncServers = function () {
 			}
 		}
 
-		if (msg.isMentioned(bot.user)) {
-			if (msg.content.toLowerCase().includes("what's your prefix") || msg.content.toLowerCase().includes("whats your prefix")) {
-				bot.getPrefix(msg).then(prefix => {
-					msg.reply("my prefix for this server is `" + prefix + "`!")
+		if (message.isMentioned(bot.user)) {
+			if (message.content.toLowerCase().includes("what's your prefix") || message.content.toLowerCase().includes("whats your prefix")) {
+				bot.getPrefix(message).then(prefix => {
+					message.reply("my prefix for this server is `" + prefix + "`!")
 				})
 			}
 
-			if (msg.content.toLowerCase().includes("resetprefix") && msg.member.hasPermission("ADMINISTRATOR")) {
-				bot.setPrefix(config.prefix, msg.guild);
-				msg.reply('I have reset this server\'s prefix to ``' + config.prefix + '``!')
+			if (message.content.toLowerCase().includes("resetprefix") && message.member.hasPermission("ADMINISTRATOR")) {
+				bot.setPrefix(config.prefix, message.guild);
+				message.reply('I have reset this server\'s prefix to ``' + config.prefix + '``!')
 			}
 		}
 
-		this.getPrefix(msg).then(prefix => {
-			if (msg.content.startsWith(prefix)) {
+		this.getPrefix(message).then(prefix => {
+			if (message.content.startsWith(prefix)) {
 				try {
-					msg.args = msg.content.split(/\s+/g)
-					msg.content = msg.content.substring(msg.content.indexOf(" ") + 1, msg.content.length) || null
-					var command = msg.args.shift().slice(prefix.length).toLowerCase()
+					message.args = message.content.split(/\s+/g)
+					message.content = message.content.substring(message.content.indexOf(" ") + 1, message.content.length) || null
+					var command = message.args.shift().slice(prefix.length).toLowerCase()
 					var cmd = bot.commands.get(command) || bot.commands.get(bot.aliases.get(command))
-					var perms = bot.permLevel(msg)
+					var perms = bot.permLevel(message)
 
 					if (!cmd) return;
-					else if (perms == 0) return msg.reply("you are blacklisted from using the bot!");
-					else if (perms < cmd.permission) return msg.reply("you do not have permission to do this!")
+					else if (perms == 0) return message.reply("you are blacklisted from using the bot!");
+					else if (perms < cmd.permission) return message.reply("you do not have permission to do this!")
 
 					else if (bot.enabled(cmd)) {
-						bot.logCommand(command, msg.content, msg.author.username, msg.channel.name, msg.guild.name)
+						bot.logCommand(command, message.content, message.author.username, message.channel.name, message.guild.name)
 						try {
-							cmd.main(bot, msg);
+							cmd.main(bot, message);
 						} catch (err) {
-							msg.channel.send("Oh no! We encountered an error:```" + err.stack + "```")
+							message.channel.send("Oh no! We encountered an error:```" + err.stack + "```")
 						}
 					}
 				} catch (err) {
-					msg.channel.send("Oh no! We encountered an error:\n```" + err.stack + "```");
+					message.channel.send("Oh no! We encountered an error:\n```" + err.stack + "```");
 					bot.error(err.stack);
 				}
 			}
 		})
 	}
-    bot.log = (type, msg, title) => {
+    bot.log = (type, message, title) => {
         if (!title) title = "LOG";
-        console.log(`${type} | ${title} | ${msg}`);
+        console.log(`${type} | ${title} | ${message}`);
     };
-    bot.awaitReply = async(msg, question, limit = 60000) => {
+    bot.awaitReply = async(message, question, limit = 60000) => {
         const filter = m => m.author.id;
-        await msg.channel.send(question);
+        await message.channel.send(question);
         try {
-            const collected = await msg.channel.awaitMessages(filter, {
+            const collected = await message.channel.awaitMessages(filter, {
                 max: 1
                 , time: limit
                 , errors: ['time']
@@ -209,8 +209,8 @@ bot.syncServers = function () {
         return myArr;
     };
     process.on('uncaughtException', (err) => {
-        let errorMsg = err.stack.replace(new RegExp(`${__dirname}\/`, 'g'), './');
-        console.error("Uncaught Exception: ", errorMsg);
+        let errorMessage = err.stack.replace(new RegExp(`${__dirname}\/`, 'g'), './');
+        console.error("Uncaught Exception: ", errorMessage);
     });
     process.on("unhandledRejection", err => {
         console.error("Uncaught Promise Error: ", err);
