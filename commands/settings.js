@@ -3,7 +3,7 @@ const db = new sqlite3.Database('../servers.sqlite');
 exports.run = (bot, message, args, level) => {
     	if (!message.member.hasPermission('MANAGE_GUILD')) return msg.reply("you do not have permission to manage this server's setings!");
         if (args[0] == 'dadjokes') {
-            db.all(`SELECT name name FROM servers WHERE id = "${message.guild.id}"`, 1, (err, row) => {
+            db.get(`SELECT name name FROM servers WHERE id = "${message.guild.id}"`, 1, (err, row) => {
 				if (err) {
 					bot.log('log', err, 'ERROR');
                 } else {
