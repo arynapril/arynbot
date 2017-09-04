@@ -142,7 +142,7 @@ bot.syncServers = function () {
 		this.getPrefix(message).then(prefix => {
 			if (message.content.startsWith(prefix)) {
 				try {
-					message.args = message.content.split(/\s+/g)
+					args = message.content.split(/\s+/g)
 					message.content = message.content.substring(message.content.indexOf(" ") + 1, message.content.length) || null
 					var command = message.args.shift().slice(prefix.length).toLowerCase()
 					var cmd = bot.commands.get(command) || bot.commands.get(bot.aliases.get(command))
@@ -153,9 +153,9 @@ bot.syncServers = function () {
 					else if (perms < cmd.permission) return message.reply("you do not have permission to do this!")
 
 					else if (bot.enabled(cmd)) {
-						bot.log('log', command, 'CMD  ')
+						bot.log('log', `${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, 'CMD  ')
 						try {
-							cmd.run(bot, message);
+							cmd.run(bot, message, args, perms);
 						} catch (err) {
 							message.channel.send("Oh no! We encountered an error:```" + err.stack + "```")
 						}
