@@ -3,7 +3,7 @@ const {promisify} = require('util');
 const readdir = promisify(require("fs").readdir);
 const bot = new discord.Client();
 bot.config = require("./config.json");
-require("./modules/functions.js")(bot);
+require("./functions.js")(bot);
 bot.commands = new discord.Collection();
 bot.aliases = new discord.Collection();
 (async function() {
