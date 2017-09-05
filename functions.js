@@ -174,7 +174,7 @@ bot.syncServers = function () {
         	} else {
 				s = "";
 				rows.forEach((row) => {
-					s =+ row.input;
+					s += row.input;
 					return s;
 				});
 			};
