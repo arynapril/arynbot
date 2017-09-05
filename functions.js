@@ -173,7 +173,9 @@ bot.syncServers = function () {
 				bot.log('log', err, 'ERROR');
         	} else {
 				rows.forEach((row) => {
-    				console.log(row.input);
+    				s = ""
+					s =+ row.input;
+					return s;
 				});
 			};
 		});
