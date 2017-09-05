@@ -167,19 +167,18 @@ bot.syncServers = function () {
 			}
 		})
 	}
-	bot.getSetting = function (input, message) {
-		db.all(`SELECT DISTINCT ${input} ${input} FROM servers ORDER BY ${input}`, [], (err, rows) => {
-			if (err) {
-				return err;
-        	} else {
-				s = "";
-				rows.forEach((row) => {
-					s += row.input;
-					return s;
+bot.getPrefix = function (msg) {
+		return new Promise(
+			function (resolve, reject) {
+				db.all(`SELECT * FROM servers WHERE id = "${msg.guild.id}"`, function (err, rows) {
+					if (err || !rows[0])
+						reject(err);
+					else
+						resolve(rows[0].prefix)
 				});
-			};
-		});
-	}
+			}
+		)
+	};
     bot.log = (type, message, title) => {
         if (!title) title = "LOG";
         console.log(`${type} | ${title} | ${message}`);
