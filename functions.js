@@ -167,6 +167,15 @@ bot.syncServers = function () {
 			}
 		})
 	}
+	bot.getSetting = function (input) {
+		db.get(`SELECT ${input} ${input} FROM servers WHERE id = "${message.guild.id}"`, 1, (err, row) => {
+			if (err) {
+				bot.log('log', err, 'ERROR');
+        	} else {
+				return row.input
+			};
+		});
+	}
     bot.log = (type, message, title) => {
         if (!title) title = "LOG";
         console.log(`${type} | ${title} | ${message}`);
