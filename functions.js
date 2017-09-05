@@ -170,7 +170,7 @@ bot.syncServers = function () {
 	bot.getSetting = function (input, message) {
 		db.all(`SELECT DISTINCT ${input} ${input} FROM servers ORDER BY ${input}`, [], (err, rows) => {
 			if (err) {
-				bot.log('log', err, 'ERROR');
+				return err;
         	} else {
 				s = "";
 				rows.forEach((row) => {
