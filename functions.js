@@ -168,11 +168,13 @@ bot.syncServers = function () {
 		})
 	}
 	bot.getSetting = function (input, message) {
-		db.get(`SELECT ${input} ${input} FROM servers WHERE id = "${message.guild.id}"`, 1, (err, row) => {
+		db.all(`SELECT DISTINCT ${input} ${input} FROM servers ORDER BY ${input}`, [], (err, rows) => {
 			if (err) {
 				bot.log('log', err, 'ERROR');
         	} else {
-				return row.input
+				rows.forEach((row) => {
+    				console.log(row.input);
+				});
 			};
 		});
 	}
