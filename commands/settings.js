@@ -3,7 +3,7 @@ const db = new sqlite3.Database('../servers.sqlite');
 exports.run = (bot, message, args, level) => {
     	if (!message.member.hasPermission('MANAGE_GUILD')) return msg.reply("you do not have permission to manage this server's setings!");
         if (args[0] == 'dadjokes') {
-            message.channel.send(bot.getSetting('dadJokes'));
+            message.channel.send(bot.getSetting('dadJokes', message));
             //if (!args[1]) return 
         }
 };

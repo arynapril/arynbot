@@ -167,7 +167,7 @@ bot.syncServers = function () {
 			}
 		})
 	}
-	bot.getSetting = function (input) {
+	bot.getSetting = function (input, message) {
 		db.get(`SELECT ${input} ${input} FROM servers WHERE id = "${message.guild.id}"`, 1, (err, row) => {
 			if (err) {
 				bot.log('log', err, 'ERROR');
