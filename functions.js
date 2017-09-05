@@ -167,14 +167,14 @@ bot.syncServers = function () {
 			}
 		})
 	}
-bot.getPrefix = function (msg) {
+bot.getSetting = function (input, msg) {
 		return new Promise(
 			function (resolve, reject) {
 				db.all(`SELECT * FROM servers WHERE id = "${msg.guild.id}"`, function (err, rows) {
 					if (err || !rows[0])
 						reject(err);
 					else
-						resolve(rows[0].prefix)
+						resolve(rows[0].input)
 				});
 			}
 		)
