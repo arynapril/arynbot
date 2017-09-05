@@ -172,8 +172,8 @@ bot.syncServers = function () {
 			if (err) {
 				bot.log('log', err, 'ERROR');
         	} else {
+				s = "";
 				rows.forEach((row) => {
-    				s = ""
 					s =+ row.input;
 					return s;
 				});
