@@ -67,10 +67,7 @@ module.exports = (bot) => {
                     else
                         resolve(rows[0][setting])
                 }});
-            }
-        	return newSetting;
-		)
-    };
+            };
     bot.permLevel = function(message) {
         if (message.author.id == bot.config.owner)
             return 6;
