@@ -137,7 +137,7 @@ module.exports = (bot) => {
                 message.reply('I have reset this server\'s prefix to ``' + config.prefix + '``!')
             }
         }
-        this.getSetting(prefix, message).then(prefix => {
+        this.getSetting('prefix', message).then(prefix => {
             if (message.content.startsWith(prefix)) {
                 try {
                     args = message.content.split(/\s+/g)
