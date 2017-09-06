@@ -59,7 +59,7 @@ module.exports = (bot) => {
         return roles;
     };
     bot.setSetting = function(setting, newSetting, message) {
-        db.run(`UPDATE servers SET ${setting} = "${newSetting}" WHERE id = " + ${message.guild.id}`);
+        db.run(`UPDATE servers SET ${setting} = "${newSetting}" WHERE id = "${message.guild.id}"`);
         return newSetting;
     };
     bot.permLevel = function(message) {
