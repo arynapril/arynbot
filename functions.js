@@ -66,8 +66,8 @@ module.exports = (bot) => {
 						if (err || !rows[0])
 							reject(err);
 						else
-							resolve(newSetting)
-					}
+							resolve(newSetting);
+					};
 			});
 	};
 	bot.permLevel = function(message) {
