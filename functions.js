@@ -66,7 +66,7 @@ module.exports = (bot) => {
 						if (err || !rows[0])
 							reject(err);
 						else
-							resolve(rows[0][setting])
+							resolve(newSetting)
 					}
 			});
 	};
