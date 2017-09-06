@@ -25,12 +25,12 @@ module.exports = (bot) => {
 					"${guild.name}", 
 					"${bot.config.prefix}", 
 					1,
-                    "",
+                    "none",
                     0,
-                    "",
+                    "none",
                     "3",
-					"",
-                    "")`);
+					"none",
+                    "none")`);
             });
         });
         bot.log("log", "Servers synced.", 'BOT  ')
@@ -45,42 +45,18 @@ module.exports = (bot) => {
 					"${guild.name}", 
 					"${bot.config.prefix}", 
 					1,
-                    "",
-                    1,
-                    "",
+                    "none",
+                    0,
+                    "none",
                     "3",
-					"",
-                    ""`);
+					"none",
+                    "none"`);
         bot.log('log', guild.name + " successfully inserted into the database!");
     };
     bot.setGivemeRoles = function(roles, guild) {
         roles = roles.join(',');
         db.run(`UPDATE servers SET givemeRoles = "${roles}" WHERE id = ${guild.id}`);
         return roles;
-    }
-    bot.getGivemeRoles = function(guild) {
-        return new Promise(
-            function(resolve, reject) {
-                db.all(`SELECT * FROM servers WHERE id = "${guild.id}"`, function(err, rows) {
-                    if (err || !rows[0])
-                        reject(err);
-                    else
-                        resolve(rows[0].givemeRoles)
-                });
-            }
-        )
-    };
-    bot.getPrefix = function(message) {
-        return new Promise(
-            function(resolve, reject) {
-                db.all(`SELECT * FROM servers WHERE id = "${message.guild.id}"`, function(err, rows) {
-                    if (err || !rows[0])
-                        reject(err);
-                    else
-                        resolve(rows[0].prefix)
-                });
-            }
-        )
     };
     bot.setPrefix = function(prefix, guild) {
         db.run("UPDATE servers SET prefix = \"" + prefix + "\" WHERE id = " + guild.id);
