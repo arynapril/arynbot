@@ -58,9 +58,9 @@ module.exports = (bot) => {
         db.run(`UPDATE servers SET givemeRoles = "${roles}" WHERE id = ${guild.id}`);
         return roles;
     };
-    bot.setPrefix = function(prefix, guild) {
-        db.run("UPDATE servers SET prefix = \"" + prefix + "\" WHERE id = " + guild.id);
-        return prefix;
+    bot.setSetting = function(setting, newSetting, message) {
+        db.run(`UPDATE servers SET ${setting} = "${newSetting}" WHERE id = " + ${message.guild.id}`);
+        return newSetting;
     };
     bot.permLevel = function(message) {
         if (message.author.id == bot.config.owner)

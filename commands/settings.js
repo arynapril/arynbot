@@ -3,11 +3,16 @@ const db = new sqlite3.Database('../servers.sqlite');
 exports.run = (bot, message, args, level) => {
     settingsArray = ['dadJokes', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel']
     	if (!message.member.hasPermission('MANAGE_GUILD')) return msg.reply("you do not have permission to manage this server's setings!");
-        if (args[0].indexOf(settingsArray) != 0) {
-            bot.getSetting(args[0], message).then(setting => {
-                message.channel.send(setting)
-            })
-            //if (!args[1]) return 
+        if (args[0].indexOf(settingsArray) != 0 && !args[1]) {
+            if (!arg[1]) {
+                bot.getSetting(args[0], message).then(setting => {
+                    message.channel.send(setting)
+                })
+            } else {
+                bot.setSetting(args[0], args[1], message).then(setting => {
+                    message.channel.send(setting);
+                })
+            }
         };
 };
 
