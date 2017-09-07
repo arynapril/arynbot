@@ -11,7 +11,9 @@ module.exports = (bot) => {
 			db.run(`CREATE TABLE IF NOT EXISTS servers (
 				id VARCHAR(25) PRIMARY KEY, 
 				name VARCHAR(100), 
-				prefix VARCHAR(10), 
+				prefix VARCHAR(10),
+				welcomeMessagesEnabled BOOLEAN,
+				welcomeMessageChannel VARCHAR(25), 
                 dadJokes BOOLEAN,
                 dadJokesJail VARCHAR(25),
                 hallOfFameEnabled BOOLEAN,
@@ -23,7 +25,9 @@ module.exports = (bot) => {
 				db.run(`INSERT OR IGNORE INTO servers VALUES (
 					"${guild.id}", 
 					"${guild.name}", 
-					"${bot.config.prefix}", 
+					"${bot.config.prefix}",
+					0,
+					"none",
 					1,
                     "none",
                     0,
@@ -44,6 +48,8 @@ module.exports = (bot) => {
 					"${guild.id}", 
 					"${guild.name}", 
 					"${bot.config.prefix}", 
+					0,
+					"none",
 					1,
                     "none",
                     0,
@@ -59,8 +65,6 @@ module.exports = (bot) => {
 		return roles;
 	};
 	bot.setSetting = function(setting, newSetting, message) {
-		/*db.run(`UPDATE servers SET ${setting} = ${newSetting} WHERE id = ${message.guild.id}`)
-		return newSetting;*/
 		return new Promise(
 			function(resolve, reject) {
 				db.run(`UPDATE servers SET ${setting} = "${newSetting}" WHERE id = "${message.guild.id}"`),	resolve(newSetting);
