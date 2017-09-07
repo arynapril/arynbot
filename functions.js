@@ -64,10 +64,7 @@ module.exports = (bot) => {
 		return new Promise(
 			function(resolve, reject) {
 				db.run(`UPDATE servers SET ${setting} = "${newSetting}" WHERE id = "${message.guild.id}"`),
-					function(err) {
-						if (err)
-							reject(err);
-						else
+					function() {
 							resolve(newSetting);
 					};
 			});
