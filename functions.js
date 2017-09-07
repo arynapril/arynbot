@@ -59,7 +59,9 @@ module.exports = (bot) => {
 		return roles;
 	};
 	bot.setSetting = function(setting, newSetting, message) {
-		return new Promise(
+		db.run(`UPDATE servers SET ${setting} = ${newSetting} WHERE id = ${message.guild.id}`)
+		return newSetting;
+		/*return new Promise(
 			function(resolve, reject) {
 				db.run(`UPDATE servers SET ${setting} = "${newSetting}" WHERE id = "${message.guild.id}"`),
 					function(err, rows) {
@@ -68,7 +70,7 @@ module.exports = (bot) => {
 						else
 							resolve(newSetting);
 					};
-			});
+			});*/
 	};
 	bot.permLevel = function(message) {
 		if (message.author.id == bot.config.owner)
