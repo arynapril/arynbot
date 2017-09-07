@@ -63,10 +63,7 @@ module.exports = (bot) => {
 		return newSetting;*/
 		return new Promise(
 			function(resolve, reject) {
-				db.run(`UPDATE servers SET ${setting} = "${newSetting}" WHERE id = "${message.guild.id}"`),
-					function() {
-							resolve(newSetting);
-					};
+				db.run(`UPDATE servers SET ${setting} = "${newSetting}" WHERE id = "${message.guild.id}"`),	resolve(newSetting);
 			});
 	};
 	bot.permLevel = function(message) {
