@@ -25,6 +25,6 @@ exports.conf = {
 
 exports.help = {
     name: 'settings',
-    description: '',
-    usage: ''
+    description: 'sets settings',
+    usage: 'settings <setting> <(optional) what to set it to>'
 };
