@@ -7,7 +7,6 @@ exports.run = (bot, message, args, level) => {
         .addField('Name', server.name)
         .addField('Owner', server.owner.displayName)
         .addField('Created', server.createdAt, true)
-        .addField('Default Channel', server.defaultChannel.name, true)
         .addField('Channels', server.channels.size, true)
         .addField('Members', server.members.size, true)
         .addField('Roles', server.roles.size, true)
