@@ -6,11 +6,11 @@ exports.run = (bot, message, args, level) => {
         if (args[0].indexOf(settingsArray) != 0) {
             if (!args[1]) {
                 bot.getSetting(args[0], message).then(setting => {
-                    message.channel.send(setting)
+                    message.channel.send(`The current **${args[0]}** setting is **${setting}`);
                 })
             } else {
                 bot.setSetting(args[0], args[1], message).then(setting => {
-                    message.channel.send(setting);
+                    message.channel.send(`**${args[0]}** setting successfully changed to ${setting}`);
                 })
             }
         };
