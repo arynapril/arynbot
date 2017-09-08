@@ -177,6 +177,14 @@ module.exports = (bot) => {
 			return false;
 		}
 	};
+	bot.getSetting1 = async(setting1, guild) => {
+		db.all(`SELECT * FROM servers WHERE id = "${g.id}"`, function(err, rows) {
+			if (err || !rows[0])
+				return err;
+			else
+				return(rows[0][setting1])
+		});
+	}
 	bot.clean = async(bot, text) => {
 		if (text && text.constructor.name == 'Promise') text = await text;
 		if (typeof evaled !== 'string') text = require('util').inspect(text, {
