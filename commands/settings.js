@@ -22,7 +22,14 @@ exports.run = (bot, message, args, level) => {
                             channelFound = true;
                         }
                     }
-                    if (!channelFound) return message.channel.send(`The ${args[0]} value must be the name of an channel on this server! Please try again!`)
+                    if (!channelFound && args[0] !== dadJokesJail) return message.channel.send(`The ${args[0]} value must be the name of an channel on this server! Please try again!`)
+                    if (args[0] == dadJokesJail && args[1] == 'remove') {
+                        bot.setSetting('dadJokesJail', 'none', message).then(setting => {
+                            return message.channel.send(`**${args[0]}** setting successfully changed to **${setting}**`);
+                        });
+                    } else if (args[0] == dadJokesJail && !channelFound) {
+                        return message.channel.send(`The ${args[0]} value must be the name of an channel on this server! Please try again!`)
+                    }
                 };
                 if (args[0] == 'hallOfFameLimit' && isNaN(parseInt(args[1]))) return message.channel.send(`The ${args[0]} value must be a whole number! Please try again!`);
                 if (args[0] == 'hallOfFameEmote') {
