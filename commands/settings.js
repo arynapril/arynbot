@@ -20,7 +20,7 @@ exports.run = (bot, message, args, level) => {
                 if (args[0] == 'hallOfFameLimit' && !isNaN(args[1])) return message.channel.send(`The ${args[0]} value must be a whole number! Please try again!`);
                 if (args[0] == 'hallOfFameEmote') {
                     found = false;
-                    emoji = message.guild.emoji.array();
+                    emoji = message.guild.emojis.array();
                     for (var i = 0; i < emoji.length; i++) {
                         if (args[1]==emoji(i).name) {
                             x = emoji(i).id;
