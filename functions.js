@@ -112,7 +112,7 @@ module.exports = (bot) => {
 		}
 		if (message.isMentioned(bot.user)) {
 			if (message.content.toLowerCase().includes("what's your prefix") || message.content.toLowerCase().includes("whats your prefix")) {
-				this.getSetting('prefix', message).then(prefix => {
+				this.getSetting('prefix', message.guild).then(prefix => {
 					message.reply("my prefix for this server is `" + prefix + "`!")
 				})
 			}
@@ -121,7 +121,7 @@ module.exports = (bot) => {
 				message.reply('I have reset this server\'s prefix to ``' + config.prefix + '``!')
 			}
 		}
-		this.getSetting('prefix', message).then(prefix => {
+		this.getSetting('prefix', message.guild).then(prefix => {
 			if (message.content.startsWith(prefix)) {
 				try {
 					args = message.content.split(/\s+/g)
