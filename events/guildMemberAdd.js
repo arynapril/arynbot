@@ -4,6 +4,7 @@ module.exports = (bot, member) => {
         if (enabled == '0') return;
         bot.getSetting('welcomeMessagesChannel', member.guild).then(setting => {
             welcome = member.guild.channels.find('name', setting);
+            if (!welcome) return;
             welcome.send(`Hi ${member}! Welcome to ${member.guild.name}! :smile:`);
         })
     })
