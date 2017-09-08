@@ -6,8 +6,11 @@ module.exports = (bot, member) => {
     }
     if (!logs) return;
     if(bot.getSetting('welcomeMessagesEnabled', member.guild) == '0') return;
-    //welcome = member.guild.channels.find('name', bot.getSetting('welcomeMessagesChannel', member.guild));
+    bot.getSetting('welcomeMessagesChannel', member.guild).then(setting => {
+        channelName = setting;
+    })
+    welcome = member.guild.channels.find('name', channelName);
     //if(!welcome) return;
-    //welcome.send(`Hi ${member}! Welcome to ${member.guild.name}! :smile:`);
-    logs.send(`Hi ${member}! Welcome to ${member.guild.name}! :smile: ${bot.getSetting('welcomeMessagesChannel', member.guild)}`);
+    welcome.send(`Hi ${member}! Welcome to ${member.guild.name}! :smile:`);
+    //logs.send(`Hi ${member}! Welcome to ${member.guild.name}! :smile:`);
 };
