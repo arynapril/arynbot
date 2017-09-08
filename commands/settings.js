@@ -7,7 +7,7 @@ exports.run = (bot, message, args, level) => {
     	if (!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you do not have permission to manage this server's setings!");
         if (settingsArray.indexOf(args[0]) != -1) {
             if (!args[1]) {
-                bot.getSetting(args[0], message).then(setting => {
+                bot.getSetting(args[0], message.guild).then(setting => {
                     message.channel.send(`The current **${args[0]}** setting is **${setting}**`);
                 })
             } else {
