@@ -22,8 +22,8 @@ exports.run = (bot, message, args, level) => {
                     found = false;
                     emoji = message.guild.emojis.array();
                     for (var i = 0; i < emoji.length; i++) {
-                        if (args[1]==emoji(i).name) {
-                            x = emoji(i).id;
+                        if (args[1]==emoji[i].name) {
+                            x = emoji[i].id;
                             found = true;
                         };
                     };
