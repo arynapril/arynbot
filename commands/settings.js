@@ -13,7 +13,7 @@ exports.run = (bot, message, args, level) => {
                 })
             } else {
                 if (args[2]) return message.channel.send('Please enter only one value!')
-                if (booleanArray.indexOf(args[0]) != -1 && (args[1] !== 1 || args[1] !== 0)) return message.channel.send(`The ${args[0]} value must be be either a 0 or a 1! Please try again!`);
+                if (booleanArray.indexOf(args[0]) != -1 && args[1] !== 1 && args[1] !== 0) return message.channel.send(`The ${args[0]} value must be be either a 0 or a 1! Please try again!`);
                 if (channelArray.indexOf(args[0]) != -1) {
                     channelFound = false;
                     chans = message.guild.channels.array();
