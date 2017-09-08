@@ -19,7 +19,7 @@ exports.run = (bot, message, args, level) => {
                     chans = message.guild.channels.array();
                     for (var i = 0; i < chans.length; i++) {
                         if (args[1] == chans[i].name) {
-                            found = true;
+                            channelFound = true;
                         }
                     }
                     if (!found) return message.channel.send(`The ${args[0]} value must be the name of an channel on this server! Please try again!`)
