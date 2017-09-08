@@ -14,7 +14,7 @@ module.exports = (bot) => {
 				prefix VARCHAR(10),
 				welcomeMessagesEnabled BOOLEAN,
 				welcomeMessagesChannel VARCHAR(25), 
-                dadJokes BOOLEAN,
+                dadJokesEnabled BOOLEAN,
                 dadJokesJail VARCHAR(25),
                 hallOfFameEnabled BOOLEAN,
                 hallOfFameEmote VARCHAR(25),
@@ -153,7 +153,6 @@ module.exports = (bot) => {
             const cmd = bot.commands.get('love');
             cmd.run(bot, message, args);
         } else {
-            if (message.guild.id == '292134570940301312' && message.channel.id !== '296497111090855936') return;
             if (x.startsWith('i am ')) {
                 joke1 = message.cleanContent.split(" ").slice(2);
             } else {
