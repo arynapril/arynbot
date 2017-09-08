@@ -34,6 +34,6 @@ module.exports = (bot, oldMessage, newMessage) => {
             update.addField('New Image', newPictures[0].url);
         };
         update.setTimestamp()
-        .setColor([255,Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
+        .setColor('#FFC400')
     logs.send({embed: update});
 };

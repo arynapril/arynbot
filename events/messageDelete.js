@@ -22,6 +22,6 @@ module.exports = (bot, message) => {
             dlt.setImage(pictures[0].url)
         }
         dlt.setTimestamp()
-        .setColor([255,Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
+        .setColor('#E53935')
     logs.send({embed: dlt});
 };
