@@ -147,10 +147,10 @@ module.exports = (bot) => {
 			}
 		})
 	}
-	bot.getSetting = function(input, guild) {
+	bot.getSetting = function(input, x) {
 		return new Promise(
 			function(resolve, reject) {
-				db.all(`SELECT * FROM servers WHERE id = "${guild.id}"`, function(err, rows) {
+				db.all(`SELECT * FROM servers WHERE id = "${x.id}"`, function(err, rows) {
 					if (err || !rows[0])
 						reject(err);
 					else
