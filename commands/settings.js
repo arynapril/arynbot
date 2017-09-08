@@ -1,7 +1,9 @@
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('../servers.sqlite');
 exports.run = (bot, message, args, level) => {
-    settingsArray = ['dadJokes', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel']
+    settingsArray = ['dadJokes', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel', 'welcomeMessagesEnabled', 'welcomeMessageChannel']
+    booleanArray = ['dadJokesEnabled', 'hallOfFameEnabled', 'welcomeMessagesEnabled'];
+    channelArray = ['dadJokesJail', 'hallOfFameChannel', 'welcomeMessageChannel'];
     	if (!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you do not have permission to manage this server's setings!");
         if (args[0].indexOf(settingsArray) != 0) {
             if (!args[1]) {
@@ -9,6 +11,11 @@ exports.run = (bot, message, args, level) => {
                     message.channel.send(`The current **${args[0]}** setting is **${setting}**`);
                 })
             } else {
+                if (arg[2]) return message.channel.send('Please enter only one value!')
+                if (args[0].indexOf(booleanArray) != 0 && (args[1] !== 1 || args[1] !== 0)) return message.channel.send(`The ${args[0]} value must be be either a 0 or a 1! Please try again!`);
+                if (args[0].indexOf(channelArray) != 0 && !message.mentions.channels.array()[0]) return message.channel.send(`The ${args[0]} value must be a channel mention! Please try again!`);
+                if (args[0] == 'hallOfFameLimit' && !isNaN(args[1])) return message.channel.send(`The ${args[0]} value must be a whole number! Please try again!`);
+                //add check for the hallOfFameEmoji setting
                 bot.setSetting(args[0], args[1], message).then(setting => {
                     message.channel.send(`**${args[0]}** setting successfully changed to **${setting}**`);
                 })
