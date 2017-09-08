@@ -7,8 +7,8 @@ module.exports = (bot, member) => {
     if (!logs) return;
     if(!logs.permissionsFor(member.guild.me).has("SEND_MESSAGES")) return;
     logs.send(`Hi ${member}! Welcome to ${member.guild.name}! :smile:`);*/
-    /*if(bot.getSetting('welcomeMessagesEnabled', member.guild) == 0) return;
+    if(bot.getSetting('welcomeMessagesEnabled', member.guild) == 0) return;
     welcome = member.guild.channels.find('name', bot.getSetting('welcomeMessagesChannel', member.guild));
     if(!welcome) return;
-    welcome.send(`Hi ${member}! Welcome to ${member.guild.name}! :smile:`);*/
+    welcome.send(`Hi ${member}! Welcome to ${member.guild.name}! :smile:`);
 };
