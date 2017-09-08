@@ -14,10 +14,23 @@ exports.run = (bot, message, args, level) => {
                 if (args[2]) return message.channel.send('Please enter only one value!')
                 if (booleanArray.indexOf(args[0]) != -1 && (args[1] !== 1 || args[1] !== 0)) return message.channel.send(`The ${args[0]} value must be be either a 0 or a 1! Please try again!`);
                 if (channelArray.indexOf(args[0]) != -1 && !message.mentions.channels.array()[0]) return message.channel.send(`The ${args[0]} value must be a channel mention! Please try again!`);
+                if (channelArray.indexOf(args[0]) != -1) {
+                    x = message.mentions.channels.array()[0].id;
+                };
                 if (args[0] == 'hallOfFameLimit' && !isNaN(args[1])) return message.channel.send(`The ${args[0]} value must be a whole number! Please try again!`);
-                //add check for the hallOfFameEmoji setting
+                if (args[0] == 'hallOfFameEmote') {
+                    found = false;
+                    emoji = message.guild.emoji.array();
+                    for (var i = 0; i < emoji.length; i++) {
+                        if (args[1]==emoji(i).name) {
+                            x = emoji(i).id;
+                            found = true;
+                        };
+                    };
+                    if (!found) return message.channel.send(`The ${args[0]} value must be the name of an emoji on this server! Please try again!`)
+                }
                 bot.setSetting(args[0], args[1], message).then(setting => {
-                    message.channel.send(`**${args[0]}** setting successfully changed to **${setting}**`);
+                  message.channel.send(`**${args[0]}** setting successfully changed to **${setting}**`);
                 })
             }
         };
