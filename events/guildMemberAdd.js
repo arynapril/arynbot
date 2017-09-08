@@ -1,8 +1,10 @@
 module.exports = (bot, member) => {
     bot.log("log", `${member.guild.name} got a new member - ${member.user.username} (${member.id})`, 'MEMBR');
-   // bot.getSetting('welcomeMessagesEnabled', member.guild).then(setting => {
-   //     if(!setting) return;
-        //member.guild.channels.get(setting.mentions.channels.array[0].id).send('test');
-   // })
-    //logs.send(`Hi ${member}! Welcome to ${member.guild.name}! :smile:`);
+    var logs = member.guild.channels.find('name', 'logs');
+    if (member.guild.id == '317696745683550208') {
+        logs = member.guild.channels.find('name', 'general');
+    }
+    if (!logs) return;
+    if(!logs.permissionsFor(member.guild.me).has("SEND_MESSAGES")) return;
+    logs.send(`Hi ${member}! Welcome to ${member.guild.name}! :smile:`);
 };
