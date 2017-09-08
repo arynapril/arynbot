@@ -137,7 +137,7 @@ module.exports = (bot) => {
 						try {
 							cmd.run(bot, message, args, perms);
 						} catch (err) {
-							message.channel.send("Oh no! We encountered an error:```" + err.stack + "```")
+							message.channel.send("Oh no! We encountered an error:\n```" + err.stack + "```")
 						}
 					}
 				} catch (err) {
