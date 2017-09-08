@@ -13,7 +13,7 @@ module.exports = (bot) => {
 				name VARCHAR(100), 
 				prefix VARCHAR(10),
 				welcomeMessagesEnabled BOOLEAN,
-				welcomeMessageChannel VARCHAR(25), 
+				welcomeMessagesChannel VARCHAR(25), 
                 dadJokes BOOLEAN,
                 dadJokesJail VARCHAR(25),
                 hallOfFameEnabled BOOLEAN,

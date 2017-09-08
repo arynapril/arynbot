@@ -1,9 +1,9 @@
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('../servers.sqlite');
 exports.run = (bot, message, args, level) => {
-    settingsArray = ['dadJokes', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel', 'welcomeMessagesEnabled', 'welcomeMessageChannel']
+    settingsArray = ['dadJokes', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel', 'welcomeMessagesEnabled', 'welcomeMessagesChannel']
     booleanArray = ['dadJokesEnabled', 'hallOfFameEnabled', 'welcomeMessagesEnabled'];
-    channelArray = ['dadJokesJail', 'hallOfFameChannel', 'welcomeMessageChannel'];
+    channelArray = ['dadJokesJail', 'hallOfFameChannel', 'welcomeMessagesChannel'];
     	if (!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you do not have permission to manage this server's setings!");
         if (settingsArray.indexOf(args[0]) != -1) {
             if (!args[1]) {
