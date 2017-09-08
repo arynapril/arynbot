@@ -1,6 +1,7 @@
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('../servers.sqlite');
 exports.run = (bot, message, args, level) => {
+    x="";
     settingsArray = ['dadJokes', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel', 'welcomeMessagesEnabled', 'welcomeMessagesChannel']
     booleanArray = ['dadJokesEnabled', 'hallOfFameEnabled', 'welcomeMessagesEnabled'];
     channelArray = ['dadJokesJail', 'hallOfFameChannel', 'welcomeMessagesChannel'];
@@ -13,9 +14,15 @@ exports.run = (bot, message, args, level) => {
             } else {
                 if (args[2]) return message.channel.send('Please enter only one value!')
                 if (booleanArray.indexOf(args[0]) != -1 && (args[1] !== 1 || args[1] !== 0)) return message.channel.send(`The ${args[0]} value must be be either a 0 or a 1! Please try again!`);
-                if (channelArray.indexOf(args[0]) != -1 && !message.mentions.channels.array()[0]) return message.channel.send(`The ${args[0]} value must be a channel mention! Please try again!`);
                 if (channelArray.indexOf(args[0]) != -1) {
-                    x = message.mentions.channels.array()[0].id;
+                    channelFound = false;
+                    chans = message.guild.channels.array();
+                    for (var i = 0; i < chans.length; i++) {
+                        if (args[1] == chans[i].name) {
+                            found = true;
+                        }
+                    }
+                    if (!found) return message.channel.send(`The ${args[0]} value must be the name of an channel on this server! Please try again!`)
                 };
                 if (args[0] == 'hallOfFameLimit' && !isNaN(args[1])) return message.channel.send(`The ${args[0]} value must be a whole number! Please try again!`);
                 if (args[0] == 'hallOfFameEmote') {
@@ -23,7 +30,6 @@ exports.run = (bot, message, args, level) => {
                     emoji = message.guild.emojis.array();
                     for (var i = 0; i < emoji.length; i++) {
                         if (args[1]==emoji[i].name) {
-                            x = emoji[i].id;
                             found = true;
                         };
                     };
