@@ -11,7 +11,7 @@ exports.run = (bot, message, args, level) => {
                     message.channel.send(`The current **${args[0]}** setting is **${setting}**`);
                 })
             } else {
-                if (arg[2]) return message.channel.send('Please enter only one value!')
+                if (args[2]) return message.channel.send('Please enter only one value!')
                 if (args[0].indexOf(booleanArray) != 0 && (args[1] !== 1 || args[1] !== 0)) return message.channel.send(`The ${args[0]} value must be be either a 0 or a 1! Please try again!`);
                 if (args[0].indexOf(channelArray) != 0 && !message.mentions.channels.array()[0]) return message.channel.send(`The ${args[0]} value must be a channel mention! Please try again!`);
                 if (args[0] == 'hallOfFameLimit' && !isNaN(args[1])) return message.channel.send(`The ${args[0]} value must be a whole number! Please try again!`);
