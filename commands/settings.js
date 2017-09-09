@@ -22,7 +22,7 @@ exports.run = (bot, message, args, level) => {
                             channelFound = true;
                         }
                     }
-                    if (!channelFound && args[0] !== 'none') return message.channel.send(`The ${args[0]} value must be the name of an channel on this server or 'none' to remove the setting! Please try again!`)
+                    if (!channelFound && args[1] !== 'none') return message.channel.send(`The ${args[0]} value must be the name of an channel on this server or 'none' to remove the setting! Please try again!`)
                 };
                 if (args[0] == 'hallOfFameLimit' && isNaN(parseInt(args[1]))) return message.channel.send(`The ${args[0]} value must be a whole number! Please try again!`);
                 if (args[0] == 'hallOfFameEmote') {
