@@ -5,6 +5,15 @@ exports.run = (bot, message, args, level) => {
     settingsArray = ['dadJokesEnabled', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel', 'welcomeMessagesEnabled', 'welcomeMessagesChannel']
     booleanArray = ['dadJokesEnabled', 'hallOfFameEnabled', 'welcomeMessagesEnabled'];
     channelArray = ['dadJokesJail', 'hallOfFameChannel', 'welcomeMessagesChannel'];
+        if (!args[0]) {
+            str = "";
+            for (i=0; i<settingsArray.length; i++) {
+                bot.getSetting(settingsArray[i], message.guild).then(x => {
+                    str += `${settingsArray[i]} - ${x}\n`
+                })
+            }
+            message.channel.send(str);
+        }
         if (settingsArray.indexOf(args[0]) != -1) {
             if (!args[1]) {
                 bot.getSetting(args[0], message.guild).then(setting => {
@@ -45,7 +54,7 @@ exports.run = (bot, message, args, level) => {
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: [],
+    aliases: ['setting'],
     permLevel: 0
 };
 
