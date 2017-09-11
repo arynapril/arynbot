@@ -72,7 +72,7 @@ module.exports = (bot) => {
     };
     bot.permLevel = function(message) {
         if (message.author.id == bot.config.owner)
-            return 6;
+            return 10;
         else if (message.author.id == message.guild.owner.id)
             return 5;
         else if (message.member.hasPermission("MANAGE_GUILD"))
