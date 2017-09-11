@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 exports.run = async(bot, message, args, level) => {
+    if(message.author.id != bot.config.owner) return message.channel.send("You do not have permission to do this command!");
     const code = args.join(" ");
     var evalEmbed = new Discord.RichEmbed()
         .setTitle('Evaluated code')
