@@ -2,19 +2,12 @@ const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('../servers.sqlite');
 exports.run = (bot, message, args, level) => {
     x="";
-    settingsArray = ['dadJokesEnabled', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel', 'welcomeMessagesEnabled', 'welcomeMessagesChannel']
+    settingsArray = ['dadJokesEnabled', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel', 'welcomeMessagesEnabled', 'welcomeMessagesChannel', 'prefix']
     booleanArray = ['dadJokesEnabled', 'hallOfFameEnabled', 'welcomeMessagesEnabled'];
     channelArray = ['dadJokesJail', 'hallOfFameChannel', 'welcomeMessagesChannel'];
         if (!args[0]) {
-            str = "";
-            for (i=0; i<settingsArray.length; i++) {
-                bot.getSetting(settingsArray[i], message.guild).then(x => {
-                    str += `${settingsArray[i]} - ${x}\n`
-                })
-            }
-            message.channel.send(str);
-        }
-        if (settingsArray.indexOf(args[0]) != -1) {
+            message.channel.send('Please enter an arguement! Accepted arguements are dadJokesEnabled, dadJokesJail, hallOfFameEnabled, hallOfFameEmote, hallOfFameLimit, hallOfFameChannel, welcomeMessagesEnabled, and welcomeMessagesChannel! Thank you!');
+        } else if (settingsArray.indexOf(args[0]) != -1) {
             if (!args[1]) {
                 bot.getSetting(args[0], message.guild).then(setting => {
                     message.channel.send(`The current **${args[0]}** setting is **${setting}**`);
@@ -61,5 +54,5 @@ exports.conf = {
 exports.help = {
     name: 'settings',
     description: 'sets settings',
-    usage: 'settings <setting> <(optional) what to set it to>'
+    usage: 'settings <dadJokesEnabled | dadJokesJail | hallOfFameEnabled | hallOfFameEmote | hallOfFameLimit | hallOfFameChannel | welcomeMessagesEnabled> <(optional) what to change the setting to (channel name if a channel setting, emote name if emote setting, 1 or 0 if boolean setting)>'
 };
