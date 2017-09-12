@@ -133,7 +133,7 @@ module.exports = (bot) => {
                     else if (perms == 0) return message.reply("you are blacklisted from using the bot!");
                     else if (perms < cmd.conf.permLevel) return message.reply("you do not have permission to do this!")
                     else if (cmd.conf.enabled) {
-                        bot.log('log', `${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, 'CMD  ')
+                        bot.log('log', `${message.guild.name} #${message.channel.name} - ${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, 'CMD  ')
                         try {
                             cmd.run(bot, message, args, perms);
                         } catch (err) {
