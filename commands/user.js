@@ -52,7 +52,7 @@ exports.run = (bot, message, args) => {
     message.channel.send({embed: info})
 };
 exports.conf = {
-    enabled: false,
+    enabled: true,
     guildOnly: false,
     aliases: ['info', 'userinfo'],
     permLevel: 0
