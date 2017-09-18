@@ -64,6 +64,9 @@ module.exports = (bot) => {
         db.run(`UPDATE servers SET givemeRoles = "${roles}" WHERE id = ${guild.id}`);
         return roles;
     };
+    /*bot.setSetting1 = async function (setting, newSetting, message) {
+        return await bot.setSetting(setting, newSetting, message);
+    };*/
     bot.setSetting = function(setting, newSetting, message) {
         return new Promise(
             function(resolve, reject) {
@@ -147,6 +150,9 @@ module.exports = (bot) => {
             }
         })
     }
+    bot.getSetting1 = async function (input, g) {
+        return await bot.getSetting(input, g);
+    };
     bot.getSetting = function(input, g) {
         return new Promise(
             function(resolve, reject) {

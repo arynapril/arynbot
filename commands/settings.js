@@ -9,7 +9,7 @@ exports.run = (bot, message, args, level) => {
             message.channel.send('Please enter an arguement! Accepted arguements are dadJokesEnabled, dadJokesJail, hallOfFameEnabled, hallOfFameEmote, hallOfFameLimit, hallOfFameChannel, welcomeMessagesEnabled, and welcomeMessagesChannel! Thank you!');
         } else if (settingsArray.indexOf(args[0]) != -1) {
             if (!args[1]) {
-                bot.getSetting(args[0], message.guild).then(setting => {
+                bot.getSetting1(args[0], message.guild).then(setting => {
                     message.channel.send(`The current **${args[0]}** setting is **${setting}**`);
                 })
             } else {
