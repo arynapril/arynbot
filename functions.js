@@ -151,9 +151,9 @@ module.exports = (bot) => {
         })
     }
     bot.getSetting1 = async(input, g) => {
-        sql = db.get(`SELECT * FROM servers WHERE id = "${g.id}"`, [g])
+        return await bot.getSetting(input, g);
     };
-    bot.getSetting = function(input, g) {
+    bot.getSetting2 = function(input, g) {
         new Promise(
             function(resolve, reject) {
                 db.all(`SELECT * FROM servers WHERE id = "${g.id}"`, function(err, rows) {
@@ -162,6 +162,18 @@ module.exports = (bot) => {
                     else
                         resolve(rows[0][input])
                         return rows[0][input];
+                });
+            }
+        )
+    };
+    bot.getSetting = function(input, g) {
+        return new Promise(
+            function(resolve, reject) {
+                db.all(`SELECT * FROM servers WHERE id = "${g.id}"`, function(err, rows) {
+                    if (err || !rows[0])
+                        reject(err);
+                    else
+                        resolve(rows[0][input])
                 });
             }
         )
