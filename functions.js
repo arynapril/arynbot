@@ -151,7 +151,7 @@ module.exports = (bot) => {
         })
     }
     bot.getSetting1 = async(input, g) => {
-        return await bot.getSetting(input, g);
+        return await bot.getSetting2(input, g);
     };
     bot.getSetting2 = function(input, g) {
         new Promise(
