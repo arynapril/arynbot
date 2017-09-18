@@ -150,10 +150,8 @@ module.exports = (bot) => {
             }
         })
     }
-    bot.getSetting1 = function (input, g) {
-        bot.getSetting(input, g).then(setting => {
-            return setting;
-        })
+    bot.getSetting1 = async(input, g) => {
+        return await bot.getSetting(input, g);
     };
     bot.getSetting = function(input, g) {
         return new Promise(
