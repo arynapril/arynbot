@@ -9,10 +9,10 @@ exports.run = (bot, message, args, level) => {
             message.channel.send('Please enter an arguement! Accepted arguements are dadJokesEnabled, dadJokesJail, hallOfFameEnabled, hallOfFameEmote, hallOfFameLimit, hallOfFameChannel, welcomeMessagesEnabled, and welcomeMessagesChannel! Thank you!');
         } else if (settingsArray.indexOf(args[0]) != -1) {
             if (!args[1]) {
-                message.channel.send(`The current **${args[0]}** setting is **${bot.getSetting1(args[0], message.guild)}**`)
-                /*bot.getSetting1(args[0], message.guild).then(setting => {
+                //message.channel.send(`The current **${args[0]}** setting is **${bot.getSetting1(args[0], message.guild)}**`)
+                bot.getSetting(args[0], message.guild).then(setting => {
                     message.channel.send(`The current **${args[0]}** setting is **${setting}**`);
-                })*/
+                })
             } else {
     	        if (!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you do not have permission to manage this server's setings!");
                 if (args[2]) return message.channel.send('Please enter only one value!')
