@@ -1,11 +1,9 @@
-module.exports = (bot, member) => {
+module.exports = async (bot, member) => {
     bot.log("log", `${member.guild.name} got a new member - ${member.user.username} (${member.id})`, 'MEMBR');
-    bot.getSetting('welcomeMessagesEnabled', member.guild).then(enabled => {
-        if (enabled == '0') return;
-        bot.getSetting('welcomeMessagesChannel', member.guild).then(setting => {
-            welcome = member.guild.channels.find('name', setting);
-            if (!welcome) return;
-            welcome.send(`Hi ${member}! Welcome to ${member.guild.name}! :smile:`);
-        })
-    })
+    enabled = await bot.getSetting('welcomeMessagesEnabled', member.guild);
+    if (enabled == '0')
+    chan = await bot.getSetting('welcomeMessagesChannel', member.guild);
+    welcome = member.guild.channels.find('name', chan);
+    if (!welcome) return;
+    welcome.send(`Hi ${member}! Welcome to ${member.guild.name}! :smile:`);
 };
