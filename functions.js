@@ -20,7 +20,9 @@ module.exports = (bot) => {
                 hallOfFameEmote VARCHAR(25),
                 hallOfFameLimit VARCHAR(2),
 				hallOfFameChannel VARCHAR(25), 
-				giveMeRoles BLOB)`);
+				giveMeRoles BLOB,
+                welcomeMessage VARCHAR(300),
+                leaveMessage VARHCHAR(300))`);
             bot.guilds.forEach(guild => {
                 db.run(`INSERT OR IGNORE INTO servers VALUES (
 					"${guild.id}", 
@@ -34,7 +36,9 @@ module.exports = (bot) => {
                     "none",
                     "3",
 					"none",
-                    "none")`);
+                    "none",
+                    "Hello {user}! Welcome to {guild}!",
+                    "{user} has left the server! :cry:")`);
             });
         });
         bot.log("log", "Servers synced.", 'BOT  ')
@@ -56,7 +60,9 @@ module.exports = (bot) => {
                     "none",
                     "3",
 					"none",
-                    "none"`);
+                    "none",
+                    "Hello {user}! Welcome to {guild}!",
+                    "{user} has left the server! :cry:")`);
         bot.log('log', guild.name + " successfully inserted into the database!");
     };
     bot.setGivemeRoles = function(roles, guild) {
@@ -64,9 +70,6 @@ module.exports = (bot) => {
         db.run(`UPDATE servers SET givemeRoles = "${roles}" WHERE id = ${guild.id}`);
         return roles;
     };
-    /*bot.setSetting1 = async function (setting, newSetting, message) {
-        return await bot.setSetting(setting, newSetting, message);
-    };*/
     bot.setSetting = function(setting, newSetting, message) {
         return new Promise(
             function(resolve, reject) {
