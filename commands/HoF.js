@@ -7,7 +7,7 @@ exports.run = async (bot, message, args, level) => {
     if (!HallOfFame) return;
     if (!HallOfFame.permissionsFor(msg.guild.me).has("SEND_MESSAGES")) return;
     emote = await bot.getSetting('hallOfFameEmote', msg.guild);
-    emoji = msg.guild.find('name', emote);
+    emoji = msg.guild.emojis.find('name', emote);
     if (!emoji) return;
     msg.react(emoji.id);
     const HoF = new Discord.RichEmbed();
