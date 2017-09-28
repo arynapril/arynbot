@@ -23,7 +23,7 @@ module.exports = (bot, message) => {
                         }
                         if (joke1.length > 5) return;
                         let joke = joke1.join(" ");
-                        message.channel.send(`Hi **${joke}**, I'm arynbot! :heart:`);
+                        message.channel.send(`Hi **${joke}**, I'm ${message.guild.me.displayName}! :heart:`);
                         bot.log("log", `${message.guild.name}/#${message.channel.name}: ${message.author.username} (${message.author.id}) made a dad joke: ${joke}`, "DAD  ");
                     };
                 } else {
@@ -40,7 +40,7 @@ module.exports = (bot, message) => {
                             }
                             if (joke1.length > 5) return;
                             let joke = joke1.join(" ");
-                            message.channel.send(`Hi **${joke}**, I'm arynbot! :heart:`);
+                            message.channel.send(`Hi **${joke}**, I'm ${message.guild.me.displayName}! :heart:`);
                             bot.log("log", `${message.guild.name}/#${message.channel.name}: ${message.author.username} (${message.author.id}) made a dad joke: ${joke}`, "DAD  ");
                         };
                     }
