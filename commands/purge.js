@@ -14,7 +14,9 @@ exports.conf = {
     enabled: true,
     guildOnly: false,
     aliases: ['clear', 'prune', 'clean'],
-    permLevel: 2
+    //permLevel: 2
+    botPerms: ['MANAGE_MESSAGES'],
+    memberPerms: ['MANAGE_MESSAGES']
 };
 
 exports.help = {

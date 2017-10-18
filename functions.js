@@ -76,7 +76,7 @@ module.exports = (bot) => {
                 db.run(`UPDATE servers SET ${setting} = "${newSetting}" WHERE id = "${message.guild.id}"`), resolve(newSetting);
             });
     };
-    bot.permLevel = function(message) {
+/*    bot.permLevel = function(message) {
         if (message.author.id == bot.config.owner)
             return 10;
         else if (message.author.id == message.guild.owner.id)
@@ -89,7 +89,7 @@ module.exports = (bot) => {
             return 2;
         else
             return 1;
-    };
+    };*/
     bot.processMessage = function(message) {
         if (message.author.bot) return;
         var afkJson = fs.readFileSync("./afk.json"),
@@ -134,10 +134,12 @@ module.exports = (bot) => {
                     message.content = message.content.substring(message.content.indexOf(" ") + 1, message.content.length) || null
                     var command = args.shift().slice(prefix.length).toLowerCase()
                     var cmd = bot.commands.get(command) || bot.commands.get(bot.aliases.get(command))
-                    var perms = bot.permLevel(message)
+//                    var perms = bot.permLevel(message)
                     if (!cmd) return;
-                    else if (perms == 0) return message.reply("you are blacklisted from using the bot!");
-                    else if (perms < cmd.conf.permLevel) return message.reply("you do not have permission to do this!")
+//                    else if (perms == 0) return message.reply("you are blacklisted from using the bot!");
+//                    else if (perms < cmd.conf.permLevel) return message.reply("you do not have permission to do this!")
+                    else if (!message.guild.me.hasPermission(cmd.conf.botPerms)) return message.reply(`Sorry, I don't have a permission I need to run that command!\n Required Permissions: ${cmd.conf.botPerms}`)
+                    else if (!message.member.hasPermission(cmd.conf.memberPerms)) return message.reply(`You do not have the permissions to run this command!\nRequired Permissions: ${cmd.conf.memberPerms}`)
                     else if (cmd.conf.enabled) {
                         bot.log('log', `${message.guild.name} #${message.channel.name} - ${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, 'CMD  ')
                         try {
@@ -153,22 +155,6 @@ module.exports = (bot) => {
             }
         })
     }
-    bot.getSetting1 = async(input, g) => {
-        return await bot.getSetting2(input, g);
-    };
-    bot.getSetting2 = function(input, g) {
-        new Promise(
-            function(resolve, reject) {
-                db.all(`SELECT * FROM servers WHERE id = "${g.id}"`, function(err, rows) {
-                    if (err || !rows[0])
-                        reject(err);
-                    else
-                        resolve(rows[0][input])
-                        return rows[0][input];
-                });
-            }
-        )
-    };
     bot.getSetting = function(input, g) {
         return new Promise(
             function(resolve, reject) {
