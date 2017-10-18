@@ -1,13 +1,13 @@
 exports.run = (bot, message, args, level) => {
     const Discord = require('discord.js');
     if (!args[0]) {
-        const myCommands = bot.commands.filter(c => c.conf.permLevel <= level);
         var helpbox = new Discord.RichEmbed();
         helpbox.setTitle("Command List")
             .setDescription(`Use ${bot.config.prefix}help <commandname> for details`)
             .setColor([Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256)])
-        myCommands.forEach(c => {
-            helpbox.addField(c.help.name, c.help.description)
+        bot.commands.forEach(c => {
+            if(message.member.hasPermission(c.conf.memberPerms)) 
+                helpbox.addField(c.help.name, c.help.description)
         });
         message.channel.send({
             embed: helpbox
