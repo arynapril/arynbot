@@ -1,6 +1,7 @@
 const child_process = require('child_process');
 const Discord = require("discord.js");
 exports.run = (bot, message, args) => {
+    if(message.author.id != bot.config.owner) return message.channel.send("You do not have permission to do this command!");
     var r = Math.floor(Math.random()*256);
     var g = Math.floor(Math.random()*256);
     var b = Math.floor(Math.random()*256);
