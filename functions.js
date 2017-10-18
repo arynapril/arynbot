@@ -143,7 +143,7 @@ module.exports = (bot) => {
                     else if (cmd.conf.enabled) {
                         bot.log('log', `${message.guild.name} #${message.channel.name} - ${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, 'CMD  ')
                         try {
-                            cmd.run(bot, message, args, perms);
+                            cmd.run(bot, message, args);
                         } catch (err) {
                             message.channel.send("Oh no! We encountered an error:\n```" + err.stack + "```")
                         }
