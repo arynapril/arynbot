@@ -25,7 +25,8 @@ exports.conf = {
     enabled: true,
     guildOnly: false,
     aliases: ['refresh'],
-    permLevel: 10
+    botPerms: [],
+    memberPerms: []
 };
 
 exports.help = {

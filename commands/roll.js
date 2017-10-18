@@ -14,7 +14,8 @@ exports.conf = {
     enabled: true,
     guildOnly: false,
     aliases: ['diceroll', 'dice'],
-    permLevel: 0
+    botPerms: [],
+    memberPerms: []
 };
 
 exports.help = {

@@ -29,7 +29,8 @@ exports.conf = {
     enabled: true, 
     guildOnly: false, 
     aliases: ['shush'], 
-    permLevel: 2
+    botPerms: ['MANAGE_ROLES'],
+    memberPerms: ['MANAGE_ROLES']
 };
 exports.help = {
     name: 'mute',  

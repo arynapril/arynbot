@@ -7,7 +7,8 @@ exports.conf = {
     enabled: true,
     guildOnly: false,
     aliases: [],
-    permLevel: 10
+    botPerms: ['MANAGE_MESSAGES'],
+    memberPerms: ['MANAGE_MESSAGES']
 };
 
 exports.help = {

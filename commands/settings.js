@@ -44,7 +44,8 @@ exports.conf = {
     enabled: true,
     guildOnly: false,
     aliases: ['setting'],
-    permLevel: 0
+    botPerms: [],
+    memberPerms: []
 };
 
 exports.help = {

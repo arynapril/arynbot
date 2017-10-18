@@ -25,7 +25,8 @@ exports.conf = {
     enabled: true,
     guildOnly: false,
     aliases: ['unshush'],
-    permLevel: 2
+    botPerms: ['MANAGE_ROLES'],
+    memberPerms: ['MANAGE_ROLES']
 };
 
 exports.help = {

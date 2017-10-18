@@ -134,12 +134,9 @@ module.exports = (bot) => {
                     message.content = message.content.substring(message.content.indexOf(" ") + 1, message.content.length) || null
                     var command = args.shift().slice(prefix.length).toLowerCase()
                     var cmd = bot.commands.get(command) || bot.commands.get(bot.aliases.get(command))
-//                    var perms = bot.permLevel(message)
                     if (!cmd) return;
-//                    else if (perms == 0) return message.reply("you are blacklisted from using the bot!");
-//                    else if (perms < cmd.conf.permLevel) return message.reply("you do not have permission to do this!")
-                    else if (!message.guild.me.hasPermission(cmd.conf.botPerms)) return message.reply(`Sorry, I don't have a permission I need to run that command!\n Required Permissions: ${cmd.conf.botPerms}`)
-                    else if (!message.member.hasPermission(cmd.conf.memberPerms)) return message.reply(`You do not have the permissions to run this command!\nRequired Permissions: ${cmd.conf.memberPerms}`)
+                    else if (!message.guild.me.hasPermission(cmd.conf.botPerms)) return message.channel.send(`Sorry, I don't have a permission I need to run that command!\n Required Permissions: ${cmd.conf.botPerms}`)
+                    else if (!message.member.hasPermission(cmd.conf.memberPerms)) return message.channel.send(`You do not have the permissions to run this command!\nRequired Permissions: ${cmd.conf.memberPerms}`)
                     else if (cmd.conf.enabled) {
                         bot.log('log', `${message.guild.name} #${message.channel.name} - ${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, 'CMD  ')
                         try {

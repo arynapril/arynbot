@@ -39,7 +39,8 @@ exports.conf = {
     enabled: true,
     guildOnly: false,
     aliases: ['chill'],
-    permLevel: 2
+    botPerms: ['MANAGE_ROLES'],
+    memberPerms: ['MANAGE_ROLES']
 };
 
 exports.help = {

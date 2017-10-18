@@ -6,7 +6,8 @@ exports.conf = {
     enabled: true,
     guildOnly: false,
     aliases: ['github', 'gh'],
-    permLevel: 0
+    botPerms: [],
+    memberPerms: []
 };
 
 exports.help = {

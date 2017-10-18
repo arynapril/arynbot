@@ -37,7 +37,8 @@ exports.conf = {
     enabled: true,
     guildOnly: false,
     aliases: ['hof', 'halloffame'],
-    permLevel: 4
+    botPerms: ['ADD_REACTIONS'],
+    memberPerms: ['MANAGE_MESSAGES']
 };
 exports.help = {
     name: 'HoF',
