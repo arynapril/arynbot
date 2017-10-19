@@ -49,5 +49,6 @@ module.exports = (bot, message) => {
         })
     };
     if (!message.channel.type === "text" || !message.guild) return;
+    if (message.author.bot) return;
     bot.processMessage(message);
 };

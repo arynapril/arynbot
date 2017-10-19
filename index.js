@@ -6,6 +6,10 @@ bot.config = require("./config.json");
 require("./functions.js")(bot);
 bot.commands = new discord.Collection();
 bot.aliases = new discord.Collection();
+const Enmap = require("enmap");
+const EnmapLevel = require("enmap-level");
+const pointProvider = new EnmapLevel({name: "cookies"});
+this.points = new Enmap({provider: pointProvider});
 (async function() {
     const commandFiles = await readdir('./commands/');
     bot.log("log", `Loading ${commandFiles.length} commands!`, 'LOAD ');
