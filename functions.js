@@ -193,8 +193,8 @@ module.exports = (bot) => {
     bot.enabled = function(command, guild) {
         return true;
     };
-    bot.pointsMonitor = (client, message) => {
-        const score = client.points.get(message.author.id) || {cookies: 0};
+    bot.pointsMonitor = (bot, message) => {
+        const score = bot.points.get(message.author.id) || {cookies: 0};
         const total = bot.points.get(bot.user.id) || {cookies: 0}
         score.cookies++
         total.cookies++
