@@ -12,6 +12,9 @@ exports.run = (bot, message, args, level) => {
         bot.pointsMonitor(bot, message);
         const cookieTotal = bot.points.get(bot.user.id).cookies;
         message.channel.send(`Thank you very much! ${phrase} I currently have ${cookieTotal} cookies, all thanks to users like you! :heart:`)
+    } else if (args[0] == 'count') {
+        const cookieCount = bot.points.get(message.author.id).cookies;
+        message.channel.send(`You've given me ${cookieCount} cookies! Thank you very much! :heart:`)
     }
 }
 
