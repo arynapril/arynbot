@@ -10,7 +10,7 @@ exports.run = (bot, message, args, level) => {
     phrase = phrases[Math.floor(Math.random()*phrases.length)]
     if (!args[0]){
         bot.pointsMonitor(bot, message);
-        const cookieTotal = bot.points.get(bot.user.id).points;
+        const cookieTotal = bot.points.get(bot.user.id).cookies;
         message.channel.send(`Thank you very much! ${phrase} I currently have ${cookieTotal} cookies, all thanks to users like you! :heart:`)
     }
 }
