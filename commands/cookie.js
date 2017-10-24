@@ -6,7 +6,7 @@ exports.run = (bot, message, args, level) => {
 		'I\'m glad you appreciate me!',
 		'Here! You should take half!',
 		'That\'s so sweet!',
-	    'Does RoBot get one too?'
+		'Does RoBot get one too?'
 	];
 	phrase = phrases[Math.floor(Math.random() * phrases.length)]
 	if (!args[0]) {
