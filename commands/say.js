@@ -1,6 +1,7 @@
 exports.run = (bot, message, args, level) => {
-	message.delete();
-	message.channel.send(args.join(" "));
+    if(message.author.id != bot.config.owner) return;
+    message.delete();
+    message.channel.send(args.join(" "));
 };
 
 exports.conf = {
