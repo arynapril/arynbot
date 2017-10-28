@@ -7,9 +7,11 @@ exports.run = async (bot, message, args, level) => {
 	if (!args[0]) {
 		settingsEmbed = new Discord.RichEmbed()
 		.setTitle("Current Settings")
+		.setColor('RANDOM')
+		.setFooter(`Current settings for ${message.guild.name}`)
 		for(var i = 0; i < settingsArray.length; i++){
 			value = await bot.getSetting(settingsArray[i], message.guild);
-			settingsEmbed.addField(settingsArray[i], value);
+			settingsEmbed.addField(settingsArray[i], value, true);
 		}
 		message.channel.send({embed: settingsEmbed});
 	} else if (settingsArray.indexOf(args[0]) != -1) {
