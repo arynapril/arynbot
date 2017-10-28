@@ -1,10 +1,17 @@
 exports.run = async (bot, message, args, level) => {
+	const Discord = require('discord.js')
 	x = "";
 	settingsArray = ['dadJokesEnabled', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel', 'welcomeMessagesEnabled', 'welcomeMessagesChannel', 'prefix']
 	booleanArray = ['dadJokesEnabled', 'hallOfFameEnabled', 'welcomeMessagesEnabled'];
 	channelArray = ['dadJokesJail', 'hallOfFameChannel', 'welcomeMessagesChannel'];
 	if (!args[0]) {
-		message.channel.send('Please enter an arguement! Accepted arguements are dadJokesEnabled, dadJokesJail, hallOfFameEnabled, hallOfFameEmote, hallOfFameLimit, hallOfFameChannel, welcomeMessagesEnabled, and welcomeMessagesChannel! Thank you!');
+		settingsEmbed = new Discord.RichEmbed()
+		.setTitle("Current Settings")
+		for(var i = 0; i < settingsArray.length; i++){
+			value = await bot.getSettings(settingsArray[i]);
+			settingsEmbed.addField(settingsArray[i], value);
+		}
+		message.channel.send({embed: settingsEmbed});
 	} else if (settingsArray.indexOf(args[0]) != -1) {
 		if (!args[1]) {
 			setting = await bot.getSetting(args[0], message.guild);
