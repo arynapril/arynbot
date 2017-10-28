@@ -8,7 +8,7 @@ exports.run = async (bot, message, args, level) => {
 		settingsEmbed = new Discord.RichEmbed()
 		.setTitle("Current Settings")
 		for(var i = 0; i < settingsArray.length; i++){
-			value = await bot.getSettings(settingsArray[i]);
+			value = await bot.getSetting(settingsArray[i]);
 			settingsEmbed.addField(settingsArray[i], value);
 		}
 		message.channel.send({embed: settingsEmbed});
