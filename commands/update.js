@@ -27,7 +27,7 @@ exports.run = (bot, message, args) => {
 		} else {
 			var updateEmbed2 = new Discord.RichEmbed()
 				.setColor([r, g, b])
-				.setTitle("Updated!")
+				.setTitle("I have indeed been updated!")
 				.setDescription(update)
 				.setTimestamp()
 				.setFooter(`Took ${e.createdTimestamp - message.createdTimestamp} ms to update!`)
