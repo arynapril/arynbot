@@ -37,7 +37,9 @@ exports.run = (bot, message, args, level) => {
 		if (loved.id == '226999841358610432') {
 			message.channel.send('http://imgur.com/a/DUaDb')
 		} else {
-			message.channel.send(`**${loved.username}**, ${list[Math.floor(Math.random()*list.length)]}`);
+			message.channel.send(`**${loved.username}**, ${list[Math.floor(Math.random()*list.length)]}`, {
+				file: "https://cdn.discordapp.com/attachments/263501441690238976/337810432108658691/089811d7a2e619cb735aa37a52b19262.gif"
+			});
 		}
 	};
 };
