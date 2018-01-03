@@ -5,7 +5,7 @@ module.exports = (bot, oldMessage, newMessage) => {
 	if (!logs.permissionsFor(oldMessage.guild.me).has("SEND_MESSAGES")) return;
 	if (!oldMessage || !newMessage) return;
 	if (oldMessage == "" || newMessage == "") return;
-	if (oldMessage == newMessage) return;
+	if (oldMessage.content == newMessage.content) return;
 	if (oldMessage.author.bot) return;
 	var update = new Discord.RichEmbed()
 		.setTitle('Message Updated')
