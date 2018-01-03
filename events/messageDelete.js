@@ -19,7 +19,9 @@ module.exports = (bot, message) => {
 		if (message != "") {
 			dlt.addField('Message', `${message}`)
 		}
-		dlt.setImage(pictures[0].url)
+		for (i=0; i<pictures.length; i++) {
+			dlt.addField(`Image ${i}`, pictures[i].url)
+		}
 	}
 	dlt.setTimestamp()
 		.setColor('#E53935')
