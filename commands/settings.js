@@ -1,6 +1,7 @@
 exports.run = async (bot, message, args, level) => {
 	const Discord = require('discord.js')
 	x = "";
+	welcomeMessage = '';
 	settingsArray = ['dadJokesEnabled', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel', 'welcomeMessagesEnabled', 'welcomeMessagesChannel', 'prefix', 'welcomeMessage']
 	booleanArray = ['dadJokesEnabled', 'hallOfFameEnabled', 'welcomeMessagesEnabled'];
 	channelArray = ['dadJokesJail', 'hallOfFameChannel', 'welcomeMessagesChannel'];
@@ -20,7 +21,10 @@ exports.run = async (bot, message, args, level) => {
 			message.channel.send(`The current **${args[0]}** setting is **${setting}**`)
 		} else {
 			if (!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you do not have permission to manage this server's setings!");
-			if (args[2]) return message.channel.send('Please enter only one value!')
+			if (args[2] && args[1] !== 'welcomeMessage') return message.channel.send('Please enter only one value!')
+			if (args[1] == 'welcomeMessage') {
+				welcomeMessage = args.join(' ');
+			}
 			if (booleanArray.indexOf(args[0]) != -1 && args[1] !== '1' && args[1] !== '0') return message.channel.send(`The ${args[0]} value must be be either a 0 or a 1! Please try again!`);
 			if (channelArray.indexOf(args[0]) != -1) {
 				channelFound = false;
@@ -43,7 +47,11 @@ exports.run = async (bot, message, args, level) => {
 				};
 				if (!found) return message.channel.send(`The ${args[0]} value must be the name of an emoji on this server! Please try again!`)
 			}
-			setting = await bot.setSetting(args[0], args[1], message);
+			if (!welcomeMessage || welcomeMessage == '') {
+				setting = await bot.setSetting(args[0], args[1], message);
+			} else {
+				settngs = await bot.setSetting(args[0], welcomeMessage, message);
+			}
 			message.channel.send(`**${args[0]}** setting successfully changed to **${setting}**`);
 		}
 	};
