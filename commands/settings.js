@@ -21,7 +21,6 @@ exports.run = async (bot, message, args, level) => {
 			message.channel.send(`The current **${args[0]}** setting is **${setting}**`)
 		} else {
 			if (!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you do not have permission to manage this server's setings!");
-			if (args[2] && args[1] !== 'welcomeMessage') return message.channel.send('Please enter only one value!')
 			if (args[1] == 'welcomeMessage') {
 				welcomeMessage = args.join(' ');
 			}
