@@ -23,7 +23,7 @@ exports.run = async (bot, message, args, level) => {
 			if (!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you do not have permission to manage this server's setings!");
 			if (args[2] && args[0] !== 'welcomeMessage') return message.channel.send('Please enter only one value!')
 			if (args[0] == 'welcomeMessage') {
-				welcomeMessage = args.join(' ');
+				welcomeMessage = args.slice(1).join(' ');
 			}
 			if (booleanArray.indexOf(args[0]) != -1 && args[1] !== '1' && args[1] !== '0') return message.channel.send(`The ${args[0]} value must be be either a 0 or a 1! Please try again!`);
 			if (channelArray.indexOf(args[0]) != -1) {
