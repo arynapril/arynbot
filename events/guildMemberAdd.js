@@ -3,7 +3,9 @@ module.exports = async (bot, member) => {
 	enabled = await bot.getSetting('welcomeMessagesEnabled', member.guild);
 	if (enabled == '0') return;
 	channelName = await bot.getSetting('welcomeMessagesChannel', member.guild);
+	welcomeMessage = await bot.getSetting('welcomeMessage', member.guild);
 	welcome = member.guild.channels.find('name', channelName);
 	if (!welcome) return;
-	welcome.send(`Hi ${member}! Welcome to ${member.guild.name}! :smile:`);
+	welcomeMessage = welcomeMessage.replace('{user}', member.user).replace('{guild}', member.guild.name);
+	welcome.send(welcomeMessage);
 };
