@@ -28,7 +28,7 @@ exports.conf = {
 };
 
 exports.help = {
-	name: '',
-	description: '',
+	name: 'exec',
+	description: 'executes shell commands',
 	usage: ''
 };
