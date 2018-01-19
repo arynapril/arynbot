@@ -18,6 +18,7 @@ exports.run = (bot, message, args, level) => {
             .addField('Output: ', stdout)
         }
     });
+    message.channel.send({embed});
 };
 
 exports.conf = {
