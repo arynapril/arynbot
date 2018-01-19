@@ -1,4 +1,5 @@
 exports.run = (bot, message, args, level) => {
+    var Discord = require('discord.js');
     if (message.author.id !== bot.config.owner) return message.channel.send("You do not have permission to run this command!")
     var embed = new Discord.RichEmbed()
         .setFooter(`${msg.author.username}`, `${msg.author.avatarURL}`)
