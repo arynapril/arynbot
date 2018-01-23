@@ -87,7 +87,7 @@ module.exports = (bot) => {
 				bot.setPrefix(config.prefix, message.guild);
 				message.reply('I have reset this server\'s prefix to ``' + config.prefix + '``!')
 			}
-			if (message.content.toLowerCase().includes("what are your pronouns?") || message.content.toLowerCase().includes("what prounons do you use?")) {
+			if (message.content.toLowerCase().includes("what are your pronouns?") || message.content.toLowerCase().includes("what pronouns do you use?")) {
 				this.getSetting('prefix', message.guild).then(prefix => {
 					message.channel.send(`My creator calls me by she/her pronouns, but you can call me by whatever pronouns you like! However, I tend to only respond to valid commands starting with my prefix, \`${prefix}\`!`)
 				})
