@@ -17,7 +17,7 @@ exports.run = (bot, message, args, level) => {
 exports.conf = {
     enabled: true,
     guildOnly: false,
-    aliases: ['timeuntildeath', 'timeuntil', 'bag', 'whenisstop', 'plshelp', 'aaaaaa', 'panic'],
+    aliases: ['timeuntildeath', 'timeuntil', 'bag', 'whenisstop', 'plshelp', 'aaa', 'aaaa', 'aaaaa', 'aaaaaa', 'aaaaaaa', 'aaaaaaaa', 'aaaaaaaaa', 'aaaaaaaaaa', 'panic'],
     botPerms: [],
     memberPerms: []
 };
