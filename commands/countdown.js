@@ -23,6 +23,6 @@ exports.conf = {
 };
 exports.help = {
     name: 'countdown',
-    description: 'counts down until the end of build season!',
-    usage: ''
+    description: 'Panic! at the Workshop',
+    usage: 'countdown (screaming optional)'
 };
