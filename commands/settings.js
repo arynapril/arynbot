@@ -28,7 +28,8 @@ exports.run = async (bot, message, args, level) => {
 				phrase = args.slice(1).join(' ');
 			};
 			if (roleArray.indexOf(args[0]) != -1) {
-				role = message.guild.roles.find('name', args[1]);
+				roleS = args.slice(1).join(' ');
+				role = message.guild.roles.find('name', roleS);
 				if (!role) return message.channel.send(`The ${args[0]} value must be the name of a valid role in this server! Please try again!`);
 			};
 			if (booleanArray.indexOf(args[0]) != -1 && args[1] !== '1' && args[1] !== '0') return message.channel.send(`The ${args[0]} value must be be either a 0 or a 1! Please try again!`);
