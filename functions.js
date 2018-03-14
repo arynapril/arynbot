@@ -27,7 +27,8 @@ module.exports = (bot) => {
 				securityNickFormat VARCHAR(32),
 				securityJoinMessage VARCHAR(1000),
 				securityRole VARCHAR(25),
-				securityPinMessage VARCHAR(1000))`);
+				securityPinMessage VARCHAR(1000),
+				)`);
 			bot.guilds.forEach(guild => {
 				db.run(`INSERT OR IGNORE INTO servers VALUES (
 					"${guild.id}",		 
