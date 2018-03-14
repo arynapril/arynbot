@@ -27,7 +27,7 @@ module.exports = (bot) => {
 				securityNickFormat VARCHAR(32),
 				securityJoinMessage VARCHAR(1000),
 				securityRole VARCHAR(25),
-				securityPinMessage VARCHAR(1000),
+				securityPinMessage VARCHAR(1000)
 				)`);
 			bot.guilds.forEach(guild => {
 				db.run(`INSERT OR IGNORE INTO servers VALUES (
@@ -51,7 +51,7 @@ module.exports = (bot) => {
 					"none",
 					"Welcome {user}! Please read the rules and then enter the passphrase to enter the rest of the server! Thank you!",
 					"members",
-					"Welcome to {guild}! Please read the rules and then enter the passphrase to enter the rest of the server!",
+					"Welcome to {guild}! Please read the rules and then enter the passphrase to enter the rest of the server!"
 					)`
 				);
 			});
@@ -84,7 +84,7 @@ module.exports = (bot) => {
 			"none",
 			"Welcome {user}! Please read the rules and then enter the passphrase to enter the rest of the server! Thank you!",
 			"members",
-			"Welcome to {guild}! Please read the rules and then enter the passphrase to enter the rest of the server!",
+			"Welcome to {guild}! Please read the rules and then enter the passphrase to enter the rest of the server!"
 			)`);
 		bot.log('log', guild.name + " successfully inserted into the database!");
 	};
