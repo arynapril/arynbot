@@ -2,9 +2,11 @@ exports.run = async (bot, message, args, level) => {
 	const Discord = require('discord.js')
 	x = "";
 	welcomeMessage = '';
-	settingsArray = ['dadJokesEnabled', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel', 'welcomeMessagesEnabled', 'welcomeMessagesChannel', 'prefix', 'welcomeMessage']
-	booleanArray = ['dadJokesEnabled', 'hallOfFameEnabled', 'welcomeMessagesEnabled'];
-	channelArray = ['dadJokesJail', 'hallOfFameChannel', 'welcomeMessagesChannel'];
+	settingsArray = ['dadJokesEnabled', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel', 'welcomeMessagesEnabled', 'welcomeMessagesChannel', 'prefix', 'welcomeMessage', 'securityEnabled', 'securityChannel', 'securityPhrase', 'securityNickCheck', 'securityNickFormat', 'securityJoinMessage', 'securityRole', 'securityPinMessage'];
+	booleanArray = ['dadJokesEnabled', 'hallOfFameEnabled', 'welcomeMessagesEnabled', 'securityEnabled', 'securityNickCheck'];
+	channelArray = ['dadJokesJail', 'hallOfFameChannel', 'welcomeMessagesChannel', 'securityChannel'];
+	phraseArray = ['welcomeMessage', 'securityPhrase', 'securityNickFormat', 'securityJoinMessage', 'securityPinMessage'];
+	roleArray = ['securityRole'];
 	if (!args[0]) {
 		settingsEmbed = new Discord.RichEmbed()
 		.setTitle("Current Settings")
@@ -22,9 +24,13 @@ exports.run = async (bot, message, args, level) => {
 		} else {
 			if (!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you do not have permission to manage this server's setings!");
 			if (args[2] && args[0] !== 'welcomeMessage') return message.channel.send('Please enter only one value!')
-			if (args[0] == 'welcomeMessage') {
-				welcomeMessage = args.slice(1).join(' ');
-			}
+			if (phraseArray.indexOf(args[0]) != -1) {
+				phrase = args.slice(1).join(' ');
+			};
+			if (roleArray.indexOf(args[0]) != -1) {
+				role = message.guild.roles.find('name', args[1]);
+				if (!role) return message.channel.send(`The ${args[0]} value must be the name of a valid role in this server! Please try again!`);
+			};
 			if (booleanArray.indexOf(args[0]) != -1 && args[1] !== '1' && args[1] !== '0') return message.channel.send(`The ${args[0]} value must be be either a 0 or a 1! Please try again!`);
 			if (channelArray.indexOf(args[0]) != -1) {
 				channelFound = false;
@@ -45,12 +51,12 @@ exports.run = async (bot, message, args, level) => {
 						found = true;
 					};
 				};
-				if (!found) return message.channel.send(`The ${args[0]} value must be the name of an emoji on this server! Please try again!`)
+				if (!found) return message.channel.send(`The ${args[0]} value must be the name of a custom emoji on this server! Please try again!`)
 			}
-			if (!welcomeMessage || welcomeMessage == '') {
+			if (!phrase || phrase == '') {
 				setting = await bot.setSetting(args[0], args[1], message);
 			} else {
-				settngs = await bot.setSetting(args[0], welcomeMessage, message);
+				settngs = await bot.setSetting(args[0], phrase, message);
 			}
 			message.channel.send(`**${args[0]}** setting successfully changed to **${setting}**`);
 		}
