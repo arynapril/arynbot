@@ -77,7 +77,7 @@ module.exports = (bot) => {
 			"Hello {user}! Welcome to {guild}!",
 			"{user} has left the server! :cry:",
 			0,
-			"new-members",
+			"none",
 			"I have read the rules and regulations",
 			0,
 			"none",
