@@ -1,11 +1,20 @@
 module.exports = async (bot, member) => {
 	bot.log("log", `${member.guild.name} got a new member - ${member.user.username} (${member.id})`, 'MEMBR');
-	enabled = await bot.getSetting('welcomeMessagesEnabled', member.guild);
-	if (enabled == '0') return;
-	channelName = await bot.getSetting('welcomeMessagesChannel', member.guild);
-	welcomeMessage = await bot.getSetting('welcomeMessage', member.guild);
-	welcome = member.guild.channels.find('name', channelName);
-	if (!welcome) return;
-	welcomeMessage = welcomeMessage.replace('{user}', member.user).replace('{guild}', member.guild.name);
-	welcome.send(welcomeMessage);
+	security = await bot.getSetting('securityEnabled', member.guild);
+	welcome = await bot.getSetting('welcomeMessagesEnabled', member.guild);
+	if (security) {
+		secChanS = await bot.getSetting('securityChannel', member.guild);
+		secChan = member.guild.channels.find('name', secChanS);
+		if(!secChan) return;
+		secMessage = await bot.getSetting('securityJoinMessage', member.guild);
+		secMessage = secMessage.replace('{user}', member.user).replace('{guild}', member.guild.name);
+		secChan.send(secMessage);
+	} else if (welcome) {
+		welcomeChanS = await bot.getSetting('welcomeMessagesChannel', member.guild);
+		welcomeChan = member.guild.channels.find('name', welcomeChanS);
+		welcomeMessage = await bot.getSetting('welcomeMessage', member.guild);
+		welcomeMessage = welcomeMessage.replace('{user}', member.user).replace('{guild}', member.guild.name);
+		if (!welcomeChan) return;
+		welcomeChan.send(welcomeMessage);
+	}
 };

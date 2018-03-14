@@ -18,12 +18,19 @@ module.exports = (bot) => {
 				hallOfFameEmote VARCHAR(25),
 				hallOfFameLimit VARCHAR(2),
 				hallOfFameChannel VARCHAR(25), 
-				giveMeRoles BLOB,
 				welcomeMessage VARCHAR(300),
-				leaveMessage VARHCHAR(300))`);
+				leaveMessage VARHCHAR(300),
+				securityEnabled BOOLEAN,
+				securityChannel VARCHAR(25),
+				securityPhrase VARCHAR(300),
+				securityNickCheck BOOLEAN,
+				securityNickFormat VARCHAR(32),
+				securityJoinMessage VARCHAR(1000),
+				securityRole VARCHAR(25),
+				securityPinMessage VARCHAR(1000))`);
 			bot.guilds.forEach(guild => {
 				db.run(`INSERT OR IGNORE INTO servers VALUES (
-					"${guild.id}", 
+					"${guild.id}",		 
 					"${guild.name}", 
 					"${bot.config.prefix}",
 					0,
@@ -34,9 +41,17 @@ module.exports = (bot) => {
 					"none",
 					"3",
 					"none",
-					"none",
 					"Hello {user}! Welcome to {guild}!",
-					"{user} has left the server! :cry:")`
+					"{user} has left the server! :cry:",
+					0,
+					"new-members",
+					"I have read the rules and regulations",
+					0,
+					"none",
+					"Welcome {user}! Please read the rules and then enter the passphrase to enter the rest of the server! Thank you!",
+					"members",
+					"Welcome to {guild}! Please read the rules and then enter the passphrase to enter the rest of the server!",
+					)`
 				);
 			});
 		});
@@ -48,9 +63,9 @@ module.exports = (bot) => {
 	};
 	bot.addServer = function(guild) {
 		db.run(`INSERT OR IGNORE INTO servers VALUES (
-			"${guild.id}", 
+			"${guild.id}",		 
 			"${guild.name}", 
-			"${bot.config.prefix}", 
+			"${bot.config.prefix}",
 			0,
 			"none",
 			1,
@@ -59,15 +74,18 @@ module.exports = (bot) => {
 			"none",
 			"3",
 			"none",
-			"none",
 			"Hello {user}! Welcome to {guild}!",
-			"{user} has left the server! :cry:")`);
+			"{user} has left the server! :cry:",
+			0,
+			"new-members",
+			"I have read the rules and regulations",
+			0,
+			"none",
+			"Welcome {user}! Please read the rules and then enter the passphrase to enter the rest of the server! Thank you!",
+			"members",
+			"Welcome to {guild}! Please read the rules and then enter the passphrase to enter the rest of the server!",
+			)`);
 		bot.log('log', guild.name + " successfully inserted into the database!");
-	};
-	bot.setGivemeRoles = function(roles, guild) {
-		roles = roles.join(',');
-		db.run(`UPDATE servers SET givemeRoles = "${roles}" WHERE id = ${guild.id}`);
-		return roles;
 	};
 	bot.setSetting = function(setting, newSetting, message) {
 		return new Promise(
