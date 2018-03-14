@@ -1,4 +1,4 @@
-module.exports = (bot, message) => {
+module.exports = async (bot, message) => {
 	if (message.channel.type === "dm" && message.author.id == bot.user.id)
 		return console.log("[DM] " + bot.user.username + " -> " + message.channel.recipient.username + " | " + message.content);
 	else if (message.channel.type === "dm" && message.author.id != bot.user.id)
