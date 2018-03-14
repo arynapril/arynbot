@@ -51,7 +51,7 @@ module.exports = async (bot, message) => {
 	if (!message.channel.type === "text" || !message.guild) return;
 	if (message.author.bot) return;
 	secEnabled = await bot.getSetting('securityEnabled', message.guild);
-	if (secEnable) {
+	if (secEnabled) {
 		secChanS = await bot.getSetting('securityChannel', message.guild);
 		secChan = message.guild.channels.find('name', secChanS);
 		if (message.channel = secChan) {
