@@ -1,7 +1,7 @@
 exports.run = async (bot, message, args, level) => {
 	const Discord = require('discord.js')
 	x = "";
-	welcomeMessage = '';
+	phrase = '';
 	settingsArray = ['dadJokesEnabled', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel', 'welcomeMessagesEnabled', 'welcomeMessagesChannel', 'prefix', 'welcomeMessage', 'securityEnabled', 'securityChannel', 'securityPhrase', 'securityNickCheck', 'securityNickFormat', 'securityJoinMessage', 'securityRole', 'securityPinMessage'];
 	booleanArray = ['dadJokesEnabled', 'hallOfFameEnabled', 'welcomeMessagesEnabled', 'securityEnabled', 'securityNickCheck'];
 	channelArray = ['dadJokesJail', 'hallOfFameChannel', 'welcomeMessagesChannel', 'securityChannel'];
