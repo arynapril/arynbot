@@ -50,32 +50,32 @@ module.exports = async (bot, message) => {
 	};
 	if (!message.channel.type === "text" || !message.guild) return;
 	if (message.author.bot) return;
-	secEnabled = await bot.getSetting('securityEnabled', member.guild);
+	secEnabled = await bot.getSetting('securityEnabled', message.guild);
 	if (secEnable) {
-		secChanS = await bot.getSetting('securityChannel', member.guild);
+		secChanS = await bot.getSetting('securityChannel', message.guild);
 		secChan = message.guild.channels.find('name', secChanS);
 		if (message.channel = secChan) {
-			passPhrase = await bot.getSetting('securityPhrase', member.guild);
+			passPhrase = await bot.getSetting('securityPhrase', message.guild);
 			if(message.content.includes(passPhrase)){
-				secNick = await bot.getSetting('securityNickCheck', member.guild);
+				secNick = await bot.getSetting('securityNickCheck', message.guild);
 				if (secNick && !message.member.nickname) {
-					nickFormat = await bot.getSetting('securityNickFormat', member.guild);
+					nickFormat = await bot.getSetting('securityNickFormat', message.guild);
 					secChan.send(`This server requires you to have a nickname set to join their server. To join, please set your nickname according to the format ${nickFormat} (by clicking the server name, then change nickname) and then retry the passphrase!`);
 				} else {
-					memRoleS = await bot.getSetting('securityRole', member.guild);
+					memRoleS = await bot.getSetting('securityRole', message.guild);
 					memRole = message.guild.roles.find('name', memRoleS);
 					if (!memRole) return;
 					message.member.addRole(memRole);
             		message.channel.bulkDelete(50);
-					welcome = await bot.getSetting('welcomeMessagesEnabled', member.guild);
-					welcomePin = await bot.getSetting('securityPinMessage', member.guild);
-					welcomePin = welcomePin.replace('{user}', member.user).replace('{guild}', member.guild.name);
+					welcome = await bot.getSetting('welcomeMessagesEnabled', message.guild);
+					welcomePin = await bot.getSetting('securityPinMessage', message.guild);
+					welcomePin = welcomePin.replace('{user}', message.user).replace('{guild}', message.guild.name);
 					message.channel.send("Welcome to LGBTQ+ of FIRST! Please read the rules, set your nickname to include your team number and pronouns, and then type **I have read the rules and regulations**. Thank you!");
 					if (welcome) {
 						welcomeChanS = await bot.getSetting('welcomeMessagesChannel', member.guild);
 						welcomeChan = member.guild.channels.find('name', welcomeChanS);
 						welcomeMessage = await bot.getSetting('welcomeMessage', member.guild);
-						welcomeMessage = welcomeMessage.replace('{user}', member.user).replace('{guild}', member.guild.name);
+						welcomeMessage = welcomeMessage.replace('{user}', message.user).replace('{guild}', message.guild.name);
 						if (!welcomeChan) return;
 						welcomeChan.send(welcomeMessage);
 					}
