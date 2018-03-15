@@ -73,7 +73,7 @@ module.exports = async (bot, message) => {
 					message.channel.send(welcomePin);
 					if (welcome) {
 						welcomeChanS = await bot.getSetting('welcomeMessagesChannel', message.guild);
-						welcomeChan = member.guild.channels.find('name', welcomeChanS);
+						welcomeChan = message.guild.channels.find('name', welcomeChanS);
 						welcomeMessage = await bot.getSetting('welcomeMessage', message.guild);
 						welcomeMessage = welcomeMessage.replace('{user}', message.user).replace('{guild}', message.guild.name);
 						if (!welcomeChan) return;
