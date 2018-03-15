@@ -69,13 +69,13 @@ module.exports = async (bot, message) => {
             		message.channel.bulkDelete(50);
 					welcome = await bot.getSetting('welcomeMessagesEnabled', message.guild);
 					welcomePin = await bot.getSetting('securityPinMessage', message.guild);
-					welcomePin = welcomePin.replace('{user}', message.user).replace('{guild}', message.guild.name);
+					welcomePin = welcomePin.replace('{user}', message.author).replace('{guild}', message.guild.name);
 					message.channel.send(welcomePin);
 					if (welcome) {
 						welcomeChanS = await bot.getSetting('welcomeMessagesChannel', message.guild);
 						welcomeChan = message.guild.channels.find('name', welcomeChanS);
 						welcomeMessage = await bot.getSetting('welcomeMessage', message.guild);
-						welcomeMessage = welcomeMessage.replace('{user}', message.user).replace('{guild}', message.guild.name);
+						welcomeMessage = welcomeMessage.replace('{user}', message.author).replace('{guild}', message.guild.name);
 						if (!welcomeChan) return;
 						welcomeChan.send(welcomeMessage);
 					}
