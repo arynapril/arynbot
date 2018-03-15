@@ -54,7 +54,7 @@ module.exports = async (bot, message) => {
 	if (secEnabled) {
 		secChanS = await bot.getSetting('securityChannel', message.guild);
 		secChan = message.guild.channels.find('name', secChanS);
-		if (message.channel = secChan) {
+		if (message.channel == secChan) {
 			passPhrase = await bot.getSetting('securityPhrase', message.guild);
 			if(message.content.includes(passPhrase)){
 				secNick = await bot.getSetting('securityNickCheck', message.guild);
@@ -70,7 +70,7 @@ module.exports = async (bot, message) => {
 					welcome = await bot.getSetting('welcomeMessagesEnabled', message.guild);
 					welcomePin = await bot.getSetting('securityPinMessage', message.guild);
 					welcomePin = welcomePin.replace('{user}', message.user).replace('{guild}', message.guild.name);
-					message.channel.send("Welcome to LGBTQ+ of FIRST! Please read the rules, set your nickname to include your team number and pronouns, and then type **I have read the rules and regulations**. Thank you!");
+					message.channel.send(welcomePin);
 					if (welcome) {
 						welcomeChanS = await bot.getSetting('welcomeMessagesChannel', member.guild);
 						welcomeChan = member.guild.channels.find('name', welcomeChanS);
