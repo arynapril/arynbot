@@ -7,6 +7,8 @@ exports.run = async (bot, message, args, level) => {
 	channelArray = ['dadJokesJail', 'hallOfFameChannel', 'welcomeMessagesChannel', 'securityChannel'];
 	phraseArray = ['welcomeMessage', 'securityPhrase', 'securityNickFormat', 'securityJoinMessage', 'securityPinMessage'];
 	roleArray = ['securityRole'];
+	numberArray = ['hallOfFameLimit'];
+	emoteArray = ['hallOfFameEmote'];
 	if (!args[0]) {
 		settingsEmbed = new Discord.RichEmbed()
 		.setTitle("Current Settings")
@@ -23,42 +25,28 @@ exports.run = async (bot, message, args, level) => {
 			message.channel.send(`The current **${args[0]}** setting is **${setting}**`)
 		} else {
 			if (!message.member.hasPermission('MANAGE_GUILD')) return message.reply("you do not have permission to manage this server's setings!");
-			if (args[2] && (phraseArray.indexOf(args[0]) == -1) && (roleArray.indexOf(args[0]))) return message.channel.send('Please enter only one value!')
 			if (phraseArray.indexOf(args[0]) != -1) {
-				phrase = args.slice(1).join(' ');
-			};
-			if (roleArray.indexOf(args[0]) != -1) {
-				roleS = args.slice(1).join(' ');
+				value = args.slice(1).join(' ');
+			} else if (roleArray.indexOf(args[0]) != -1) {
+				value = args.slice(1).join(' ');
 				role = message.guild.roles.find('name', roleS);
 				if (!role) return message.channel.send(`The ${args[0]} value must be the name of a valid role in this server! Please try again!`);
+			} else if (booleanArray.indexOf(args[0]) != -1) {
+				value = args[1];
+				if (value !== '1' && value !== '0') return message.channel.send(`The ${args[0]} value must be be either a 0 or a 1! Please try again!`);
+			} else if (channelArray.indexOf(args[0]) != -1) {
+				value = args[1];
+				chan = message.guild.channels.find('name', value);
+				if (!chan && args[1] !== 'none') return message.channel.send(`The ${args[0]} value must be the name of an channel on this server or 'none' to remove the setting! Please try again!`)
+			} else if (numberArray.indexOf(args[0]) != -1) {
+				value = args[1];
+				if (isNaN(parseInt(value))) return message.channel.send(`The ${args[0]} value must be a whole number! Please try again!`);
+			} else if (emoteArray.indexOf(args[0]) != -1) {
+				value = args[1];
+				emote = message.guild.emojis.find('name', value);
+				if (!emote) return message.channel.send(`The ${args[0]} value must be the name of a custom emoji on this server! Please try again!`)
 			};
-			if (booleanArray.indexOf(args[0]) != -1 && args[1] !== '1' && args[1] !== '0') return message.channel.send(`The ${args[0]} value must be be either a 0 or a 1! Please try again!`);
-			if (channelArray.indexOf(args[0]) != -1) {
-				channelFound = false;
-				chans = message.guild.channels.array();
-				for (var i = 0; i < chans.length; i++) {
-					if (args[1] == chans[i].name) {
-						channelFound = true;
-					}
-				}
-				if (!channelFound && args[1] !== 'none') return message.channel.send(`The ${args[0]} value must be the name of an channel on this server or 'none' to remove the setting! Please try again!`)
-			};
-			if (args[0] == 'hallOfFameLimit' && isNaN(parseInt(args[1]))) return message.channel.send(`The ${args[0]} value must be a whole number! Please try again!`);
-			if (args[0] == 'hallOfFameEmote') {
-				found = false;
-				emoji = message.guild.emojis.array();
-				for (var i = 0; i < emoji.length; i++) {
-					if (args[1] == emoji[i].name) {
-						found = true;
-					};
-				};
-				if (!found) return message.channel.send(`The ${args[0]} value must be the name of a custom emoji on this server! Please try again!`)
-			}
-			if (!phrase || phrase == '') {
-				setting = await bot.setSetting(args[0], args[1], message);
-			} else {
-				settngs = await bot.setSetting(args[0], phrase, message);
-			}
+			setting = await bot.setSetting(args[0], value, message);
 			message.channel.send(`**${args[0]}** setting successfully changed to **${setting}**`);
 		}
 	};
