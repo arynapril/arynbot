@@ -12,7 +12,7 @@ exports.run = async (bot, message, args, level) => {
 	emote = await bot.getSetting('hallOfFameEmote', msg.guild);
 	emoji = msg.guild.emojis.find('name', emote);
 	if (!emoji) return;
-	msg.react(emoji.id);
+	//msg.react(emoji.id);
 	const HoF = new Discord.RichEmbed();
 	HoF.setColor(`${msg.member.displayHexColor}`)
 		.setFooter('Hall of Fame 🏆')
@@ -32,9 +32,34 @@ exports.run = async (bot, message, args, level) => {
 		}
 		HoF.setImage(pictures[0].url)
 	}
-	HallOfFame.send({
-		embed: HoF
+	x = await message.channel.send("You're about to add this post to this servers hall of fame! Press Y if that's your intent, or N to cancel!")
+	y = await message.channel.send({embed: Hof});
+	var collector = msg.channel.createCollector( 
+		m => m.content.toLowerCase() == 'y' || m.content.toLowerCase() == 'n',
+        { time: 30000 }
+    );
+	collector.on('collect', m => {
+		if (m.content.toLowerCase() == 'y' && m.author.id == message.author.id) {
+			x.delete();
+			y.delete();
+			message.react(emoji.id);
+			HallOfFame.send({embed: HoF});
+			message.channel.send("Message successfully added to the hall of fame!");
+			collector.stop();
+		} else if (m.content.toLowerCase() == 'n' && m.author.id == message.author.id) {
+			x.delete();
+			y.delete();
+			message.channel.send("Manual addition to hall of fame canceled! If that was the wrong post, make sure you're running the command in the channel the original post was in!");
+			collector.stop();
+		};
 	});
+	collector.on('end', collected => {
+        if (collected.size == 0) {
+			x.delete();
+			y.delete();
+            msg.channel.send('No messages found! Try again!');
+        }
+    });
 };
 exports.conf = {
 	enabled: true,
