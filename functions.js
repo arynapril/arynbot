@@ -149,6 +149,12 @@ module.exports = (bot) => {
 			}
 		)
 	};
+	bot.getUser = function(input) {
+		const regex = /<@!?(\d+)>/;
+		if ((m = regex.exec(input)) !== null) {
+			message.channel.send(m);
+		}
+	}
 	bot.log = (type, message, title) => {
 		if (!title) title = "LOG";
 		console.log(`${type} | ${title} | ${message}`);
