@@ -152,7 +152,11 @@ module.exports = (bot) => {
 	bot.getUser = function(input, message) {
 		const regex = /<@!?(\d+)>/;
 		if ((m = regex.exec(input)) !== null) {
-			message.channel.send(m);
+			return bot.users.get(m);
+		} else if (bot.users.get(input)) {
+			return bot.users.get(input);
+		} else if (bot.users.find('tag', input)) {
+			return bot.users.find('tag', input);
 		}
 	}
 	bot.log = (type, message, title) => {
