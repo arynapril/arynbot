@@ -6,6 +6,9 @@ exports.run = (bot, message, args, level) => {
 	} else {
 		var reason = args.slice(1).join(" ");
 	};
+	if (mutee.id == '178015078967148544') {
+		message.channel.send("Aryn is cute, and you can't mute Dev over saying it.")
+	}
 	for (var k = 0; k < mutee.length; k++) {
 		var user = bot.users.get(mutee[k].id);
 		var member = message.guild.members.get(mutee[k].id);
