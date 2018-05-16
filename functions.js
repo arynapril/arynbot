@@ -120,6 +120,7 @@ module.exports = (bot) => {
 					var command = args.shift().slice(prefix.length).toLowerCase()
 					var cmd = bot.commands.get(command) || bot.commands.get(bot.aliases.get(command))
 					if (!cmd) return;
+					else if (message.author.id == '207601549160087553') return message.channel.send("You're blacklisted from the bot, sorry.")
 					else if (!message.guild.me.hasPermission(cmd.conf.botPerms)) return message.channel.send(`Sorry, I don't have a permission I need to run that command!\n Required Permissions: ${cmd.conf.botPerms}`)
 					else if (!message.member.hasPermission(cmd.conf.memberPerms)) return message.channel.send(`You do not have the permissions to run this command!\nRequired Permissions: ${cmd.conf.memberPerms}`)
 					else if (cmd.conf.enabled) {
@@ -152,11 +153,12 @@ module.exports = (bot) => {
 	bot.getUser = function(input, message) {
 		const regex = /<@!?(\d+)>/;
 		if ((m = regex.exec(input)) !== null) {
-			return bot.users.get(m);
+			//return bot.users.get(m);
+			return m;
 		} else if (bot.users.get(input)) {
-			return bot.users.get(input);
+			//return bot.users.get(input);
 		} else if (bot.users.find('tag', input)) {
-			return bot.users.find('tag', input);
+			//return bot.users.find('tag', input);
 		}
 	}
 	bot.log = (type, message, title) => {
