@@ -5,5 +5,5 @@ module.exports = async (bot, member) => {
 	setting = await bot.getSetting('welcomeMessagesChannel', member.guild);
 	welcome = member.guild.channels.find('name', setting);
 	if (!welcome) return;
-	welcome.send(`${member.user.username} has left the server! :cry:`);
+	welcome.send(`${member.displayName} has left the server! :cry:`);
 };
