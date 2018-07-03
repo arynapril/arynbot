@@ -39,7 +39,7 @@ exports.run = (bot, message, args, level) => {
 		} else if (loved.id == '174687224988827659') {
 			message.channel.send('Nah.')
 		} else {
-			message.channel.send(`**${loved.username}**, ${list[Math.floor(Math.random()*list.length)]}`);
+			message.channel.send(`**${loved.member.displayName}**, ${list[Math.floor(Math.random()*list.length)]}`);
 		}
 	};
 };
