@@ -1,12 +1,12 @@
 exports.run = async (bot, message, args, level) => {
 	const Discord = require('discord.js');
 	if (args[1]){
-		chan = message.guild.channels.get(args[1]);
-		if (!chan) return message.channel.send("Invalid channel input detected. Make sure the message ID is the first arguement, and the channel ID is the second arguement!")
+		chanarg = message.guild.channels.get(args[1]);
+		if (!chanarg) return message.channel.send("Invalid channel input detected. Make sure the message ID is the first arguement, and the channel ID is the second arguement!")
 	} else {
-		chan = message.channel;
+		chanarg = message.channel;
 	}
-	messages = await chan.fetchMessages({
+	messages = await chanarg.fetchMessages({
 		limit: 1,
 		around: args[0]
 	});
