@@ -10,6 +10,7 @@ exports.run = (bot, message, args, level) => {
 		.addField('Channels', server.channels.size, true)
 		.addField('Members', server.members.size, true)
 		.addField('Roles', server.roles.size, true)
+		.addField('Server Icon', server.iconURL)
 		.setThumbnail(server.iconURL)
 		.setFooter(`${server.name} STATS`)
 		.setTimestamp()
