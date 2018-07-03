@@ -1,10 +1,17 @@
 exports.run = async (bot, message, args, level) => {
 	const Discord = require('discord.js');
-	messages = await message.channel.fetchMessages({
+	if (args[1]){
+		chan = message.guild.channels.get(args[1]);
+		if (!chan) return message.channel.send("Invalid channel input detected. Make sure the message ID is the first arguement, and the channel ID is the second arguement!")
+	} else {
+		chan = message.channel;
+	}
+	messages = await chan.fetchMessages({
 		limit: 1,
 		around: args[0]
 	});
 	const msg = messages.first();
+	if (!msg) return message.channel.send('Message not found! Make sure the arguements for the message ID/channel ID are correct!');
 	chan = await bot.getSetting('hallOfFameChannel', message.guild);
 	HallOfFame = msg.guild.channels.find('name', chan);
 	if (!HallOfFame) return;
@@ -57,12 +64,12 @@ exports.run = async (bot, message, args, level) => {
 exports.conf = {
 	enabled: true,
 	guildOnly: false,
-	aliases: ['hof', 'halloffame'],
+	aliases: ['hof', 'HoF'],
 	botPerms: ['ADD_REACTIONS'],
 	memberPerms: ['MANAGE_MESSAGES']
 };
 exports.help = {
-	name: 'HoF',
+	name: 'halloffame',
 	description: 'Adds a message to Hall of Fame manually, if it didn\'t get added for whatever reason',
-	usage: 'HoF <messageID (found by clicking on the three dots next to the message, with developer mode on)'
+	usage: 'HoF <messageID> <channelID (optional, command could also be run in the channel the original post was in>'
 };
