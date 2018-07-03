@@ -1,9 +1,9 @@
 exports.run = (bot, message, args, level) => {
-	if (!message.mentions.users.array()[0]) {
+	if (!message.mentions.members.array()[0]) {
 		message.channel.send(`*hugs* ***${message.member.displayName}***`)
 	} else {
-		let huggee = message.mentions.users.array()[0];
-		message.channel.send(`*hugs* ***${huggee.member.displayName}***`);
+		let huggee = message.mentions.members.array()[0];
+		message.channel.send(`*hugs* ***${huggee.displayName}***`);
 	};
 };
 

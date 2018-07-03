@@ -30,16 +30,16 @@ exports.run = (bot, message, args, level) => {
 		"you mean the world to someone. Don't take that away from them.",
 		"you're an amazing person."
 	);
-	if (!message.mentions.users.array()[0]) {
+	if (!message.mentions.members.array()[0]) {
 		message.reply(`${list[Math.floor(Math.random()*list.length)]}`);
 	} else {
-		let loved = message.mentions.users.array()[0];
-		if (loved.id == '226999841358610432') {
+		let loved = message.mentions.members.array()[0];
+		if (loved.user.id == '226999841358610432') {
 			message.channel.send('http://imgur.com/a/DUaDb')
-		} else if (loved.id == '174687224988827659') {
+		} else if (loved.user.id == '174687224988827659') {
 			message.channel.send('Nah.')
 		} else {
-			message.channel.send(`**${loved.member.displayName}**, ${list[Math.floor(Math.random()*list.length)]}`);
+			message.channel.send(`**${loved.displayName}**, ${list[Math.floor(Math.random()*list.length)]}`);
 		}
 	};
 };
