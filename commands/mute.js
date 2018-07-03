@@ -13,7 +13,8 @@ exports.run = (bot, message, args, level) => {
 		for (var i = 0; i < channels.length; i++) {
 			if (channels[i].type == 'text')
 				channels[i].overwritePermissions(member, {
-					SEND_MESSAGES: false
+					SEND_MESSAGES: false,
+					ADD_REACTIONS: false
 				})
 		}
 		var mute = new Discord.RichEmbed()
