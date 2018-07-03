@@ -57,7 +57,7 @@ exports.run = async (bot, message, args, level) => {
 	});
 	collector.on('end', collected => {
         if (collected.size == 0) {
-            msg.channel.send('No messages found within 30 seconds! Try again!');
+            message.channel.send('No messages found within 30 seconds! Try again!');
         }
     });
 };
