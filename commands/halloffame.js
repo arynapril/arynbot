@@ -40,7 +40,7 @@ exports.run = async (bot, message, args, level) => {
 		HoF.setImage(pictures[0].url)
 	};
 	x = await message.channel.send("You're about to add this post to this servers hall of fame! Press Y if that's your intent, or N to cancel!", {embed: HoF});
-	var collector = msg.channel.createCollector( 
+	var collector = message.channel.createCollector( 
 		m => m.content.toLowerCase() == 'y' || m.content.toLowerCase() == 'n',
         { time: 30000 }
     );
