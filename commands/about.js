@@ -18,7 +18,7 @@ exports.run = (bot, message, args) => {
 		.setTitle("About Arynbot")
 		.setDescription("Just a simple bot who is full of love!")
 		.setColor([Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256)])
-		.addField('Botmom', 'arynapril#8541')
+		.addField('Botmom', 'arynapril#4982')
 		.addField('Users', bot.users.size, true)
 		.addField('Servers', bot.guilds.size, true)
 		.addField('Channels', bot.channels.size, true)
