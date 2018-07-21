@@ -27,7 +27,7 @@ exports.conf = {
 	enabled: true,
 	guildOnly: false,
 	aliases: [],
-	botPerms: ["MANAGE_MESSAGES"],
+	botPerms: ["MANAGE_MESSAGES", "MANAGE_ROLES"],
 	memberPerms: ["MANAGE_ROLES"]
 };
 
