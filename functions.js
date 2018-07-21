@@ -11,13 +11,16 @@ module.exports = (bot) => {
 				name VARCHAR(100), 
 				prefix VARCHAR(10),
 				welcomeMessagesEnabled BOOLEAN,
-				welcomeMessagesChannel VARCHAR(25), 
+				welcomeMessagesChannel VARCHAR(25),
+				leaveMessagesAutoDelete BOOLEAN, 
 				dadJokesEnabled BOOLEAN,
 				dadJokesJail VARCHAR(25),
 				hallOfFameEnabled BOOLEAN,
 				hallOfFameEmote VARCHAR(25),
 				hallOfFameLimit VARCHAR(2),
-				hallOfFameChannel VARCHAR(25), 
+				hallOfFameChannel VARCHAR(25),
+				hallOfFameOverrideEnabled BOOLEAN,
+				hallOfFameOverrideEmote VARCHAR(25),
 				welcomeMessage VARCHAR(300),
 				leaveMessage VARHCHAR(300),
 				securityEnabled BOOLEAN,
@@ -27,7 +30,8 @@ module.exports = (bot) => {
 				securityNickFormat VARCHAR(32),
 				securityJoinMessage VARCHAR(1000),
 				securityRole VARCHAR(25),
-				securityPinMessage VARCHAR(1000)
+				securityPinMessage VARCHAR(1000),
+				giveme VARCHAR(2000)
 				)`);
 			bot.guilds.forEach(guild => {
 				db.run(`INSERT OR IGNORE INTO servers VALUES (
@@ -36,11 +40,14 @@ module.exports = (bot) => {
 					"${bot.config.prefix}",
 					0,
 					"none",
+					0,
 					1,
 					"none",
 					0,
 					"none",
 					"3",
+					"none",
+					0,
 					"none",
 					"Hello {user}! Welcome to {guild}!",
 					"{user} has left the server! :cry:",
@@ -51,8 +58,8 @@ module.exports = (bot) => {
 					"none",
 					"Welcome {user}! Please read the rules and then enter the passphrase to enter the rest of the server! Thank you!",
 					"members",
-					"Welcome to {guild}! Please read the rules and then enter the passphrase to enter the rest of the server!"
-					)`
+					"Welcome to {guild}! Please read the rules and then enter the passphrase to enter the rest of the server!",
+					"none")`
 				);
 			});
 		});
@@ -68,12 +75,15 @@ module.exports = (bot) => {
 			"${guild.name}", 
 			"${bot.config.prefix}",
 			0,
-			"none", 
+			"none",
+			0, 
 			1,
 			"none",
 			0,
 			"none",
 			"3",
+			"none",
+			0,
 			"none",
 			"Hello {user}! Welcome to {guild}!",
 			"{user} has left the server! :cry:",
@@ -84,8 +94,9 @@ module.exports = (bot) => {
 			"none",
 			"Welcome {user}! Please read the rules and then enter the passphrase to enter the rest of the server! Thank you!",
 			"members",
-			"Welcome to {guild}! Please read the rules and then enter the passphrase to enter the rest of the server!"
-			)`);
+			"Welcome to {guild}! Please read the rules and then enter the passphrase to enter the rest of the server!",
+			"none"
+		)`);
 		bot.log('log', guild.name + " successfully inserted into the database!");
 	};
 	bot.setSetting = function(setting, newSetting, message) {
