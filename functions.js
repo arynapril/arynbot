@@ -11,7 +11,8 @@ module.exports = (bot) => {
 				name VARCHAR(100), 
 				prefix VARCHAR(10),
 				welcomeMessagesEnabled BOOLEAN,
-				welcomeMessagesChannel VARCHAR(25), 
+				welcomeMessagesChannel VARCHAR(25),
+				leaveMessagesAutoDelete BOOLEAN, 
 				dadJokesEnabled BOOLEAN,
 				dadJokesJail VARCHAR(25),
 				hallOfFameEnabled BOOLEAN,
@@ -36,6 +37,7 @@ module.exports = (bot) => {
 					"${bot.config.prefix}",
 					0,
 					"none",
+					0,
 					1,
 					"none",
 					0,
@@ -69,6 +71,7 @@ module.exports = (bot) => {
 			"${bot.config.prefix}",
 			0,
 			"none",
+			0, 
 			1,
 			"none",
 			0,
@@ -168,7 +171,7 @@ module.exports = (bot) => {
 					else if (!message.guild.me.hasPermission(cmd.conf.botPerms)) return message.channel.send(`Sorry, I don't have a permission I need to run that command!\n Required Permissions: ${cmd.conf.botPerms}`)
 					else if (!message.member.hasPermission(cmd.conf.memberPerms)) return message.channel.send(`You do not have the permissions to run this command!\nRequired Permissions: ${cmd.conf.memberPerms}`)
 					else if (cmd.conf.enabled) {
-						bot.log('log', `${message.guild.name} #${message.channel.name} - ${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, 'CMD  ')
+						bot.log('log', `${message.guild.name} #${message.channel.name} - ${message.author.username} (${message.author.id}) ran command ${cmd.help.name} - ${message.cleanContent}`, 'CMD  ')
 						try {
 							cmd.run(bot, message, args);
 						} catch (err) {
