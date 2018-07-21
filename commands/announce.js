@@ -8,7 +8,7 @@ exports.run = (bot, message, args, level) => {
     };
     role = message.guild.roles.find('name', parts[0]);
     if (!role) {
-        message.channel.send("That role was not found! Sorry!")
+        return message.channel.send("That role was not found! Sorry!")
     }
     parts = parts.splice(1);
     announcement = parts[0];
@@ -16,12 +16,10 @@ exports.run = (bot, message, args, level) => {
         bool = role.mentionable;
         role.setMentionable(true, "Announce Command");
     } else {
-        message.channel.send("That role is above yours, so you cant use this command to ping it!")
+        return message.channel.send("That role is above yours, so you cant use this command to ping it!")
     } 
     message.delete();
-    chan.send(`From ${message.author}:\n
-               <@&${role.id}>\n
-               ${announcement}`);
+    chan.send(`From ${message.author}:\n<@&${role.id}>\n${announcement}`);
     role.setMentionable(bool, "Announce Command");
 };
 
