@@ -1,10 +1,10 @@
 exports.run = async (bot, message, args, level) => {
 	const Discord = require('discord.js')
-	x = "";
+	x = '';
 	phrase = '';
-	settingsArray = ['dadJokesEnabled', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel', 'welcomeMessagesEnabled', 'welcomeMessagesChannel', 'prefix', 'welcomeMessage', 'securityEnabled', 'securityChannel', 'securityPhrase', 'securityNickCheck', 'securityNickFormat', 'securityJoinMessage', 'securityRole', 'securityPinMessage'];
+	settingsArray = ['dadJokesEnabled', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel', 'welcomeMessagesEnabled', 'welcomeMessagesChannel', 'prefix', 'welcomeMessage', 'securityEnabled', 'securityChannel', 'securityPhrase', 'securityNickCheck', 'securityNickFormat', 'securityJoinMessage', 'securityRole', 'securityPinMessage', 'leaveMessagesAutoDelete'];
 	booleanArray = ['dadJokesEnabled', 'hallOfFameEnabled', 'welcomeMessagesEnabled', 'securityEnabled', 'securityNickCheck'];
-	channelArray = ['dadJokesJail', 'hallOfFameChannel', 'welcomeMessagesChannel', 'securityChannel'];
+	channelArray = ['dadJokesJail', 'hallOfFameChannel', 'welcomeMessagesChannel', 'securityChannel', 'leaveMessagesAutoDelete'];
 	phraseArray = ['welcomeMessage', 'securityPhrase', 'securityNickFormat', 'securityJoinMessage', 'securityPinMessage'];
 	roleArray = ['securityRole'];
 	numberArray = ['hallOfFameLimit'];
