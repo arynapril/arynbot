@@ -7,7 +7,7 @@ exports.run = async (bot, message, args, level) => {
             bot.setSetting('giveme', roles, message);
         } else {
             list += `|${roles}`
-            bot.setSetting('giveme', list, message.guild);
+            bot.setSetting('giveme', list, message);
         }
         return message.channel.send("Role added!");
     } else if (list == 'none') {
