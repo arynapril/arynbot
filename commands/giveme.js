@@ -3,12 +3,13 @@ exports.run = async (bot, message, args, level) => {
     list = await bot.getSetting('giveme', message.guild);
     if (args[0] == 'add') {
         roles = args.splice(1).join(' ')
-        if (list = "none") {
+        if (list == "none") {
             bot.setSetting('giveme', roles, message);
         } else {
             list += `|${roles}`
             bot.setSetting('giveme', list, message.guild);
         }
+        return message.channel.send("Role added!");
     } else if (list == 'none') {
         return message.channel.send('There are no roles in the settings to self assign! To add a role, use \`giveme add <role name>\`.')
     } else if (!args[0]) {
