@@ -37,7 +37,7 @@ exports.conf = {
 };
 
 exports.help = {
-	name: '',
-	description: '',
-	usage: ''
+	name: 'giveme',
+	description: 'Self assigns a role, run giveme list to see a set of roles avaliable',
+	usage: 'giveme <role name>'
 };
