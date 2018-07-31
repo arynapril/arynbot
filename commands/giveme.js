@@ -4,10 +4,12 @@ exports.run = async (bot, message, args, level) => {
     if (args[0] == 'add') {
         roles = args.splice(1).join(' ')
         if (list = "none") {
-            bot.setSetting('giveme', [`${roles}`], message);
+            bot.setSetting('giveme', roles, message);
         } else {
-            list.push(roles);
-            bot.setSetting('giveme', list, message.guild);
+            givemeList = list.split('|')
+            givemeList.push(roles);
+            givemeList = givemeList.join('|')
+            bot.setSetting('giveme', givemeList, message.guild);
         }
     } else if (list == 'none') {
         return message.channel.send('There are no roles in the settings to self assign! To add a role, use \`giveme add <role name>\`.')
@@ -15,8 +17,9 @@ exports.run = async (bot, message, args, level) => {
         return message.channel.send('Please include a role to self-assign, ')
     } else if (args[0] == 'list') {
         str = "";
-        for (i=0; i<list.length; i++){
-            str += `${list[i]} \n`
+        givemeList = list.split('|')
+        for (i=0; i<givemeList.length; i++){
+            str += `${givemeList[i]} \n`
         };
         return message.channel.send(str);
     } else if (args[0] == 'remove') {
