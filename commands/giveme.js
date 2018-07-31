@@ -1,5 +1,5 @@
 exports.run = async (bot, message, args, level) => {
-    if (author.id !== "174687224988827659") return message.channel.send("This command is under development right now, try again later!")
+    if (message.author.id !== "174687224988827659") return message.channel.send("This command is under development right now, try again later!")
     list = await bot.getSetting('giveme', message.guild);
     if (args[0] == 'add') {
         roles = args.splice(1).join(' ')
