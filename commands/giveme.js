@@ -4,7 +4,7 @@ exports.run = async (bot, message, args, level) => {
     if (args[0] == 'add') {
         roles = args.splice(1).join(' ')
         if (list = "none") {
-            bot.setSetting('giveme', [`${roles}`], message.guild);
+            bot.setSetting('giveme', [`${roles}`], message);
         } else {
             list.push(roles);
             bot.setSetting('giveme', list, message.guild);
