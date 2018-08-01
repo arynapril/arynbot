@@ -24,8 +24,9 @@ exports.run = async (bot, message, args, level) => {
         };
         listEmbed = new Discord.RichEmbed()
                 .setTitle("Roles avaliable to self assign")
+                .setColor("RANDOM")
                 .setDescription(str)
-                .setFooter("Run\`!giveme <role name> to self assign any of these roles!\`")
+                .setFooter("Run !giveme <role name> to self assign any of these roles!")
         return message.channel.send({embed: listEmbed});
     } else if (args[0] == 'delete') {
         if (!message.member.hasPermissions('MANAGE_ROLES')) return message.channel.send("You don't have the perms required to delete roles from the giveme! Sorry!")
@@ -64,9 +65,9 @@ exports.run = async (bot, message, args, level) => {
         removeEmbed = new Discord.RichEmbed()
             .setTitle("Giveme Remove")
             .setColor("RANDOM")
-        if (removed > 0) removeEmbed.addfield(`Removed ${removed} roles!`, removedNames);
-        if (didntHave >0) removeEmbed.addfield(`You didn't have ${didntHave} roles!`, didntHaveNames);
-        if (couldnt > 0) removeEmbed.addfield(`Couldn't remove ${couldnt} roles!`, 'The roles requested either don\'t exist or aren\'t part of the roles able to be removed with the bot. To show a list of the roles able to be removed, run \`!giveme list\`');
+        if (removed > 0) removeEmbed.addField(`Removed ${removed} roles!`, removedNames);
+        if (didntHave >0) removeEmbed.addField(`You didn't have ${didntHave} roles!`, didntHaveNames);
+        if (couldnt > 0) removeEmbed.addField(`Couldn't remove ${couldnt} roles!`, 'The roles requested either don\'t exist or aren\'t part of the roles able to be removed with the bot. To show a list of the roles able to be removed, run \`!giveme list\`');
         return message.channel.send({embed: removeEmbed});
     } else {
         addRoles = args.join(" ").split(', ');
@@ -93,9 +94,9 @@ exports.run = async (bot, message, args, level) => {
         addEmbed = new Discord.RichEmbed()
             .setTitle("Giveme Add")
             .setColor("RANDOM")
-        if (added > 0) addEmbed.addfield(`Added ${added} roles!`, addedNames);
-        if (alreadyHad >0) addEmbed.addfield(`You already had ${alreadyHad} roles!`, alreadyHadNames);
-        if (couldnt > 0) addEmbed.addfield(`Couldn't add ${couldnt} roles!`, 'The roles requested either don\'t exist or aren\'t part of the roles able to be added with the bot. To show a list of the roles able to be added, run \`!giveme list\`');
+        if (added > 0) addEmbed.addField(`Added ${added} roles!`, addedNames);
+        if (alreadyHad >0) addEmbed.addField(`You already had ${alreadyHad} roles!`, alreadyHadNames);
+        if (couldnt > 0) addEmbed.addField(`Couldn't add ${couldnt} roles!`, 'The roles requested either don\'t exist or aren\'t part of the roles able to be added with the bot. To show a list of the roles able to be added, run \`!giveme list\`');
         return message.channel.send({embed: addEmbed});
     }
 };
