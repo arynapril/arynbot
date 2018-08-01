@@ -2,9 +2,10 @@ exports.run = async (bot, message, args, level) => {
     if (message.author.id !== "174687224988827659") return message.channel.send("This command is under development right now, try again later!")
     list = await bot.getSetting('giveme', message.guild);
     if (args[0] == 'add') {
-        roles = args.splice(1).join(' ')
+        role = args.splice(1).join(' ')
+        if (!message.guild.roles.find('name', role)) return message.channel.send('That role was not found in this server! Sorry!')
         if (list == "none") {
-            bot.setSetting('giveme', roles, message);
+            bot.setSetting('giveme', role, message);
         } else {
             list += `|${roles}`
             bot.setSetting('giveme', list, message);
@@ -22,10 +23,10 @@ exports.run = async (bot, message, args, level) => {
         };
         return message.channel.send(str);
     } else if (args[0] == 'delete') {
-        roles = args.splice(1).join(' ')
+        role = args.splice(1).join(' ')
         deleteList = list.split('|');
-        if (deleteList.indexOf(roles) > -1) {
-            deleteList.splice(deleteList.indexOf(roles), 1);
+        if (deleteList.indexOf(role) > -1) {
+            deleteList.splice(deleteList.indexOf(role), 1);
             list = deleteList.join('|');
             bot.setSetting('giveme', list, message);
             return message.channel.send("Role removed!")
@@ -33,7 +34,26 @@ exports.run = async (bot, message, args, level) => {
             return message.channel.send("That role was not found in the list!")
         }
     } else if (args[0] == 'remove') {
-
+        removeRoles = args.splice(1).join(" ").split(', ');
+        roles = list.split('|');
+        didntHave = 0;
+        removed = 0;
+        removedNames = "";
+        couldnt = 0;
+        for (i=0; i<removeRoles.length; i++){
+            if (roles.indexOf(removeRoles[i]>-1)){
+                if (!message.member.roles.find('name', removeRoles[i])) {
+                    didntHave += 1;
+                } else {
+                    message.member.removeRole(message.guild.roles.find('name', removeRoles[i]))
+                    removed += 1;
+                    removedNames += `${removeRoles[i]}`
+                }
+            } else {
+                couldnt += 1;
+            }
+        }
+        return message.channel.send(`Removed ${removed} roles, you didn't have ${didntHave} roles, and couldn't remove ${couldnt} role, as they aren't on the list of allowed roles!`);
     } else {
 
     }
