@@ -1,7 +1,8 @@
 exports.run = async (bot, message, args, level) => {
-    if (message.author.id !== "174687224988827659") return message.channel.send("This command is under development right now, try again later!")
+    const Discord = require('discord.js');
     list = await bot.getSetting('giveme', message.guild);
     if (args[0] == 'add') {
+        if (!message.member.hasPermissions('MANAGE_ROLES')) return message.channel.send("You don't have the perms required to add roles to the giveme! Sorry!")
         role = args.splice(1).join(' ')
         if (!message.guild.roles.find('name', role)) return message.channel.send('That role was not found in this server! Sorry!')
         if (list == "none") {
@@ -10,11 +11,11 @@ exports.run = async (bot, message, args, level) => {
             list += `|${role}`
             bot.setSetting('giveme', list, message);
         }
-        return message.channel.send("Role added!");
+        return message.channel.send(`Added the \`${role}\` to the giveme list!`);
     } else if (list == 'none') {
-        return message.channel.send('There are no roles in the settings to self assign! To add a role, use \`giveme add <role name>\`.')
+        return message.channel.send('There are no roles to self assign! To add a role, use \`giveme add <role name>\`.')
     } else if (!args[0]) {
-        return message.channel.send('Please include a role to self-assign, ')
+        return message.channel.send('Please include a role to self-assign!')
     } else if (args[0] == 'list') {
         str = "";
         givemeList = list.split('|')
@@ -23,13 +24,14 @@ exports.run = async (bot, message, args, level) => {
         };
         return message.channel.send(str);
     } else if (args[0] == 'delete') {
+        if (!message.member.hasPermissions('MANAGE_ROLES')) return message.channel.send("You don't have the perms required to delete roles from the giveme! Sorry!")
         role = args.splice(1).join(' ')
         deleteList = list.split('|');
         if (deleteList.indexOf(role) > -1) {
             deleteList.splice(deleteList.indexOf(role), 1);
             list = deleteList.join('|');
             bot.setSetting('giveme', list, message);
-            return message.channel.send("Role removed!")
+            return message.channel.send(`Removed the \`${role}\` role from the giveme list!`);
         } else {
             return message.channel.send("That role was not found in the list!")
         }
@@ -44,16 +46,22 @@ exports.run = async (bot, message, args, level) => {
             if (roles.indexOf(removeRoles[i])>-1){
                 if (!message.member.roles.find('name', removeRoles[i])) {
                     didntHave += 1;
+                    didntHaveNames += `${removeRoles[i]}\n`
                 } else {
                     message.member.removeRole(message.guild.roles.find('name', removeRoles[i]))
                     removed += 1;
-                    removedNames += `${removeRoles[i]}`
+                    removedNames += `${removeRoles[i]}\n`
                 }
             } else {
                 couldnt += 1;
             }
         }
-        return message.channel.send(`Removed ${removed} roles, you didn't have ${didntHave} roles, and couldn't remove ${couldnt} role, as they aren't on the list of allowed roles!`);
+        removeEmbed = new Discord.RichEmbed()
+            .setTitle("Giveme Remove")
+        if (removed > 0) removeEmbed.addfield(`Removed ${removed} roles!`, removedNames);
+        if (didntHave >0) removeEmbed.addfield(`You didn't have ${didntHave} roles!`, didntHaveNames);
+        if (couldnt > 0) removeEmbed.addfield(`Couldn't remove ${couldnt} roles!`, 'The roles requested either don\'t exist or aren\'t part of the roles able to be removed with the bot. To show a list of the roles able to be removed, run \`!giveme list\`');
+        return message.channel.send({embed: removeEmbed});
     } else {
         addRoles = args.join(" ").split(', ');
         roles = list.split('|');
@@ -65,6 +73,7 @@ exports.run = async (bot, message, args, level) => {
             if (roles.indexOf(addRoles[i])>-1){
                 if (message.member.roles.find('name', addRoles[i])) {
                     alreadyHad += 1;
+                    alreadyHadNames += `${addRoles[i]}`
                 } else {
                     message.member.addRole(message.guild.roles.find('name', addRoles[i]))
                     added += 1;
@@ -74,14 +83,19 @@ exports.run = async (bot, message, args, level) => {
                 couldnt += 1;
             }
         }
-        return message.channel.send(`Added ${added} roles, you already had ${alreadyHad} roles, and couldn't add ${couldnt} role, as they aren't on the list of allowed roles!`);
+        addEmbed = new Discord.RichEmbed()
+            .setTitle("Giveme Add")
+        if (added > 0) addEmbed.addfield(`Added ${added} roles!`, addedNames);
+        if (alreadyHad >0) addEmbed.addfield(`You already had ${alreadyHad} roles!`, alreadyHadNames);
+        if (couldnt > 0) addEmbed.addfield(`Couldn't add ${couldnt} roles!`, 'The roles requested either don\'t exist or aren\'t part of the roles able to be added with the bot. To show a list of the roles able to be added, run \`!giveme list\`');
+        return message.channel.send({embed: addEmbed});
     }
 };
 
 exports.conf = {
 	enabled: true,
 	guildOnly: false,
-	aliases: [],
+	aliases: ['gibme', 'optin'],
 	botPerms: [],
 	memberPerms: []
 };
