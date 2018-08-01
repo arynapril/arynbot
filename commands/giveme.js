@@ -55,7 +55,26 @@ exports.run = async (bot, message, args, level) => {
         }
         return message.channel.send(`Removed ${removed} roles, you didn't have ${didntHave} roles, and couldn't remove ${couldnt} role, as they aren't on the list of allowed roles!`);
     } else {
-
+        addRoles = args.splice(1).join(" ").split(', ');
+        roles = list.split('|');
+        alreadyHad = 0;
+        added = 0;
+        addedNames = "";
+        couldnt = 0;
+        for (i=0; i<addRoles.length; i++){
+            if (roles.indexOf(addRoles[i])>-1){
+                if (message.member.roles.find('name', addRoles[i])) {
+                    alreadyHad += 1;
+                } else {
+                    message.member.addRole(message.guild.roles.find('name', addRoles[i]))
+                    added += 1;
+                    addedNames += `${removeRoles[i]}`
+                }
+            } else {
+                couldnt += 1;
+            }
+        }
+        return message.channel.send(`Added ${removed} roles, you already had ${alreadyHad} roles, and couldn't add ${couldnt} role, as they aren't on the list of allowed roles!`);
     }
 };
 
