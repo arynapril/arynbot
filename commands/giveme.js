@@ -74,7 +74,7 @@ exports.run = async (bot, message, args, level) => {
                 couldnt += 1;
             }
         }
-        return message.channel.send(`Added ${removed} roles, you already had ${alreadyHad} roles, and couldn't add ${couldnt} role, as they aren't on the list of allowed roles!`);
+        return message.channel.send(`Added ${added} roles, you already had ${alreadyHad} roles, and couldn't add ${couldnt} role, as they aren't on the list of allowed roles!`);
     }
 };
 
