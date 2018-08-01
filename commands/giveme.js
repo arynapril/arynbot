@@ -25,7 +25,7 @@ exports.run = async (bot, message, args, level) => {
         roles = args.splice(1).join(' ')
         deleteList = list.split('|');
         if (deleteList.indexOf(roles) > -1) {
-            deleteList = deleteList.splice(deleteList.indexOf(roles), 1);
+            deleteList.splice(deleteList.indexOf(roles), 1);
             list = deleteList.join('|');
             bot.setSetting('giveme', list, message);
             return message.channel.send("Role removed!")
