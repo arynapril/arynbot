@@ -21,9 +21,18 @@ exports.run = async (bot, message, args, level) => {
             str += `${givemeList[i]} \n`
         };
         return message.channel.send(str);
-    } else if (args[0] == 'remove') {
-
     } else if (args[0] == 'delete') {
+        roles = args.splice(1).join(' ')
+        deleteList = list.split('|');
+        if (deleteList.indexOf(roles) != -1) {
+            deleteList = deleteList.splice(pos, 1);
+            list = deleteList.join('|');
+            bot.setSetting('giveme', list, message);
+            return message.channel.send("Role removed!")
+        } else {
+            return message.channel.send("That role was not found in the list!")
+        }
+    } else if (args[0] == 'remove') {
 
     } else {
 
