@@ -55,7 +55,7 @@ exports.run = async (bot, message, args, level) => {
         }
         return message.channel.send(`Removed ${removed} roles, you didn't have ${didntHave} roles, and couldn't remove ${couldnt} role, as they aren't on the list of allowed roles!`);
     } else {
-        addRoles = args.splice(1).join(" ").split(', ');
+        addRoles = args.join(" ").split(', ');
         roles = list.split('|');
         alreadyHad = 0;
         added = 0;
