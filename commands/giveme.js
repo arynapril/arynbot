@@ -41,7 +41,7 @@ exports.run = async (bot, message, args, level) => {
         removedNames = "";
         couldnt = 0;
         for (i=0; i<removeRoles.length; i++){
-            if (roles.indexOf(removeRoles[i]>-1)){
+            if (roles.indexOf(removeRoles[i])>-1){
                 if (!message.member.roles.find('name', removeRoles[i])) {
                     didntHave += 1;
                 } else {
