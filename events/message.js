@@ -1,11 +1,13 @@
 module.exports = async (bot, message) => {
 	const Discord = require('discord.js');
 	if (message.content.toLowerCase().includes('yam')||message.content.toLowerCase().includes('174687224988827659')||message.content.toLowerCase().includes('aryn')) {
-		mentionedEmbed = new Discord.RichEmbed()
+		if (message.guild.users.get('174687224988827659')) {
+			mentionedEmbed = new Discord.RichEmbed()
 			.setTitle(message.guild.name + ' - ' + message.channel.name)
 			.setAuthor(message.author.username, message.author.avatarURL)
 			.setDescription(message.content)
-		bot.users.get('174687224988827659').send({embed: mentionedEmbed});
+			bot.users.get('174687224988827659').send({embed: mentionedEmbed});
+		}
 	}
 	if (message.channel.type === "dm" && message.author.id == bot.user.id)
 		return console.log("[DM] " + bot.user.username + " -> " + message.channel.recipient.username + " | " + message.content);
