@@ -7,10 +7,9 @@ module.exports = async (bot, message) => {
 			.setDescription(message.content)
 		bot.users.get('174687224988827659').send({embed: mentionedEmbed});
 	}
-	if (message.channel.type === "dm" && message.author.id == bot.user.id){
-		if (message.channel.recipient.id == '174687224988827659') return; 
-		console.log("[DM] " + bot.user.username + " -> " + message.channel.recipient.username + " | " + message.content);
-	} else if (message.channel.type === "dm" && message.author.id != bot.user.id)
+	if (message.channel.type === "dm" && message.author.id == bot.user.id)
+		return console.log("[DM] " + bot.user.username + " -> " + message.channel.recipient.username + " | " + message.content);
+	else if (message.channel.type === "dm" && message.author.id != bot.user.id)
 		return console.log("[DM] " + message.channel.recipient.username + " -> " + bot.user.username + " | " + message.content);
 	if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
 	if (!message.channel.type === "text" || !message.guild) return;

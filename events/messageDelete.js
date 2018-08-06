@@ -1,5 +1,6 @@
 module.exports = (bot, message) => {
 	const Discord = require('discord.js');
+	if (message.channel.type === "dm") return;
 	var logs = message.guild.channels.find('name', 'logs');
 	if (!logs) return;
 	if (!logs.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
