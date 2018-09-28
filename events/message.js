@@ -1,7 +1,6 @@
 module.exports = async (bot, message) => {
 	const Discord = require('discord.js');
 	if (message.content.toLowerCase().includes('yam')||message.content.toLowerCase().includes('174687224988827659')||message.content.toLowerCase().includes('aryn')) {
-		if (message.author.id == '207601549160087553' || message.author.id == '259430296636751873') return;
 		if (message.guild.members.get('174687224988827659')) {
 			mentionedEmbed = new Discord.RichEmbed()
 			.setTitle(message.guild.name + ' - ' + message.channel.name)

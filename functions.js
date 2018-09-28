@@ -175,7 +175,6 @@ module.exports = (bot) => {
 					var command = args.shift().slice(prefix.length).toLowerCase()
 					var cmd = bot.commands.get(command) || bot.commands.get(bot.aliases.get(command))
 					if (!cmd) return;
-					else if (message.author.id == '207601549160087553' || message.author.id == '259430296636751873') return message.channel.send("You're blacklisted from the bot, sorry.")
 					else if (!message.guild.me.hasPermission(cmd.conf.botPerms)) return message.channel.send(`Sorry, I don't have a permission I need to run that command!\n Required Permissions: ${cmd.conf.botPerms}`)
 					else if (!message.member.hasPermission(cmd.conf.memberPerms)) return message.channel.send(`You do not have the permissions to run this command!\nRequired Permissions: ${cmd.conf.memberPerms}`)
 					else if (cmd.conf.enabled) {
