@@ -1,10 +1,12 @@
 exports.run = async (bot, message, args, level) => {
     const Discord = require('discord.js');
     list = await bot.getSetting('giveme', message.guild);
+    givemeList = list.split('|');
     if (args[0] == 'add') {
         if (!message.member.hasPermissions('MANAGE_ROLES')) return message.channel.send("You don't have the perms required to add roles to the giveme! Sorry!")
         role = args.splice(1).join(' ')
         if (!message.guild.roles.find('name', role)) return message.channel.send('That role was not found in this server! Sorry!')
+        if (givemeList.indexOf(role)>-1) return message.channel.send('That role is already in the list!')
         if (list == "none") {
             bot.setSetting('giveme', role, message);
         } else {
@@ -18,7 +20,6 @@ exports.run = async (bot, message, args, level) => {
         return message.channel.send('Please include a role to self-assign!')
     } else if (args[0] == 'list') {
         str = "";
-        givemeList = list.split('|')
         for (i=0; i<givemeList.length; i++){
             str += `${givemeList[i]} \n`
         };
