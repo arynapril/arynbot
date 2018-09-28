@@ -29,7 +29,7 @@ exports.run = async (bot, message, args, level) => {
 	} else {
 		HoF.addField('User', `${msg.member.nickname} (${msg.author.username})`, true);
 	};
-	HoF.addField('Channel', `${msg.channel.name}`, true)
+	HoF.addField('Channel', `${msg.channel}`, true)
 	if (msg.attachments.size == 0) {
 		HoF.addField('Message', `${msg}`)
 	} else {
