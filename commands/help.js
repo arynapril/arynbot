@@ -45,7 +45,7 @@ exports.run = (bot, message, args, level) => {
 exports.conf = {
 	enabled: true,
 	guildOnly: false,
-	aliases: ['h', 'halp', '?'],
+	aliases: ['h', 'halp', 'commands'],
 	botPerms: [],
 	memberPerms: []
 };
