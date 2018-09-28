@@ -79,7 +79,7 @@ exports.run = async (bot, message, args, level) => {
         addedNames = "";
         couldnt = 0;
         for (i=0; i<addRoles.length; i++){
-            if (roles.indexOf(addRoles[i])>-1){
+            if (roles.indexOf(addRoles[i])>-1 && addRoles[i].comparePositionTo(message.guild.me.highestRole) < 0){
                 if (message.member.roles.find('name', addRoles[i])) {
                     alreadyHad += 1;
                     alreadyHadNames += `${addRoles[i]}`
@@ -97,7 +97,7 @@ exports.run = async (bot, message, args, level) => {
             .setTimestamp()
         if (added > 0) addEmbed.addField(`Added ${added} roles!`, addedNames);
         if (alreadyHad >0) addEmbed.addField(`You already had ${alreadyHad} roles!`, alreadyHadNames);
-        if (couldnt > 0) addEmbed.addField(`Couldn't add ${couldnt} roles!`, 'The roles requested either don\'t exist or aren\'t part of the roles able to be added with the bot. To show a list of the roles able to be added, run \`!giveme list\`');
+        if (couldnt > 0) addEmbed.addField(`Couldn't add ${couldnt} roles!`, 'The roles requested either don\'t exist, aren\'t part of the roles able to be added with the bot, or I don\'t have adequate perms. To show a list of the roles able to be added, run \`!giveme list\`');
         return message.channel.send({embed: addEmbed});
     }
 };
