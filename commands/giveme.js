@@ -86,7 +86,7 @@ exports.run = async (bot, message, args, level) => {
                 } else {
                     message.member.addRole(message.guild.roles.find('name', addRoles[i]))
                     added += 1;
-                    addedNames += `${addRoles[i]}`
+                    addedNames += `${addRoles[i]}\n`
                 }
             } else {
                 couldnt += 1;
