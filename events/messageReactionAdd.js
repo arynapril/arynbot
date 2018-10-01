@@ -20,9 +20,9 @@ module.exports = async (bot, messageReaction, user) => {
 			.setFooter('Hall of Fame 🏆')
 			.setTimestamp()
 		if (msg.member.nickname == null) {
-			HoF.addField('User', `${msg.author.username}`, true)
+			HoF.addField('User', `${msg.author}`, true)
 		} else {
-			HoF.addField('User', `${msg.member.nickname} (${msg.author.username})`, true);
+			HoF.addField('User', `${msg.author} (${msg.author.username})`, true);
 		};
 		HoF.addField('Channel', `${msg.channel}`, true)
 		if (msg.attachments.size == 0) {
