@@ -5,7 +5,7 @@ module.exports = async (bot, member) => {
 	setting = await bot.getSetting('welcomeMessagesChannel', member.guild);
 	welcome = member.guild.channels.find('name', setting);
 	if (!welcome) return;
-	autodelete = await bot.getSetting('welcomeMessagesAutoDelete', member.guild);
+	autodelete = await bot.getSetting('leaveMessagesAutoDelete', member.guild);
 	if (autodelete) {
 		welcome.send(`${member.displayName} has left the server! :cry:`)
 		.then(msg => setTimeout(function() {msg.delete()}, 60000));
