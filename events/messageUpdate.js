@@ -1,7 +1,7 @@
 module.exports = (bot, oldMessage, newMessage) => {
 	const Discord = require('discord.js');
 	if (oldMessage.channel.type === "dm") return;
-	setting = await bot.getSetting('logsChannel', member.guild);
+	setting = await bot.getSetting('logsChannel', oldMessage.member.guild);
 	var logs = oldMessage.guild.channels.find('name', setting);
 	if (!logs) return;
 	if (!logs.permissionsFor(oldMessage.guild.me).has("SEND_MESSAGES")) return;
