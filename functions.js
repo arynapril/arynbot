@@ -14,7 +14,7 @@ module.exports = (bot) => {
 				welcomeMessagesChannel VARCHAR(25),
 				leaveMessagesChannel VARCHAR(25),
 				leaveMessagesAutoDelete BOOLEAN,
-				logsChannel varchar(25), 
+				logsChannel VARCHAR(25), 
 				dadJokesEnabled BOOLEAN,
 				dadJokesJail VARCHAR(25),
 				hallOfFameEnabled BOOLEAN,
