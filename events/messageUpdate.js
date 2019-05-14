@@ -1,4 +1,4 @@
-module.exports = (bot, oldMessage, newMessage) => {
+module.exports = async (bot, oldMessage, newMessage) => {
 	const Discord = require('discord.js');
 	if (oldMessage.channel.type === "dm") return;
 	setting = await bot.getSetting('logsChannel', oldMessage.member.guild);

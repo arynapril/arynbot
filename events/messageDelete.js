@@ -1,4 +1,4 @@
-module.exports = (bot, message) => {
+module.exports = async (bot, message) => {
 	const Discord = require('discord.js');
 	if (message.channel.type === "dm") return;
 	setting = await bot.getSetting('logsChannel', message.member.guild);
