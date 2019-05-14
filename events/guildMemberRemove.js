@@ -1,8 +1,8 @@
 module.exports = async (bot, member) => {
 	bot.log("log", `${member.guild.name} lost a member - ${member.user.username} (${member.id})`, 'MEMBR');
-	enabled = await bot.getSetting('welcomeMessagesEnabled', member.guild);
+	enabled = await bot.getSetting('leaveMessagesEnabled', member.guild);
 	if (enabled == '0') return;
-	setting = await bot.getSetting('welcomeMessagesChannel', member.guild);
+	setting = await bot.getSetting('leaveeMessagesChannel', member.guild);
 	welcome = member.guild.channels.find('name', setting);
 	if (!welcome) return;
 	autodelete = await bot.getSetting('leaveMessagesAutoDelete', member.guild);
