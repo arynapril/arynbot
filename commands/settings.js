@@ -18,7 +18,7 @@ exports.run = async (bot, message, args, level) => {
 			if (i==Math.floor(settingsArray.length/24)){
 				x = settingsArray.length%24;
 			} else {
-				x = 20;
+				x = 24;
 			}
 			for (y=0; y<x; y++) {
 				value = await bot.getSetting(settingsArray[i*24+y], message.guild);
