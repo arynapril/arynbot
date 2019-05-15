@@ -3,6 +3,22 @@ module.exports = async (bot, messageReaction, user) => {
 	let msg = messageReaction.message;
 	setting = await bot.getSetting('hallOfFameEnabled', msg.guild);
 	if (setting == '0') return;
+	overrideBool = await bot.getSetting('hallOfFameOverrideEnabled', msg.guild);
+	if (overrideBool) {
+		overrideEmote = await bot.getSetting('hallOfFameOverrideEmote', msg.guild);
+		overrideEmoji = msg.guild.emojis.find('name', overrideEmote);
+		if(overrideEmoji) {
+			msg.reactions.forEach(rct => {
+				if (rct.emoji.id == overrideEmoji.id) {
+					rct.users.forEach(u => {
+						if (u==msg.author) return;
+						m=msg.guild.members.get(u.id);
+						if(m.hasPermission("MANAGE_MESSAGES")) return;
+					})
+				}
+			})
+		}
+	}
 	chan = await bot.getSetting('hallOfFameChannel', msg.guild)
 	var HallOfFame = msg.guild.channels.find('name', chan);
 	if (!HallOfFame) return;
