@@ -27,6 +27,17 @@ module.exports = async (bot, messageReaction, user) => {
 	emote = await bot.getSetting('hallOfFameEmote', msg.guild);
 	emoji = msg.guild.emojis.find('name', emote);
 	if (!emoji) return;
+	modNeeded = await bot.getSetting('hallOfFameModNeeded', msg.guild);
+	if (modNeeded) {
+		msg.reactions.forEach(mCheck => {
+			if (mCheck.emoji.id == emoji.id) {
+				mCheck.users.forEach(mCheckU => {
+					mCheckM=msg.guild.members.get(mCheckU.id);
+					if(mCheckM.hasPermission("MANAGE_MESSAGES")) return;
+				})
+			}
+		})		
+	}
 	limit = await bot.getSetting('hallOfFameLimit', msg.guild)
 	if (limit == 0) return;
 	if (messageReaction.emoji.id == emoji.id && messageReaction.count >= limit) {
