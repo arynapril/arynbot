@@ -10,15 +10,22 @@ exports.run = async (bot, message, args, level) => {
 	numberArray = ['hallOfFameLimit'];
 	emoteArray = ['hallOfFameEmote', 'hallOfFameOverrideEmote'];
 	if (!args[0]) {
-		settingsEmbed = new Discord.RichEmbed()
-		.setTitle("Current Settings")
-		.setColor('RANDOM')
-		.setFooter(`Current settings for ${message.guild.name}`)
-		for(var i = 0; i < settingsArray.length; i++){
-			value = await bot.getSetting(settingsArray[i], message.guild);
-			settingsEmbed.addField(settingsArray[i], value, true);
+		for (i=0; i<=Math.floor(bot.commands.size/24); i++) {
+			settingsbox = new Discord.RichEmbed()
+			.setTitle("Current Settings")
+			.setColor('RANDOM')
+			.setFooter(`Current settings for ${message.guild.name}`)
+			if (i==Math.floor(settingsArray.length/24)){
+				x = settingsArray.length%24;
+			} else {
+				x = 20;
+			}
+			for (y=0; y<x; y++) {
+				value = await bot.getSetting(settingsArray[i], message.guild);
+				settingsbox.addField(settingsArray[i*24+y], value, true);
+			}
+			message.channel.send({embed: helpbox})
 		}
-		message.channel.send({embed: settingsEmbed});
 	} else if (settingsArray.indexOf(args[0]) != -1) {
 		if (!args[1]) {
 			setting = await bot.getSetting(args[0], message.guild);
