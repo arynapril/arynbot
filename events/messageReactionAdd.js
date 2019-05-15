@@ -29,14 +29,28 @@ module.exports = async (bot, messageReaction, user) => {
 	if (!emoji) return;
 	modNeeded = await bot.getSetting('hallOfFameModNeeded', msg.guild);
 	if (modNeeded) {
+		mCheckB=0;
 		msg.reactions.forEach(mCheck => {
 			if (mCheck.emoji.id == emoji.id) {
 				mCheck.users.forEach(mCheckU => {
 					mCheckM=msg.guild.members.get(mCheckU.id);
-					if(mCheckM.hasPermission("MANAGE_MESSAGES")) return;
+					if(mCheckM.hasPermission("MANAGE_MESSAGES")) mCheckB=1;
 				})
 			}
-		})		
+		})
+		if (mCheckB==0)	return;	
+	}
+	authorNeeded = await bot.getSetting('hallOfFameAuthorNeeded', msg.guild);
+	if (authorNeeded) {
+		aCheckB=0
+		msg.reactions.forEach(aCheck => {
+			if (aCheck.emoji.id == emoji.id) {
+				aCheck.users.forEach(aCheckU => {
+					if(aCheckU == msg.author) aCheckB=1;
+				})
+			}
+		})
+		if (aCheckB==0) return;		
 	}
 	limit = await bot.getSetting('hallOfFameLimit', msg.guild)
 	if (limit == 0) return;
