@@ -1,7 +1,7 @@
 module.exports = async (bot, messageReaction, user) => {
-	if (message.channel.type === "dm") return;
 	const Discord = require('discord.js');
 	let msg = messageReaction.message;
+	if(msg.channel.type === "dm") return;
 	setting = await bot.getSetting('hallOfFameEnabled', msg.guild);
 	if (setting == '0') return;
 	overrideBool = await bot.getSetting('hallOfFameOverrideEnabled', msg.guild);
