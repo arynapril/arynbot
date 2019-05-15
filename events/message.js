@@ -11,8 +11,22 @@ module.exports = async (bot, message) => {
 	}
 	if (message.channel.type === "dm" && message.author.id == bot.user.id)
 		return console.log("[DM] " + bot.user.username + " -> " + message.channel.recipient.username + " | " + message.content);
-	else if (message.channel.type === "dm" && message.author.id != bot.user.id)
-		return console.log("[DM] " + message.channel.recipient.username + " -> " + bot.user.username + " | " + message.content);
+	else if (message.channel.type === "dm" && message.author.id != bot.user.id){
+		console.log("[DM] " + message.channel.recipient.username + " -> " + bot.user.username + " | " + message.content);
+		args = message.content.split(/\s+/g);
+		mmGuild = bot.guilds.get(args[0]);
+		if (!mmGuild) return message.channel.send('Sorry, I\'m not in that server/it doesn\'t exist!');
+		mmGuildB = await bot.getSetting('modMailEnabled', mmGuild);
+		if (!mmGuildB) return message.channel.send('Sorry, that server doesn\'t have mod mail enabled!');
+		mmGuildC = await bot.getSetting('modMailChannel', mmGuild);
+		mmGuildChan = mmGuild.channels.find('name', mmGuildC);
+		if (!mmGuildChan) return message.channel.send('Sorry, something is wrong server end! Make sure all the channel settings are set correctly!');
+		modMail = new Discord.RichEmbed()
+		.setColor('RANDOM')
+		.setAuthor(message.author.tag, message.author.avatarURL)
+		.setDescription(message.content)
+		mmGuildChan.send(message.author.ID,{embed: modMail});
+	}
 	if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
 	if (!message.channel.type === "text" || !message.guild) return;
 	if (message.author.bot) return;
