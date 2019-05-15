@@ -27,6 +27,7 @@ module.exports = async (bot, message) => {
 		.setDescription(args.join(" "))
 		mmGuildChan.send({text: message.author.id, embed: modMail});
 		message.react('💌');
+		return;
 	}
 	if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
 	if (!message.channel.type === "text" || !message.guild) return;
