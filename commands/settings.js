@@ -2,13 +2,13 @@ exports.run = async (bot, message, args, level) => {
 	const Discord = require('discord.js')
 	x = '';
 	phrase = '';
-	settingsArray = ['dadJokesEnabled', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel', 'welcomeMessagesEnabled', 'welcomeMessagesChannel', 'leaveMessagesEnabled', 'leaveMessagesChannel', 'logsChannel', 'prefix', 'welcomeMessage', 'securityEnabled', 'securityChannel', 'securityPhrase', 'securityNickCheck', 'securityNickFormat', 'securityJoinMessage', 'securityRole', 'securityPinMessage', 'leaveMessagesAutoDelete'];
-	booleanArray = ['dadJokesEnabled', 'hallOfFameEnabled', 'welcomeMessagesEnabled', 'leaveMessagesEnabled', 'securityEnabled', 'securityNickCheck', 'leaveMessagesAutoDelete'];
-	channelArray = ['dadJokesJail', 'hallOfFameChannel', 'welcomeMessagesChannel', 'leaveMessagesChannel', 'securityChannel', 'logsChannel'];
+	settingsArray = ['dadJokesEnabled', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel', 'welcomeMessagesEnabled', 'welcomeMessagesChannel', 'leaveMessagesEnabled', 'leaveMessagesChannel', 'logsChannel', 'prefix', 'welcomeMessage', 'securityEnabled', 'securityChannel', 'securityPhrase', 'securityNickCheck', 'securityNickFormat', 'securityJoinMessage', 'securityRole', 'securityPinMessage', 'leaveMessagesAutoDelete', 'hallOfFameOverrideEnabled', 'hallOfFameOverrideEmote', 'hallOfFameAuthorNeeded', 'hallOfFameModNeeded', 'modMailEnabled', 'modMailChannel'];
+	booleanArray = ['dadJokesEnabled', 'hallOfFameEnabled', 'welcomeMessagesEnabled', 'leaveMessagesEnabled', 'securityEnabled', 'securityNickCheck', 'leaveMessagesAutoDelete', 'hallOfFameOverrideEnabled', 'hallOfFameModNeeded', 'hallOfFameAuthorNeeded', 'modMailEnabled'];
+	channelArray = ['dadJokesJail', 'hallOfFameChannel', 'welcomeMessagesChannel', 'leaveMessagesChannel', 'securityChannel', 'logsChannel', 'modMailChannel'];
 	phraseArray = ['welcomeMessage', 'securityPhrase', 'securityNickFormat', 'securityJoinMessage', 'securityPinMessage'];
 	roleArray = ['securityRole'];
 	numberArray = ['hallOfFameLimit'];
-	emoteArray = ['hallOfFameEmote'];
+	emoteArray = ['hallOfFameEmote', 'hallOfFameOverrideEmote'];
 	if (!args[0]) {
 		settingsEmbed = new Discord.RichEmbed()
 		.setTitle("Current Settings")
