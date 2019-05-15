@@ -21,7 +21,7 @@ exports.run = async (bot, message, args, level) => {
 				x = 20;
 			}
 			for (y=0; y<x; y++) {
-				value = await bot.getSetting(settingsArray[i], message.guild);
+				value = await bot.getSetting(settingsArray[i*24+y], message.guild);
 				settingsbox.addField(settingsArray[i*24+y], value, true);
 			}
 			message.channel.send({embed: settingsbox})
