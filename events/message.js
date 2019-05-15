@@ -25,7 +25,8 @@ module.exports = async (bot, message) => {
 		.setColor('RANDOM')
 		.setAuthor(message.author.tag, message.author.avatarURL)
 		.setDescription(args.join(" "))
-		return mmGuildChan.send({text: message.author.id}, {embed: modMail});
+		mmGuildChan.send({text: message.author.id}, {embed: modMail});
+		message.react('💌');
 	}
 	if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
 	if (!message.channel.type === "text" || !message.guild) return;
