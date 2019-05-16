@@ -5,7 +5,7 @@ exports.run = (bot, message, args, level) => {
     if (!enabled) return message.channel.send('Sorry, mod mail doesn\'t appear to be enabled in this server!')
     chan = bot.getSetting('modMailChannel', message.guild);
     mmChan = message.guild.channels.find('name', chan);
-    if (mmChan !== message.channel) return message.channel.send('Sorry, please send replies to mod mail messages in the mod mail channel!')
+    if (mmChan.id !== message.channel.id) return message.channel.send('Sorry, please send replies to mod mail messages in the mod mail channel!')
     if (!m) {
         return message.channel.send('Sorry, that user doesn\'t appear to be in this server! Make sure to start your message with a user ID!')
     } else {
