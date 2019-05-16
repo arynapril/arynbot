@@ -14,6 +14,10 @@ exports.run = async (bot, message, args, level) => {
         .setAuthor(message.author.tag, message.author.avatarURL)
         .setDescription(args.slice(1).join(' '))
         .setFooter('To respond, send any message that begins with the ID at the top of this message!')
+		if (message.attachments.size !== 0) {
+			pictures = message.attachments.array();
+			response.setImage(pictures[0].url)
+		}
         m.user.send(`${message.channel.id}`,{embed: response});
         message.react('💌');
     }
