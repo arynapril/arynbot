@@ -27,6 +27,7 @@ module.exports = async (bot, message) => {
 		.setColor('RANDOM')
 		.setAuthor(message.author.tag, message.author.avatarURL)
 		.setDescription(args.slice(1).join(" "))
+		.setFooter('To respond, run the reply command, starting with the userID/the ID at the top of this message!')
 		mmGuildChan.send(`${message.author.id}`, {embed: modMail});
 		message.react('💌');
 		return;

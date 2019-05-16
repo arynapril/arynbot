@@ -13,7 +13,8 @@ exports.run = async (bot, message, args, level) => {
         .setColor('RANDOM')
         .setAuthor(message.author.tag, message.author.avatarURL)
         .setDescription(args.slice(1).join(' '))
-        m.user.send({embed: response});
+        .setFooter('To respond, send any message that begins with the ID at the top of this message!')
+        m.user.send(`${message.channel.id}`,{embed: response});
         message.react('💌');
     }
 };
