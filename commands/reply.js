@@ -1,6 +1,6 @@
 exports.run = (bot, message, args, level) => {
     const Discord = require("discord.js");
-    m = message.guild.members.get(args(0));
+    m = message.guild.members.get(args[0]);
     enabled = bot.getSetting('modMailEnabled', message.guild);
     if (!enabled) return message.channel.send('Sorry, mod mail doesn\'t appear to be enabled in this server!')
     chan = bot.getSetting('modMailChannel', message.guild);
