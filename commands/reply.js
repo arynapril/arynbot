@@ -18,7 +18,7 @@ exports.run = async (bot, message, args, level) => {
 			pictures = message.attachments.array();
 			response.setImage(pictures[0].url)
 		}
-        m.user.send(`${message.channel.id}`,{embed: response});
+        m.user.send(`${message.guild.id}`,{embed: response});
         message.react('💌');
     }
 };
