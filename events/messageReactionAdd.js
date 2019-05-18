@@ -60,7 +60,7 @@ module.exports = async (bot, messageReaction, user) => {
 		const HoF = new Discord.RichEmbed();
 		HoF.setColor(`${msg.member.displayHexColor}`)
 			.setTitle('Hall of Fame 🏆')
-			.setURL(msg.url)
+			.setURL(`http://discordapp.com/channels/${msg.guild.id}/${msg.channel.id}/${msg.id}`)
 			.setFooter('Hall of Fame 🏆')
 			.setTimestamp()
 		if (msg.member.nickname == null) {
