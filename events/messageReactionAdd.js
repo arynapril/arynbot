@@ -59,6 +59,8 @@ module.exports = async (bot, messageReaction, user) => {
 		msg.react(emoji.id);
 		const HoF = new Discord.RichEmbed();
 		HoF.setColor(`${msg.member.displayHexColor}`)
+			.setTitle('Hall of Fame 🏆')
+			.setURL(msg.url)
 			.setFooter('Hall of Fame 🏆')
 			.setTimestamp()
 		if (msg.member.nickname == null) {
