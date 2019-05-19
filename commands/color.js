@@ -20,7 +20,7 @@ exports.run = (bot, message, args, level) => {
 		rgb = r + ", " + g + ", " + b;
 		//processes the random color assigned
 	} else { //if theres not a valid hex input OR no input
-		message.channel.send('Invalid input! Run the command with no arguements for a random color, or a valid hex code (without the # at the front!')
+		return message.channel.send('Invalid input! Run the command with no arguements for a random color, or a valid hex code (without the # at the front!');
 	}
 	color.addField('Hex', `#${hexColor}`)
 		.addField('RGB', rgb)
