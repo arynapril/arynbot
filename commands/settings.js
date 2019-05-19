@@ -52,7 +52,7 @@ exports.run = async (bot, message, args, level) => {
 				value = args[1];
 				emote = message.guild.emojis.find(e => e.name == value);
 				if (!emote) return message.channel.send(`The ${args[0]} value must be the name of a custom emoji on this server! Please try again!`)
-			} else if (args[0] = prefix){
+			} else if (args[0] = 'prefix'){
 				value = args[1];
 				if (args[1].length>10) return message.channel.send(`The ${args[0]} value must be 10 characters or less! Please try again!`)
 			}
