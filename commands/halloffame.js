@@ -13,11 +13,11 @@ exports.run = async (bot, message, args, level) => {
 	const msg = messages.first();
 	if (!msg) return message.channel.send('Message not found! Make sure the arguements for the message ID/channel ID are correct!');
 	chan = await bot.getSetting('hallOfFameChannel', message.guild);
-	HallOfFame = msg.guild.channels.find('name', chan);
+	HallOfFame = msg.guild.channels.find(c => c.name == chan);
 	if (!HallOfFame) return;
 	if (!HallOfFame.permissionsFor(msg.guild.me).has("SEND_MESSAGES")) return;
 	emote = await bot.getSetting('hallOfFameEmote', msg.guild);
-	emoji = msg.guild.emojis.find('name', emote);
+	emoji = msg.guild.emojis.find(e => e.name == emote);
 	if (!emoji) return;
 	//msg.react(emoji.id);
 	const HoF = new Discord.RichEmbed();

@@ -36,21 +36,21 @@ exports.run = async (bot, message, args, level) => {
 				value = args.slice(1).join(' ');
 			} else if (roleArray.indexOf(args[0]) != -1) {
 				value = args.slice(1).join(' ');
-				role = message.guild.roles.find('name', value);
+				role = message.guild.roles.find(r => r.name == value);
 				if (!role) return message.channel.send(`The ${args[0]} value must be the name of a valid role in this server! Please try again!`);
 			} else if (booleanArray.indexOf(args[0]) != -1) {
 				value = args[1];
 				if (value !== '1' && value !== '0') return message.channel.send(`The ${args[0]} value must be be either a 0 or a 1! Please try again!`);
 			} else if (channelArray.indexOf(args[0]) != -1) {
 				value = args[1];
-				chan = message.guild.channels.find('name', value);
+				chan = message.guild.channels.find(c => c.name == value);
 				if (!chan && args[1] !== 'none') return message.channel.send(`The ${args[0]} value must be the name of an channel on this server or 'none' to remove the setting! Please try again!`)
 			} else if (numberArray.indexOf(args[0]) != -1) {
 				value = args[1];
 				if (isNaN(parseInt(value))) return message.channel.send(`The ${args[0]} value must be a whole number! Please try again!`);
 			} else if (emoteArray.indexOf(args[0]) != -1) {
 				value = args[1];
-				emote = message.guild.emojis.find('name', value);
+				emote = message.guild.emojis.find(e => e.name == value);
 				if (!emote) return message.channel.send(`The ${args[0]} value must be the name of a custom emoji on this server! Please try again!`)
 			};
 			setting = await bot.setSetting(args[0], value, message);

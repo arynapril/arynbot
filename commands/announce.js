@@ -6,7 +6,7 @@ exports.run = (bot, message, args, level) => {
     } else {
         chan = message.channel
     };
-    role = message.guild.roles.find('name', parts[0]);
+    role = message.guild.roles.find(r => r.name == parts[0]);
     if (!role) {
         return message.channel.send("That role was not found! Sorry!")
     }

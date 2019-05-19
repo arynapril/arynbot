@@ -2,7 +2,7 @@ exports.run = (bot, message, args, level) => {
     if (!message.mentions.users.array()[0]) return;
     var user = message.mentions.users.array()[0];
     var roleToGive = args.slice(1).join(' ');
-    let role = message.guild.roles.find("name", roleToGive);
+    let role = message.guild.roles.find(r => r.name == roleToGive);
     if (!role) {
         message.channel.send("That role does not exist!");
     } else if (role.comparePositionTo(message.member.highestRole) < 0) {
