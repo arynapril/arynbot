@@ -80,16 +80,28 @@ exports.run = async (bot, message, args, level) => {
         addedNames = "";
         couldnt = 0;
         for (i=0; i<addRoles.length; i++){
-            if (roles.indexOf(addRoles[i])>-1 && message.guild.roles.find('name', addRoles[i]).comparePositionTo(message.guild.me.highestRole) < 0){
-                if (message.member.roles.find('name', addRoles[i])) {
-                    alreadyHad += 1;
-                    alreadyHadNames += `${addRoles[i]}`
+            if (roles.indexOf(addRoles[i])>-1) {
+                //checks if its in the role list
+                if (!message.guild.roles.find('name', addRoles[i])){
+                    //checks if the role exists
+                    couldnt += 1;
+                } else if (message.guild.roles.find('name', addRoles[i]).comparePositionTo(message.guild.me.highestRole) < 0){
+                    //checks if its above the bots highest role 
+                    if (message.member.roles.find('name', addRoles[i])) {
+                        //checks if they have it
+                        alreadyHad += 1;
+                        alreadyHadNames += `${addRoles[i]}\n`
+                    } else {
+                        message.member.addRole(message.guild.roles.find('name', addRoles[i]))
+                        added += 1;
+                        addedNames += `${addRoles[i]}\n`
+                    }
                 } else {
-                    message.member.addRole(message.guild.roles.find('name', addRoles[i]))
-                    added += 1;
-                    addedNames += `${addRoles[i]}\n`
+                    //if its above the bots highest role
+                    couldnt += 1;
                 }
             } else {
+                //if it isnt in the role list
                 couldnt += 1;
             }
         }
