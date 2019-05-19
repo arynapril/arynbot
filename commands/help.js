@@ -6,9 +6,6 @@ exports.run = (bot, message, args, level) => {
 			.setDescription(`Use ${bot.config.prefix}help <commandname> for details`)
 			.setColor([Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256)]);
 		message.author.send({embed: intro})
-			.catch(() => {
-				return message.channel.send('Sorry, I couldn\'t send that command! Make sure you have DMs from server members turned on!')
-			})
 		for (i=0; i<=Math.floor(bot.commands.size/24); i++) {
 			var helpbox = new Discord.RichEmbed();
 			helpbox.setColor(intro.color);
@@ -22,8 +19,8 @@ exports.run = (bot, message, args, level) => {
 				helpbox.addField(c.help.name, c.help.description)
 			}
 			message.author.send({embed: helpbox})
-			message.react('💌');
 		}
+		message.channel.send('List of commands DMd! 💌 If you didn\'t recieve anything, make sure you have dms from server members turned on!');
 	} else {
 		let command = '';
 		if (bot.commands.has(args[0])) {
