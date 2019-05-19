@@ -265,18 +265,6 @@ module.exports = (bot) => {
 	bot.enabled = function(command, guild) {
 		return true;
 	};
-	bot.pointsMonitor = (bot, message) => {
-		const score = bot.points.get(message.author.id) || {
-			cookies: 0
-		};
-		const total = bot.points.get(bot.user.id) || {
-			cookies: 0
-		}
-		score.cookies++
-			total.cookies++
-			bot.points.set(message.author.id, score);
-		bot.points.set(bot.user.id, total)
-	};
 	global.wait = require('util').promisify(setTimeout);
 	global.range = (count, start = 0) => {
 		const myArr = [];
