@@ -1,5 +1,5 @@
 exports.run = (bot, message, args, level) => {
-    if (!message.mentions.users.array()[0]) return;
+    if (!message.mentions.users.array()[0]) return message.channel.send('Please mention a user to give the role to!');
     var user = message.mentions.users.array()[0];
     var roleToGive = args.slice(1).join(' ');
     let role = message.guild.roles.find(r => r.name == roleToGive);
