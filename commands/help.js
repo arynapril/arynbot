@@ -19,12 +19,10 @@ exports.run = (bot, message, args, level) => {
 				helpbox.addField(c.help.name, c.help.description)
 			}
 			message.author.send({embed: helpbox})
-				.then(
-					message.react('💌')
-				)
-				.catch(
-					message.channel.send('Sorry, I couldn\'t send that command! Make sure you have DMs from server members turned on!')
-				)
+				.catch(() => {
+					return message.channel.send('Sorry, I couldn\'t send that command! Make sure you have DMs from server members turned on!')
+				})
+			message.react('💌');
 		}
 	} else {
 		let command = '';
