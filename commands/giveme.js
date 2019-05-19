@@ -3,7 +3,7 @@ exports.run = async (bot, message, args, level) => {
     list = await bot.getSetting('giveme', message.guild);
     givemeList = list.split('|');
     if (args[0] == 'add') {
-        if (!message.member.hasPermissions('MANAGE_ROLES')) return message.channel.send("You don't have the perms required to add roles to the giveme! Sorry!")
+        if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send("You don't have the perms required to add roles to the giveme! Sorry!")
         role = args.splice(1).join(' ')
         if (!message.guild.roles.find(r => r.name == role)) return message.channel.send('That role was not found in this server! Sorry!')
         if (givemeList.indexOf(role)>-1) return message.channel.send('That role is already in the list!')
@@ -31,7 +31,7 @@ exports.run = async (bot, message, args, level) => {
                 .setTimestamp()
         return message.channel.send({embed: listEmbed});
     } else if (args[0] == 'delete') {
-        if (!message.member.hasPermissions('MANAGE_ROLES')) return message.channel.send("You don't have the perms required to delete roles from the giveme! Sorry!")
+        if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send("You don't have the perms required to delete roles from the giveme! Sorry!")
         role = args.splice(1).join(' ')
         deleteList = list.split('|');
         if (deleteList.indexOf(role) > -1) {
