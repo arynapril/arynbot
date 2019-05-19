@@ -2,7 +2,7 @@ module.exports = async (bot, message) => {
 	const Discord = require('discord.js');
 	if (message.channel.type === "dm") return;
 	setting = await bot.getSetting('logsChannel', message.member.guild);
-	var logs = message.guild.channels.find('name', setting);
+	var logs = message.guild.channels.find(c => c.name == setting);
 	if (!logs) return;
 	if (!logs.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
 	if (message.author.bot) return;

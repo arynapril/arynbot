@@ -7,7 +7,7 @@ module.exports = async (bot, messageReaction, user) => {
 	overrideBool = await bot.getSetting('hallOfFameOverrideEnabled', msg.guild);
 	if (overrideBool) {
 		overrideEmote = await bot.getSetting('hallOfFameOverrideEmote', msg.guild);
-		overrideEmoji = msg.guild.emojis.find('name', overrideEmote);
+		overrideEmoji = msg.guild.emojis.find(e => e.name == overrideEmote);
 		if(overrideEmoji) {
 			msg.reactions.forEach(rct => {
 				if (rct.emoji.id == overrideEmoji.id) {
@@ -21,12 +21,12 @@ module.exports = async (bot, messageReaction, user) => {
 		}
 	}
 	chan = await bot.getSetting('hallOfFameChannel', msg.guild)
-	var HallOfFame = msg.guild.channels.find('name', chan);
+	var HallOfFame = msg.guild.channels.find(c => c.name == chan);
 	if (!HallOfFame) return;
 	if (!HallOfFame.permissionsFor(msg.guild.me).has("SEND_MESSAGES")) return;
 	if (messageReaction.me) return;
 	emote = await bot.getSetting('hallOfFameEmote', msg.guild);
-	emoji = msg.guild.emojis.find('name', emote);
+	emoji = msg.guild.emojis.find(e => e.name == emote);
 	if (!emoji) return;
 	modNeeded = await bot.getSetting('hallOfFameModNeeded', msg.guild);
 	if (modNeeded) {
