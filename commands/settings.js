@@ -2,7 +2,7 @@ exports.run = async (bot, message, args, level) => {
 	const Discord = require('discord.js')
 	x = '';
 	phrase = '';
-	settingsArray = ['dadJokesEnabled', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel', 'welcomeMessagesEnabled', 'welcomeMessagesChannel', 'leaveMessagesEnabled', 'leaveMessagesChannel', 'logsChannel', 'prefix', 'welcomeMessage', 'securityEnabled', 'securityChannel', 'securityPhrase', 'securityNickCheck', 'securityNickFormat', 'securityJoinMessage', 'securityRole', 'securityPinMessage', 'leaveMessagesAutoDelete', 'hallOfFameOverrideEnabled', 'hallOfFameOverrideEmote', 'hallOfFameAuthorNeeded', 'hallOfFameModNeeded', 'modMailEnabled', 'modMailChannel'];
+	settingsArray = ['prefix', 'dadJokesEnabled', 'dadJokesJail', 'hallOfFameEnabled', 'hallOfFameEmote', 'hallOfFameLimit', 'hallOfFameChannel', 'welcomeMessagesEnabled', 'welcomeMessagesChannel', 'leaveMessagesEnabled', 'leaveMessagesChannel', 'logsChannel', 'prefix', 'welcomeMessage', 'securityEnabled', 'securityChannel', 'securityPhrase', 'securityNickCheck', 'securityNickFormat', 'securityJoinMessage', 'securityRole', 'securityPinMessage', 'leaveMessagesAutoDelete', 'hallOfFameOverrideEnabled', 'hallOfFameOverrideEmote', 'hallOfFameAuthorNeeded', 'hallOfFameModNeeded', 'modMailEnabled', 'modMailChannel'];
 	booleanArray = ['dadJokesEnabled', 'hallOfFameEnabled', 'welcomeMessagesEnabled', 'leaveMessagesEnabled', 'securityEnabled', 'securityNickCheck', 'leaveMessagesAutoDelete', 'hallOfFameOverrideEnabled', 'hallOfFameModNeeded', 'hallOfFameAuthorNeeded', 'modMailEnabled'];
 	channelArray = ['dadJokesJail', 'hallOfFameChannel', 'welcomeMessagesChannel', 'leaveMessagesChannel', 'securityChannel', 'logsChannel', 'modMailChannel'];
 	phraseArray = ['welcomeMessage', 'securityPhrase', 'securityNickFormat', 'securityJoinMessage', 'securityPinMessage'];
@@ -52,7 +52,10 @@ exports.run = async (bot, message, args, level) => {
 				value = args[1];
 				emote = message.guild.emojis.find(e => e.name == value);
 				if (!emote) return message.channel.send(`The ${args[0]} value must be the name of a custom emoji on this server! Please try again!`)
-			};
+			} else if (args[0] = prefix){
+				value = args[1];
+				if (args[1].length>10) return message.channel.send(`The ${args[0]} value must be 10 characters or less! Please try again!`)
+			}
 			setting = await bot.setSetting(args[0], value, message);
 			message.channel.send(`**${args[0]}** setting successfully changed to **${setting}**`);
 		}
