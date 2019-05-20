@@ -1,6 +1,7 @@
 exports.run = (bot, message, args, level) => {
     nickname = args.join(' ');
     trunc = "";
+    if (message.guild.me.highestRole.comparePositionTo(message.member.highestRole) <= 0) return message.channel.send('Sorry, your highest role is higher than mine, so I cannot change your nickname!') 
     if (nickname.length > 32) {
         nickname = nickname.slice(0, 32)
         trunc = " Your nickname was truncated to fit in 32 characters."
