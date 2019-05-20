@@ -17,11 +17,11 @@ module.exports = async (bot, message) => {
 		console.log("[DM] " + message.channel.recipient.username + " -> " + bot.user.username + " | " + message.content);
 		args = message.content.split(/\s+/g);
 		mmGuild = bot.guilds.get(args[0]);
-		if (!mmGuild) return message.channel.send('Sorry, I\'m not in that server/it doesn\'t exist! Make sure you preface your mod mail message with the server ID!');
+		if (!mmGuild) return message.channel.send('Sorry, I\'m not in that server/it dfindoesn\'t exist! Make sure you preface your mod mail message with the server ID!');
 		mmGuildB = await bot.getSetting('modMailEnabled', mmGuild);
 		if (!mmGuildB) return message.channel.send('Sorry, that server doesn\'t have mod mail enabled!');
 		mmGuildC = await bot.getSetting('modMailChannel', mmGuild);
-		mmGuildChan = mmGuild.channels.find('name', mmGuildC);
+		mmGuildChan = mmGuild.channels.find(c => c.name == mmGuildC);
 		if (!mmGuildChan) return message.channel.send('Sorry, something is wrong server end! Make sure all the channel settings are set correctly!');
 		modMail = new Discord.RichEmbed()
 		.setColor('RANDOM')
@@ -42,7 +42,7 @@ module.exports = async (bot, message) => {
 	secEnabled = await bot.getSetting('securityEnabled', message.guild);
 	if (secEnabled) {
 		secChanS = await bot.getSetting('securityChannel', message.guild);
-		secChan = message.guild.channels.find('name', secChanS);
+		secChan = message.guild.channels.find(c => c.name == secChanS);
 		if (message.channel == secChan) {
 			passPhrase = await bot.getSetting('securityPhrase', message.guild);
 			if(message.content.includes(passPhrase)){
@@ -52,7 +52,7 @@ module.exports = async (bot, message) => {
 					secChan.send(`This server requires you to have a nickname set to join their server. To join, please set your nickname according to the format ${nickFormat} (by clicking the server name, then change nickname) and then retry the passphrase!`);
 				} else {
 					memRoleS = await bot.getSetting('securityRole', message.guild);
-					memRole = message.guild.roles.find('name', memRoleS);
+					memRole = message.guild.roles.find(r => r.name == memRoleS);
 					if (!memRole) return;
 					message.member.addRole(memRole);
             		message.channel.bulkDelete(50);
@@ -62,7 +62,7 @@ module.exports = async (bot, message) => {
 					message.channel.send(welcomePin);
 					if (welcome) {
 						welcomeChanS = await bot.getSetting('welcomeMessagesChannel', message.guild);
-						welcomeChan = message.guild.channels.find('name', welcomeChanS);
+						welcomeChan = message.guild.channels.find(c => c.name == welcomeChanS);
 						welcomeMessage = await bot.getSetting('welcomeMessage', message.guild);
 						welcomeMessage = welcomeMessage.replace('{user}', message.author).replace('{guild}', message.guild.name);
 						if (!welcomeChan) return;
