@@ -1,8 +1,12 @@
-exports.run = (bot, message, args, level) => {
-	bot.generateInvite()
-		.then(link => {
-			message.channel.send(`Invite me to your server using the following link! :heart: <${link}>`);
-		});
+exports.run = async (bot, message, args, level) => {
+	const Discord = require('discord.js')
+	link = await bot.generateInvite();
+	invite = await bot.channels.get('605453965659996164').createInvite();
+	inviteEmbed = new Discord.RichEmbed()
+		.setTitle('Arynbot Invites')
+		.addField('To invite arynbot to a server', `<${link}>`)
+		.addField('To join arynbot\'s development server', `<${invite}>`)
+	message.channel.send({embed: inviteEmbed});
 };
 
 exports.conf = {
