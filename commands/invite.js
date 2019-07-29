@@ -3,7 +3,7 @@ exports.run = async (bot, message, args, level) => {
 	link = await bot.generateInvite();
 	invite = await bot.channels.get('605453965659996164').createInvite();
 	inviteEmbed = new Discord.RichEmbed()
-		.setTitle('Arynbot Invites')
+		.setColor('f18edd')
 		.addField('To invite arynbot to a server', `<${link}>`)
 		.addField('To join arynbot\'s development server', `<${invite}>`)
 	message.channel.send({embed: inviteEmbed});
