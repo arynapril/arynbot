@@ -17,7 +17,7 @@ exports.run = (bot, message, args, level) => {
 					ADD_REACTIONS: false
 				})
 		}
-		var mute = new Discord.RichEmbed()
+		var mute = new Discord.MessageEmbed()
 		    .setTitle('User was muted.')
 			.addField('User', user, true)
 			.addField('Muted by', message.author, true)

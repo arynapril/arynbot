@@ -40,7 +40,7 @@ module.exports = (bot) => {
 				securityPinMessage VARCHAR(1000),
 				giveme VARCHAR(2000)
 				)`);
-			bot.guilds.forEach(guild => {
+			bot.guilds.cache.forEach(guild => {
 				db.run(`INSERT OR IGNORE INTO servers VALUES (
 					"${guild.id}",		 
 					"${guild.name}", 
@@ -172,7 +172,7 @@ module.exports = (bot) => {
 			})
 		})
 	};
-		if (message.isMentioned(bot.user)) {
+		if (message.mentions.has(bot.user)) {
 			if (message.content.toLowerCase().includes("what's your prefix") || message.content.toLowerCase().includes("whats your prefix")) {
 				this.getSetting('prefix', message.guild).then(prefix => {
 					message.reply("my prefix for this server is `" + prefix + "`!")

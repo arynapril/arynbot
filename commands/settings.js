@@ -11,7 +11,7 @@ exports.run = async (bot, message, args, level) => {
 	emoteArray = ['hallOfFameEmote', 'hallOfFameOverrideEmote'];
 	if (!args[0]) {
 		for (i=0; i<=Math.floor(bot.commands.size/24); i++) {
-			settingsbox = new Discord.RichEmbed()
+			settingsbox = new Discord.MessageEmbed()
 			.setTitle("Current Settings")
 			.setColor('RANDOM')
 			.setFooter(`Current settings for ${message.guild.name}`)

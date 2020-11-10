@@ -13,7 +13,7 @@ exports.run = (bot, message, args, level) => {
 					ADD_REACTIONS: null
 				})
 		};
-		var unmute = new Discord.RichEmbed();
+		var unmute = new Discord.MessageEmbed();
 		unmute.setTitle('User was unmuted.')
 			.addField('User', user)
 			.addField('Unmuted by', message.author)

@@ -57,7 +57,7 @@ module.exports = async (bot, messageReaction, user) => {
 	if (limit == 0) return;
 	if (messageReaction.emoji.id == emoji.id && messageReaction.count >= limit) {
 		msg.react(emoji.id);
-		const HoF = new Discord.RichEmbed();
+		const HoF = new Discord.MessageEmbed();
 		HoF.setColor(`${msg.member.displayHexColor}`)
 			.setTitle('Hall of Fame 🏆')
 			.setURL(`http://discordapp.com/channels/${msg.guild.id}/${msg.channel.id}/${msg.id}`)

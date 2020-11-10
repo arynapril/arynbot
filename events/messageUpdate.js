@@ -10,7 +10,7 @@ module.exports = async (bot, oldMessage, newMessage) => {
 	if (oldMessage == "" || newMessage == "") return;
 	if (oldMessage.content == newMessage.content) return;
 	if (oldMessage.author.bot) return;
-	var update = new Discord.RichEmbed()
+	var update = new Discord.MessageEmbed()
 		.setTitle('Message Updated')
 	if (oldMessage.member.nickname == null) {
 		update.addField('User', `${oldMessage.author.username}`, true)

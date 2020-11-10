@@ -9,7 +9,7 @@ exports.run = async (bot, message, args, level) => {
     if (!m) {
         return message.channel.send('Sorry, that user doesn\'t appear to be in this server! Make sure to start your message with a user ID!')
     } else {
-        response = new Discord.RichEmbed()
+        response = new Discord.MessageEmbed()
         .setColor('RANDOM')
         .setAuthor(message.author.tag, message.author.avatarURL)
         .setDescription(args.slice(1).join(' '))

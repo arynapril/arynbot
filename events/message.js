@@ -3,7 +3,7 @@ module.exports = async (bot, message) => {
 	if (message.content.toLowerCase().includes('yam')||message.content.toLowerCase().includes('174687224988827659')||message.content.toLowerCase().includes('aryn')) {
 		if (message.channel.type !== 'dm'){
 			if (message.guild.members.get('174687224988827659')) {
-				mentionedEmbed = new Discord.RichEmbed()
+				mentionedEmbed = new Discord.MessageEmbed()
 				.setTitle(message.guild.name + ' - ' + message.channel.name)
 				.setAuthor(message.author.username, message.author.avatarURL)
 				.setDescription(message.content)
@@ -23,7 +23,7 @@ module.exports = async (bot, message) => {
 		mmGuildC = await bot.getSetting('modMailChannel', mmGuild);
 		mmGuildChan = mmGuild.channels.find(c => c.name == mmGuildC);
 		if (!mmGuildChan) return message.channel.send('Sorry, something is wrong server end! Make sure all the channel settings are set correctly!');
-		modMail = new Discord.RichEmbed()
+		modMail = new Discord.MessageEmbed()
 		.setColor('RANDOM')
 		.setAuthor(message.author.tag, message.author.avatarURL)
 		.setDescription(args.slice(1).join(" "))

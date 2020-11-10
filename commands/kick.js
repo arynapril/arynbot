@@ -10,7 +10,7 @@ exports.run = (bot, message, args, level) => {
         var reason = args.slice(1).join(" ");
     }; 
     kicked.kick(reason);
-    var kick = new Discord.RichEmbed();
+    var kick = new Discord.MessageEmbed();
         kick.setTitle('User was kicked.')
         .addField('User', banee, true)
         .addField('Kicked by', message.author, true)

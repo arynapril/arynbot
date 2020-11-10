@@ -23,7 +23,7 @@ exports.run = async (bot, message, args, level) => {
         for (i=0; i<givemeList.length; i++){
             str += `${givemeList[i]} \n`
         };
-        listEmbed = new Discord.RichEmbed()
+        listEmbed = new Discord.MessageEmbed()
                 .setTitle("Roles avaliable to self assign")
                 .setColor("RANDOM")
                 .setDescription(str)
@@ -64,7 +64,7 @@ exports.run = async (bot, message, args, level) => {
                 couldnt += 1;
             }
         }
-        removeEmbed = new Discord.RichEmbed()
+        removeEmbed = new Discord.MessageEmbed()
             .setColor("RANDOM")
             .setTimestamp()
         if (removed > 0) removeEmbed.addField(`Removed ${removed} roles!`, removedNames);
@@ -120,7 +120,7 @@ exports.run = async (bot, message, args, level) => {
                 couldnt += 1;
             }
         }
-        addEmbed = new Discord.RichEmbed()
+        addEmbed = new Discord.MessageEmbed()
             .setColor("RANDOM")
             .setTimestamp()
         if (added > 0) addEmbed.addField(`Added ${added} roles!`, addedNames);

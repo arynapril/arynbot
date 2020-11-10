@@ -14,7 +14,7 @@ exports.run = (bot, message, args) => {
 	} else {
 		var timecode = `${time} seconds`;
 	}
-	about = new Discord.RichEmbed()
+	about = new Discord.MessageEmbed()
 		.setTitle("About Arynbot")
 		.setDescription("Just a simple bot who is full of love!")
 		.setColor([Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256)])

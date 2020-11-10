@@ -7,7 +7,7 @@ exports.run = (bot, message, args) => {
 		user = message.mentions.users.array()[0];
 		member = message.mentions.members.array()[0];
 	}
-	var info = new Discord.RichEmbed();
+	var info = new Discord.MessageEmbed();
 	if (!user.presence.game) {
 		var game = "None"
 	} else {

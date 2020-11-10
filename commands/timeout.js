@@ -10,7 +10,7 @@ exports.run = (bot, message, args, level) => {
 		var timecode = `${time} seconds`;
 	}
 	if (!isNaN(time)) {
-		var embed1 = new Discord.RichEmbed();
+		var embed1 = new Discord.MessageEmbed();
 		embed1.setTitle("This channel has been timed out.")
 			.addField("Length", timecode)
 			.addField("Initiated by:", message.author)
@@ -26,7 +26,7 @@ exports.run = (bot, message, args, level) => {
 				})
 				.then(message => {
 					setTimeout(() => {
-						var embed2 = new Discord.RichEmbed();
+						var embed2 = new Discord.MessageEmbed();
 						embed2.setTitle("The timeout period has elapsed.")
 							.setFooter("TIMEOUT")
 							.setTimestamp()

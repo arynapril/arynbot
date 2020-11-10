@@ -1,7 +1,7 @@
 exports.run = (bot, message, args, level) => {
 	const Discord = require('discord.js');
 	var server = message.guild;
-	var serverEmbed = new Discord.RichEmbed()
+	var serverEmbed = new Discord.MessageEmbed()
 		.setTitle(`Server stats for ${server.name}`)
 		.setColor([Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256)])
 		.addField('Name', server.name)

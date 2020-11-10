@@ -6,7 +6,7 @@ module.exports = async (bot, message) => {
 	if (!logs) return;
 	if (!logs.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
 	if (message.author.bot) return;
-	var dlt = new Discord.RichEmbed()
+	var dlt = new Discord.MessageEmbed()
 		.setTitle('Message Deleted')
 	if (message.member.nickname == null) {
 		dlt.addField('User', `${message.author.username}`, true)

@@ -9,7 +9,7 @@ exports.run = (bot, message, args, level) => {
         var reason = args.slice(1).join(" ");
     };    
     banned.ban(reason);
-    var ban = new Discord.RichEmbed();
+    var ban = new Discord.MessageEmbed();
         ban.setTitle('User was banned.')
         .addField('User', banee, true)
         .addField('Banned by', message.author, true)

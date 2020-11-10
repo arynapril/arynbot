@@ -20,7 +20,7 @@ exports.run = async (bot, message, args, level) => {
 	emoji = msg.guild.emojis.find(e => e.name == emote);
 	if (!emoji) return;
 	//msg.react(emoji.id);
-	const HoF = new Discord.RichEmbed();
+	const HoF = new Discord.MessageEmbed();
 	HoF.setColor(`${msg.member.displayHexColor}`)
 		.setTitle('Hall of Fame 🏆')
 		.setURL(`http://discordapp.com/channels/${msg.guild.id}/${msg.channel.id}/${msg.id}`)
