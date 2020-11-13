@@ -1,6 +1,7 @@
 exports.run = async (bot, message, args, level) => {
+	const p = Math.round(bot.ws.ping);
 	const m = await message.channel.send("Ping?");
-	m.edit(`Pong! I took ${m.createdTimestamp - message.createdTimestamp} milliseconds to respond! Heartbeat is ${Math.round(bot.ping)} milliseconds!`);
+	m.edit(`Pong! I took ${m.createdTimestamp - message.createdTimestamp} milliseconds to respond! Heartbeat is ${p} milliseconds!`);
 };
 
 exports.conf = {

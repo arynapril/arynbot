@@ -3,7 +3,7 @@ module.exports = async (bot, member) => {
 	enabled = await bot.getSetting('leaveMessagesEnabled', member.guild);
 	if (enabled == '0') return;
 	setting = await bot.getSetting('leaveMessagesChannel', member.guild);
-	welcome = member.guild.channels.find(c => c.name == setting);
+	welcome = member.guild.channels.cache.find(c => c.name == setting);
 	if (!welcome) return;
 	autodelete = await bot.getSetting('leaveMessagesAutoDelete', member.guild);
 	if (autodelete) {

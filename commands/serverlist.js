@@ -1,6 +1,6 @@
 exports.run = (bot, message, args, level) => {
     var str = ""; 
-    var guilds = bot.guilds.array(); 
+    var guilds = bot.guilds.cache.array(); 
     for (var i = 0; i < guilds.length; i++) { 
         str += `${i} - ${guilds[i].name.replace(/@/g, '@ ')}\n`; 
     } 

@@ -43,7 +43,7 @@ exports.run = (bot, message, args) => {
 		.addField('Game', game, true)
 		.addField('Bot', user.bot, true)
 		.addField('Roles', member.roles.array().length - 1, true)
-		.addField('Highest Role', member.highestRole.name, true)
+		.addField('Highest Role', member.roles.highest, true)
 		.addField('Hoist Role', hoist, true)
 		.addField('Color Role', color, true)
 		.addField('Most Exclusive Role', exclusive, true)

@@ -1,6 +1,6 @@
 exports.run = (bot, message, args, level) => {
     const Discord = require('discord.js');
-    var role = message.guild.roles.find(r => r.name == args.join(' '));
+    var role = message.guild.roles.cache.find(r => r.name == args.join(' '));
     if (!role) return message.channel.send("Couldn't find that role in this server, sorry!")
     var roleEmbed = new Discord.MessageEmbed()
 		.setTitle(`Stats for ${role.name}`)

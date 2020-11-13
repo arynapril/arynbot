@@ -17,7 +17,7 @@ exports.run = (bot, message, args, level) => {
 			.setFooter("TIMEOUT")
 			.setTimestamp()
 			.setColor([255, Math.floor(Math.random() * 256), Math.floor(Math.random() * 256)])
-		message.channel.overwritePermissions(id, {
+		message.channel.createOverwrite(id, {
 				SEND_MESSAGES: false
 			})
 			.then(
@@ -34,7 +34,7 @@ exports.run = (bot, message, args, level) => {
 						message.edit({
 							embed: embed2
 						});
-						message.channel.overwritePermissions(id, {
+						message.channel.createOverwrite(id, {
 							SEND_MESSAGES: true
 						});
 					}, time * 1000);
