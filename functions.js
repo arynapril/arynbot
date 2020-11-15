@@ -133,7 +133,7 @@ module.exports = (bot) => {
 		bot.getSetting('dadJokesEnabled', message.guild).then(setting => {
 			if (setting == '0') return;
 			bot.getSetting('dadJokesJail', message.guild).then(chan => {
-				jail = message.guild.channels.find(c => c.name == chan);
+				jail = message.guild.channels.cache.find(c => c.name == chan);
 				if (!jail) {
 					if (message.author.id == '226999841358610432') {
 						const args = message.content.split(/\s+/g);
@@ -232,7 +232,7 @@ module.exports = (bot) => {
 			return m;
 		} else if (bot.users.get(input)) {
 			//return bot.users.get(input);
-		} else if (bot.users.find(u => u.tag == input)) {
+		} else if (bot.users.cache.find(u => u.tag == input)) {
 			//return bot.users.find(u => u.tag == input);
 		}
 	}
