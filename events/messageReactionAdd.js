@@ -1,6 +1,14 @@
 module.exports = async (bot, messageReaction, user) => {
-	console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-	console.log(user.username);
+	if (messageReaction.partial) {
+		// If the message this reaction belongs to was removed the fetching might result in an API error, which we need to handle
+		try {
+			await messageReaction.fetch();
+		} catch (error) {
+			console.error('Something went wrong when fetching the message: ', error);
+			// Return as `reaction.message.author` may be undefined/null
+			return;
+		}
+	}
 	const Discord = require('discord.js');
 	let msg = messageReaction.message;
 	if(msg.channel.type === "dm") return;
@@ -24,18 +32,13 @@ module.exports = async (bot, messageReaction, user) => {
 	}
 	chan = await bot.getSetting('hallOfFameChannel', msg.guild)
 	var HallOfFame = msg.guild.channels.cache.find(c => c.name == chan);
-	console.log("hof");
-	// console.log(HallOfFame);
-	console.log("chan");
-	// console.log(chan);
+
 	if (!HallOfFame) return;
 	if (!HallOfFame.permissionsFor(msg.guild.me).has("SEND_MESSAGES")) return;
 	if (messageReaction.me) return;
 	emote = await bot.getSetting('hallOfFameEmote', msg.guild);
 	emoji = msg.guild.emojis.cache.find(e => e.name == emote);
-	console.log("emote");
-	// console.log(emote);`
-	// console.log(emoji);
+
 	if (!emoji) return;
 	modNeeded = await bot.getSetting('hallOfFameModNeeded', msg.guild);
 	if (modNeeded) {
@@ -63,9 +66,7 @@ module.exports = async (bot, messageReaction, user) => {
 		if (aCheckB==0) return;
 	}
 	limit = await bot.getSetting('hallOfFameLimit', msg.guild)
-	console.log(limit);
-	console.log("fioewjfioewjofiewoifewoi");
-	console.log(messageReaction.count);
+
 	if (limit == 0) return;
 	if (messageReaction.message.channel.id == HallOfFame.id) return;
 	if (messageReaction.emoji.id == emoji.id && messageReaction.count >= limit) {

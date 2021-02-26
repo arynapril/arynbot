@@ -3,7 +3,12 @@ const {
 	promisify
 } = require('util');
 const readdir = promisify(require("fs").readdir);
-const bot = new discord.Client();
+const bot = new discord.Client({
+	ws: {
+	  intents: ['GUILD_MESSAGES', 'GUILDS', 'GUILD_MESSAGE_REACTIONS', "GUILD_PRESENCES"]
+	},
+	partials: ['REACTION', 'MESSAGE', "USER"]
+  });
 bot.config = require("./config.json");
 require("./functions.js")(bot);
 bot.commands = new discord.Collection();
