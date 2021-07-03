@@ -1,4 +1,14 @@
 module.exports = async (bot, messageReaction, user) => {
+	if (messageReaction.partial) {
+		// If the message this reaction belongs to was removed the fetching might result in an API error, which we need to handle
+		try {
+			await messageReaction.fetch();
+		} catch (error) {
+			console.error('Something went wrong when fetching the message: ', error);
+			// Return as `reaction.message.author` may be undefined/null
+			return;
+		}
+	}
 	const Discord = require('discord.js');
 	let msg = messageReaction.message;
 	if(msg.channel.type === "dm") return;
@@ -7,13 +17,13 @@ module.exports = async (bot, messageReaction, user) => {
 	overrideBool = await bot.getSetting('hallOfFameOverrideEnabled', msg.guild);
 	if (overrideBool) {
 		overrideEmote = await bot.getSetting('hallOfFameOverrideEmote', msg.guild);
-		overrideEmoji = msg.guild.emojis.find(e => e.name == overrideEmote);
+		overrideEmoji = msg.guild.emojis.cache.find(e => e.name == overrideEmote);
 		if(overrideEmoji) {
 			msg.reactions.forEach(rct => {
 				if (rct.emoji.id == overrideEmoji.id) {
 					rct.users.forEach(u => {
 						if (u==msg.author) return;
-						m=msg.guild.members.get(u.id);
+						m=msg.guild.members.cache.get(u.id);
 						if(m.hasPermission("MANAGE_MESSAGES")) return;
 					})
 				}
@@ -21,12 +31,14 @@ module.exports = async (bot, messageReaction, user) => {
 		}
 	}
 	chan = await bot.getSetting('hallOfFameChannel', msg.guild)
-	var HallOfFame = msg.guild.channels.find(c => c.name == chan);
+	var HallOfFame = msg.guild.channels.cache.find(c => c.name == chan);
+
 	if (!HallOfFame) return;
 	if (!HallOfFame.permissionsFor(msg.guild.me).has("SEND_MESSAGES")) return;
 	if (messageReaction.me) return;
 	emote = await bot.getSetting('hallOfFameEmote', msg.guild);
-	emoji = msg.guild.emojis.find(e => e.name == emote);
+	emoji = msg.guild.emojis.cache.find(e => e.name == emote);
+
 	if (!emoji) return;
 	modNeeded = await bot.getSetting('hallOfFameModNeeded', msg.guild);
 	if (modNeeded) {
@@ -34,7 +46,7 @@ module.exports = async (bot, messageReaction, user) => {
 		msg.reactions.forEach(mCheck => {
 			if (mCheck.emoji.id == emoji.id) {
 				mCheck.users.forEach(mCheckU => {
-					mCheckM=msg.guild.members.get(mCheckU.id);
+					mCheckM=msg.guild.members.cache.get(mCheckU.id);
 					if(mCheckM.hasPermission("MANAGE_MESSAGES")) mCheckB=1;
 				})
 			}
@@ -51,13 +63,15 @@ module.exports = async (bot, messageReaction, user) => {
 				})
 			}
 		})
-		if (aCheckB==0) return;		
+		if (aCheckB==0) return;
 	}
 	limit = await bot.getSetting('hallOfFameLimit', msg.guild)
+
 	if (limit == 0) return;
+	if (messageReaction.message.channel.id == HallOfFame.id) return;
 	if (messageReaction.emoji.id == emoji.id && messageReaction.count >= limit) {
 		msg.react(emoji.id);
-		const HoF = new Discord.RichEmbed();
+		const HoF = new Discord.MessageEmbed();
 		HoF.setColor(`${msg.member.displayHexColor}`)
 			.setTitle('Hall of Fame 🏆')
 			.setURL(`http://discordapp.com/channels/${msg.guild.id}/${msg.channel.id}/${msg.id}`)
@@ -70,11 +84,11 @@ module.exports = async (bot, messageReaction, user) => {
 		};
 		HoF.addField('Channel', `${msg.channel}`, true)
 		if (msg.attachments.size == 0) {
-			HoF.addField('Message', `${msg}`)
+			HoF.addField('Message', `${msg.content}`)
 		} else {
 			pictures = msg.attachments.array();
-			if (msg != "") {
-				HoF.addField('Message', `${msg}`)
+			if (msg.content != "") {
+				HoF.addField('Message', `${msg.content}`)
 			}
 			HoF.setImage(pictures[0].url)
 		}

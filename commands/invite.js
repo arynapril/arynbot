@@ -1,8 +1,8 @@
 exports.run = async (bot, message, args, level) => {
 	const Discord = require('discord.js')
 	link = await bot.generateInvite();
-	invite = await bot.channels.get('605453965659996164').createInvite();
-	inviteEmbed = new Discord.RichEmbed()
+	invite = await bot.channels.cache.get('605453965659996164').createInvite();
+	inviteEmbed = new Discord.MessageEmbed()
 		.setColor('f18edd')
 		.addField('To invite arynbot to a server', `<${link}>`)
 		.addField('To join arynbot\'s development server', `<${invite}>`)

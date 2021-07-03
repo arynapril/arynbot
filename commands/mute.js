@@ -7,8 +7,8 @@ exports.run = (bot, message, args, level) => {
 		var reason = args.slice(1).join(" ");
 	};
 	for (var k = 0; k < mutee.length; k++) {
-		var user = bot.users.get(mutee[k].id);
-		var member = message.guild.members.get(mutee[k].id);
+		var user = bot.users.cache.get(mutee[k].id);
+		var member = message.guild.members.cache.get(mutee[k].id);
 		var channels = message.guild.channels.array();
 		for (var i = 0; i < channels.length; i++) {
 			if (channels[i].type == 'text')
@@ -17,7 +17,7 @@ exports.run = (bot, message, args, level) => {
 					ADD_REACTIONS: false
 				})
 		}
-		var mute = new Discord.RichEmbed()
+		var mute = new Discord.MessageEmbed()
 		    .setTitle('User was muted.')
 			.addField('User', user, true)
 			.addField('Muted by', message.author, true)

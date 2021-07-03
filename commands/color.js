@@ -1,6 +1,6 @@
 exports.run = (bot, message, args, level) => {
 	const Discord = require('discord.js');
-	var color = new Discord.RichEmbed()
+	var color = new Discord.MessageEmbed()
 		.setColor('RANDOM')
 	if ((typeof args[0] === "string") && args[0].length === 6 && !isNaN(parseInt(args[0], 16))) {
 		hexColor = args[0].toLowerCase();

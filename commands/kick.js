@@ -2,15 +2,15 @@ exports.run = (bot, message, args, level) => {
     const Discord = require("discord.js");
     if (!message.mentions.users.array()[0]) return;
     var banee = message.mentions.users.array()[0];
-    var kicked = message.guild.members.get(banee.id);
-    var user = bot.users.get(banee.id);
+    var kicked = message.guild.members.cache.get(banee.id);
+    var user = bot.users.cache.get(banee.id);
     if (args.length == 1) {
         var reason = "Not specified";
     } else {
         var reason = args.slice(1).join(" ");
     }; 
     kicked.kick(reason);
-    var kick = new Discord.RichEmbed();
+    var kick = new Discord.MessageEmbed();
         kick.setTitle('User was kicked.')
         .addField('User', banee, true)
         .addField('Kicked by', message.author, true)

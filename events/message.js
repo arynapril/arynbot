@@ -2,12 +2,12 @@ module.exports = async (bot, message) => {
 	const Discord = require('discord.js');
 	if (message.content.toLowerCase().includes('yam')||message.content.toLowerCase().includes('174687224988827659')||message.content.toLowerCase().includes('aryn')) {
 		if (message.channel.type !== 'dm'){
-			if (message.guild.members.get('174687224988827659')) {
-				mentionedEmbed = new Discord.RichEmbed()
+			if (message.guild.members.cache.get('174687224988827659')) {
+				mentionedEmbed = new Discord.MessageEmbed()
 				.setTitle(message.guild.name + ' - ' + message.channel.name)
 				.setAuthor(message.author.username, message.author.avatarURL)
 				.setDescription(message.content)
-				bot.users.get('174687224988827659').send({embed: mentionedEmbed});
+				bot.users.cache.get('174687224988827659').send({embed: mentionedEmbed});
 			}
 		}
 	}
@@ -16,14 +16,14 @@ module.exports = async (bot, message) => {
 	else if (message.channel.type === "dm" && message.author.id != bot.user.id){
 		console.log("[DM] " + message.channel.recipient.username + " -> " + bot.user.username + " | " + message.content);
 		args = message.content.split(/\s+/g);
-		mmGuild = bot.guilds.get(args[0]);
+		mmGuild = bot.guilds.cache.get(args[0]);
 		if (!mmGuild) return message.channel.send('Sorry, I\'m not in that server/it dfindoesn\'t exist! Make sure you preface your mod mail message with the server ID!');
 		mmGuildB = await bot.getSetting('modMailEnabled', mmGuild);
 		if (!mmGuildB) return message.channel.send('Sorry, that server doesn\'t have mod mail enabled!');
 		mmGuildC = await bot.getSetting('modMailChannel', mmGuild);
-		mmGuildChan = mmGuild.channels.find(c => c.name == mmGuildC);
+		mmGuildChan = mmGuild.channels.cache.find(c => c.name == mmGuildC);
 		if (!mmGuildChan) return message.channel.send('Sorry, something is wrong server end! Make sure all the channel settings are set correctly!');
-		modMail = new Discord.RichEmbed()
+		modMail = new Discord.MessageEmbed()
 		.setColor('RANDOM')
 		.setAuthor(message.author.tag, message.author.avatarURL)
 		.setDescription(args.slice(1).join(" "))
@@ -42,7 +42,7 @@ module.exports = async (bot, message) => {
 	secEnabled = await bot.getSetting('securityEnabled', message.guild);
 	if (secEnabled) {
 		secChanS = await bot.getSetting('securityChannel', message.guild);
-		secChan = message.guild.channels.find(c => c.name == secChanS);
+		secChan = message.guild.channels.cache.find(c => c.name == secChanS);
 		if (message.channel == secChan) {
 			passPhrase = await bot.getSetting('securityPhrase', message.guild);
 			if(message.content.includes(passPhrase)){
@@ -52,7 +52,7 @@ module.exports = async (bot, message) => {
 					secChan.send(`This server requires you to have a nickname set to join their server. To join, please set your nickname according to the format ${nickFormat} (by clicking the server name, then change nickname) and then retry the passphrase!`);
 				} else {
 					memRoleS = await bot.getSetting('securityRole', message.guild);
-					memRole = message.guild.roles.find(r => r.name == memRoleS);
+					memRole = message.guild.roles.cache.find(r => r.name == memRoleS);
 					if (!memRole) return;
 					message.member.addRole(memRole);
             		message.channel.bulkDelete(50);
@@ -62,7 +62,7 @@ module.exports = async (bot, message) => {
 					message.channel.send(welcomePin);
 					if (welcome) {
 						welcomeChanS = await bot.getSetting('welcomeMessagesChannel', message.guild);
-						welcomeChan = message.guild.channels.find(c => c.name == welcomeChanS);
+						welcomeChan = message.guild.channels.cache.find(c => c.name == welcomeChanS);
 						welcomeMessage = await bot.getSetting('welcomeMessage', message.guild);
 						welcomeMessage = welcomeMessage.replace('{user}', message.author).replace('{guild}', message.guild.name);
 						if (!welcomeChan) return;

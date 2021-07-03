@@ -1,13 +1,13 @@
 exports.run = (bot, message, args, level) => {
 	const Discord = require('discord.js');
 	if (!args[0]) {
-		var intro = new Discord.RichEmbed();
+		var intro = new Discord.MessageEmbed();
 		intro.setTitle("Command List")
 			.setDescription(`Use ${bot.config.prefix}help <commandname> for details`)
 			.setColor([Math.floor(Math.random() * 256), Math.floor(Math.random() * 256), Math.floor(Math.random() * 256)]);
 		message.author.send({embed: intro})
 		for (i=0; i<=Math.floor(bot.commands.size/24); i++) {
-			var helpbox = new Discord.RichEmbed();
+			var helpbox = new Discord.MessageEmbed();
 			helpbox.setColor(intro.color);
 			if (i==Math.floor(bot.commands.size/24)){
 				x = bot.commands.size%24;
@@ -16,7 +16,7 @@ exports.run = (bot, message, args, level) => {
 			}
 			for (y=0; y<x; y++) {
 				c = bot.commands.array()[i*24+y];
-				helpbox.addField(c.help.name, c.help.description)
+				helpbox.addField(c.help.name, c.help.description, true)
 			}
 			message.author.send({embed: helpbox})
 		}
@@ -29,7 +29,7 @@ exports.run = (bot, message, args, level) => {
 			command = bot.commands.get(bot.aliases.get(args[0]));
 		};
 		if (!command) return message.reply(`That command doesn't seem to exist, nor is it an alias. Try again!`);
-		var helpCommand = new Discord.RichEmbed();
+		var helpCommand = new Discord.MessageEmbed();
 		helpCommand.setTitle(command.help.name)
 			.addField('Description', `${command.help.description}`)
 			.addField('Usage', `${bot.config.prefix}${command.help.usage}`)

@@ -1,26 +1,26 @@
 exports.run = async (bot, message, args, level) => {
 	const Discord = require('discord.js');
 	if (args[1]){
-		chanarg = message.guild.channels.get(args[1]);
+		chanarg = message.guild.channels.cache.get(args[1]);
 		if (!chanarg) return message.channel.send("Invalid channel input detected. Make sure the message ID is the first arguement, and the channel ID is the second arguement!")
 	} else {
 		chanarg = message.channel;
 	}
-	messages = await chanarg.fetchMessages({
+	messages = await chanarg.messages.fetch({
 		limit: 1,
 		around: args[0]
 	});
 	const msg = messages.first();
 	if (!msg) return message.channel.send('Message not found! Make sure the arguements for the message ID/channel ID are correct!');
 	chan = await bot.getSetting('hallOfFameChannel', message.guild);
-	HallOfFame = msg.guild.channels.find(c => c.name == chan);
+	HallOfFame = msg.guild.channels.cache.find(c => c.name == chan);
 	if (!HallOfFame) return;
 	if (!HallOfFame.permissionsFor(msg.guild.me).has("SEND_MESSAGES")) return;
 	emote = await bot.getSetting('hallOfFameEmote', msg.guild);
-	emoji = msg.guild.emojis.find(e => e.name == emote);
+	emoji = msg.guild.emojis.cache.find(e => e.name == emote);
 	if (!emoji) return;
 	//msg.react(emoji.id);
-	const HoF = new Discord.RichEmbed();
+	const HoF = new Discord.MessageEmbed();
 	HoF.setColor(`${msg.member.displayHexColor}`)
 		.setTitle('Hall of Fame 🏆')
 		.setURL(`http://discordapp.com/channels/${msg.guild.id}/${msg.channel.id}/${msg.id}`)
@@ -42,7 +42,7 @@ exports.run = async (bot, message, args, level) => {
 		HoF.setImage(pictures[0].url)
 	};
 	x = await message.channel.send("You're about to add this post to this servers hall of fame! Press Y if that's your intent, or N to cancel!", {embed: HoF});
-	var collector = message.channel.createCollector( 
+	var collector = message.channel.createMessageCollector( 
 		m => m.content.toLowerCase() == 'y' || m.content.toLowerCase() == 'n',
         { time: 30000 }
     );

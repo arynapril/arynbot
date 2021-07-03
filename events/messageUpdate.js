@@ -3,14 +3,14 @@ module.exports = async (bot, oldMessage, newMessage) => {
 	if (oldMessage.channel.type === "dm") return;
 	if (!oldMessage.member) return;
 	setting = await bot.getSetting('logsChannel', oldMessage.member.guild);
-	var logs = oldMessage.guild.channels.find(c => c.name == setting);
+	var logs = oldMessage.guild.channels.cache.find(c => c.name == setting);
 	if (!logs) return;
 	if (!logs.permissionsFor(oldMessage.guild.me).has("SEND_MESSAGES")) return;
 	if (!oldMessage || !newMessage) return;
 	if (oldMessage == "" || newMessage == "") return;
 	if (oldMessage.content == newMessage.content) return;
 	if (oldMessage.author.bot) return;
-	var update = new Discord.RichEmbed()
+	var update = new Discord.MessageEmbed()
 		.setTitle('Message Updated')
 	if (oldMessage.member.nickname == null) {
 		update.addField('User', `${oldMessage.author.username}`, true)

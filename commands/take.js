@@ -2,12 +2,12 @@ exports.run = (bot, message, args, level) => {
     if (!message.mentions.users.array()[0]) return message.channel.send('Please mention a user to remove the role from!');
     var user = message.mentions.users.array()[0];
     var roleToTake = args.slice(1).join(' ');
-    let role = message.guild.roles.find(r => r.name == roleToTake);
+    let role = message.guild.roles.cache.find(r => r.name == roleToTake);
     if (!role) {
         message.channel.send("That role does not exist!");
-    } else if (role.comparePositionTo(message.member.highestRole) < 0) {
-        message.guild.members.get(user.id).removeRole(role).then(m => {
-            if(!m.roles.has(role.id))
+    } else if (role.comparePositionTo(message.member.roles.highest) < 0) {
+        message.guild.members.cache.get(user.id).roles.remove(role).then(m => {
+            if(!m.roles.cache.has(role.id))
                 message.channel.send(`Successfully took the **${roleToTake}** from **${user.username}**!`);
             else
                 message.channel.send(`Could not take the **${roleToTake}** from **${user.username}**! Sorry!`);

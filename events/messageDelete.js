@@ -2,11 +2,11 @@ module.exports = async (bot, message) => {
 	const Discord = require('discord.js');
 	if (message.channel.type === "dm") return;
 	setting = await bot.getSetting('logsChannel', message.member.guild);
-	var logs = message.guild.channels.find(c => c.name == setting);
+	var logs = message.guild.channels.cache.find(c => c.name == setting);
 	if (!logs) return;
 	if (!logs.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return;
 	if (message.author.bot) return;
-	var dlt = new Discord.RichEmbed()
+	var dlt = new Discord.MessageEmbed()
 		.setTitle('Message Deleted')
 	if (message.member.nickname == null) {
 		dlt.addField('User', `${message.author.username}`, true)

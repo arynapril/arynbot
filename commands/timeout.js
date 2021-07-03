@@ -10,14 +10,14 @@ exports.run = (bot, message, args, level) => {
 		var timecode = `${time} seconds`;
 	}
 	if (!isNaN(time)) {
-		var embed1 = new Discord.RichEmbed();
+		var embed1 = new Discord.MessageEmbed();
 		embed1.setTitle("This channel has been timed out.")
 			.addField("Length", timecode)
 			.addField("Initiated by:", message.author)
 			.setFooter("TIMEOUT")
 			.setTimestamp()
 			.setColor([255, Math.floor(Math.random() * 256), Math.floor(Math.random() * 256)])
-		message.channel.overwritePermissions(id, {
+		message.channel.createOverwrite(id, {
 				SEND_MESSAGES: false
 			})
 			.then(
@@ -26,7 +26,7 @@ exports.run = (bot, message, args, level) => {
 				})
 				.then(message => {
 					setTimeout(() => {
-						var embed2 = new Discord.RichEmbed();
+						var embed2 = new Discord.MessageEmbed();
 						embed2.setTitle("The timeout period has elapsed.")
 							.setFooter("TIMEOUT")
 							.setTimestamp()
@@ -34,7 +34,7 @@ exports.run = (bot, message, args, level) => {
 						message.edit({
 							embed: embed2
 						});
-						message.channel.overwritePermissions(id, {
+						message.channel.createOverwrite(id, {
 							SEND_MESSAGES: true
 						});
 					}, time * 1000);

@@ -5,7 +5,7 @@ exports.run = async (bot, message, args, level) => {
     if (args[0] == 'add') {
         if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send("You don't have the perms required to add roles to the giveme! Sorry!")
         role = args.splice(1).join(' ')
-        if (!message.guild.roles.find(r => r.name == role)) return message.channel.send('That role was not found in this server! Sorry!')
+        if (!message.guild.roles.cache.find(r => r.name == role)) return message.channel.send('That role was not found in this server! Sorry!')
         if (givemeList.indexOf(role)>-1) return message.channel.send('That role is already in the list!')
         if (list == "none") {
             bot.setSetting('giveme', role, message);
@@ -23,7 +23,7 @@ exports.run = async (bot, message, args, level) => {
         for (i=0; i<givemeList.length; i++){
             str += `${givemeList[i]} \n`
         };
-        listEmbed = new Discord.RichEmbed()
+        listEmbed = new Discord.MessageEmbed()
                 .setTitle("Roles avaliable to self assign")
                 .setColor("RANDOM")
                 .setDescription(str)
@@ -52,11 +52,11 @@ exports.run = async (bot, message, args, level) => {
         couldnt = 0;
         for (i=0; i<removeRoles.length; i++){
             if (roles.indexOf(removeRoles[i])>-1){
-                if (!message.member.roles.find(r => r.name == removeRoles[i])) {
+                if (!message.member.roles.cache.find(r => r.name == removeRoles[i])) {
                     didntHave += 1;
                     didntHaveNames += `${removeRoles[i]}\n`
                 } else {
-                    message.member.removeRole(message.guild.roles.find(r => r.name == removeRoles[i]))
+                    message.member.roles.remove(message.guild.roles.cache.find(r => r.name == removeRoles[i]))
                     removed += 1;
                     removedNames += `${removeRoles[i]}\n`
                 }
@@ -64,7 +64,7 @@ exports.run = async (bot, message, args, level) => {
                 couldnt += 1;
             }
         }
-        removeEmbed = new Discord.RichEmbed()
+        removeEmbed = new Discord.MessageEmbed()
             .setColor("RANDOM")
             .setTimestamp()
         if (removed > 0) removeEmbed.addField(`Removed ${removed} roles!`, removedNames);
@@ -97,17 +97,17 @@ exports.run = async (bot, message, args, level) => {
         for (i=0; i<addRoles.length; i++){
             if (roles.indexOf(addRoles[i])>-1) {
                 //checks if its in the role list
-                if (!message.guild.roles.find(r => r.name == addRoles[i])){
+                if (!message.guild.roles.cache.find(r => r.name == addRoles[i])){
                     //checks if the role exists
                     couldnt += 1;
-                } else if (message.guild.roles.find(r => r.name == addRoles[i]).comparePositionTo(message.guild.me.highestRole) < 0){
+                } else if (message.guild.roles.cache.find(r => r.name == addRoles[i]).comparePositionTo(message.guild.me.roles.highest) < 0){
                     //checks if its above the bots highest role 
-                    if (message.member.roles.find(r => r.name == addRoles[i])) {
+                    if (message.member.roles.cache.find(r => r.name == addRoles[i])) {
                         //checks if they have it
                         alreadyHad += 1;
                         alreadyHadNames += `${addRoles[i]}\n`
                     } else {
-                        message.member.addRole(message.guild.roles.find(r => r.name == addRoles[i]))
+                        message.member.roles.add(message.guild.roles.cache.find(r => r.name == addRoles[i]))
                         added += 1;
                         addedNames += `${addRoles[i]}\n`
                     }
@@ -120,7 +120,7 @@ exports.run = async (bot, message, args, level) => {
                 couldnt += 1;
             }
         }
-        addEmbed = new Discord.RichEmbed()
+        addEmbed = new Discord.MessageEmbed()
             .setColor("RANDOM")
             .setTimestamp()
         if (added > 0) addEmbed.addField(`Added ${added} roles!`, addedNames);
@@ -139,7 +139,7 @@ exports.run = async (bot, message, args, level) => {
         });
         collector.on('end', collected => {
             if (collected.size == 0) {
-                sent.clearReactions();
+                sent.reactions.removeAll();
             }
         });
     }
